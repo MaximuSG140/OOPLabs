@@ -14,3 +14,11 @@ RNA::RNA(int capacity, Nucleotide baseValue)
 }
 
 RNA::~RNA(){}
+
+RNA RNA::operator=(RNA r)
+{
+	this->storage = std::vector<NuclStake>(r.storage);
+	this->buffer = r.buffer;
+	return RNA();
+}
+
