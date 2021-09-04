@@ -8,6 +8,7 @@ public:
 	void RemoveLast();
 	void Clear();
 	NuclStake GetStake();
+	NuclBuffer();
 	NuclBuffer(int number, Nucleotide value);
 private:
 	NuclStake current = 0;
