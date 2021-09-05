@@ -1,6 +1,6 @@
 #pragma once
-typedef char NuclStake;
+typedef char NucleotideStake;
 
-enum Nucleotide : char {
-	A, C, T, G
+enum nucleotide : char {
+	a, c, t, g
 };

@@ -1,24 +1,24 @@
 #include "RNA.h"
 
-RNA::RNA(){}
+RNA::RNA() = default;
 
-RNA::RNA(int capacity)
+RNA::RNA(const int capacity)
 {
-	storage = std::vector<NuclStake>(capacity/4);
+	storage = std::vector<NucleotideStake>(capacity/4);
 }
 
-RNA::RNA(int capacity, Nucleotide baseValue)
+RNA::RNA(const int capacity, const nucleotide baseValue)
 {
-	storage = std::vector<NuclStake>(capacity / 4, NuclBuffer(4, baseValue).GetStake());
-	buffer = NuclBuffer(capacity % 4, baseValue);
+	storage = std::vector<NucleotideStake>(capacity / 4, NucleotideBuffer(4, baseValue).GetStake());
+	buffer = NucleotideBuffer(capacity % 4, baseValue);
 }
 
-RNA::~RNA(){}
+RNA::~RNA() = default;
 
-RNA RNA::operator=(RNA r)
+RNA& RNA::operator=(const RNA& r)
 {
-	this->storage = std::vector<NuclStake>(r.storage);
+	this->storage = std::vector<NucleotideStake>(r.storage);
 	this->buffer = r.buffer;
-	return RNA();
+	return *this;
 }
 

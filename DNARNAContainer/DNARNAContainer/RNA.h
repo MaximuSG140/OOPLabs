@@ -1,19 +1,18 @@
+#pragma once
 #include <vector>
 #include "Nucleotides.h"
-#include "NuclBuffer.h"
-#pragma once
-
+#include "NucleotideBuffer.h"
 
 class RNA
 {
 public:
 	RNA();
 	RNA(int capacity);
-	RNA(int capacity, Nucleotide baseValue);
+	RNA(int capacity, nucleotide baseValue);
 	//RNA(RNA r);
 	~RNA();
 	RNA operator+ (RNA r);
-	RNA operator=  (RNA r);
+	RNA& operator=  (const RNA& r);
 	RNA operator! ();
 	bool operator== (RNA r);
 	bool operator!= (RNA r);
@@ -21,7 +20,7 @@ public:
 	RNA operator[](int index);
 	std::pair<RNA, RNA> Split(int index);
 private:
-	std::vector<NuclStake>storage;
-	NuclBuffer buffer;
+	std::vector<NucleotideStake>storage;
+	NucleotideBuffer buffer;
 };
 

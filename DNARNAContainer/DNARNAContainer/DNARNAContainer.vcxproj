@@ -152,11 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DNARNAContainer.cpp" />
-    <ClCompile Include="NuclBuffer.cpp" />
+    <ClCompile Include="NucleotideBuffer.cpp" />
     <ClCompile Include="RNA.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NuclBuffer.h" />
+    <ClInclude Include="NucleotideBuffer.h" />
     <ClInclude Include="Nucleotides.h" />
     <ClInclude Include="RNA.h" />
   </ItemGroup>
