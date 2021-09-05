@@ -64,6 +64,11 @@ bool NucleotideBuffer::IsFull() const
 	return nucleotideAmmount == 4;
 }
 
+unsigned int NucleotideBuffer::GetAmmount() const
+{
+	return nucleotideAmmount;
+}
+
 NucleotideBuffer& NucleotideBuffer::operator!()const
 {
 	NucleotideBuffer* res = new NucleotideBuffer();
@@ -77,4 +82,9 @@ NucleotideBuffer& NucleotideBuffer::operator!()const
 nucleotide NucleotideBuffer::operator[](unsigned int index) const
 {
 	return static_cast<nucleotide>((current >> (3 - nucleotideAmmount) * 2) & 3);
+}
+
+bool NucleotideBuffer::operator==(const NucleotideBuffer& buffer) const
+{
+	return nucleotideAmmount == buffer.nucleotideAmmount && current == buffer.current;
 }

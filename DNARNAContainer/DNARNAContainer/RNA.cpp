@@ -37,14 +37,22 @@ void RNA::PushBuffer()
 	}
 }
 
-RNA& RNA::operator+(RNA r)
+RNA& RNA::operator+(const RNA& r) const
 {
-	RNA* res = new RNA(*this);
-	for(int i = 0; i < r.storage.size() * 4; ++i)
+	RNA* res = new RNA();
+	for (int i = 0; i < storage.size() * 4 + buffer.GetAmmount(); ++i)
+	{
+		res->AddNucleotide((*this)[i]);
+	}
+	for (int i = 0; i < buffer.GetAmmount(); ++i)
+	{
+		res->AddNucleotide(buffer[i]);
+	}
+	for(int i = 0; i < r.storage.size() * 4 + r.buffer.GetAmmount(); ++i)
 	{
 		res->AddNucleotide(r[i]);
 	}
-
+	return *res;
 }
 
 RNA& RNA::operator=(const RNA& r)
@@ -65,6 +73,17 @@ RNA& RNA::operator!() const
 	res->buffer = !(this->buffer);
 	return *res;
 }
+
+bool RNA::operator==(const RNA& r)const
+{
+	return storage == r.storage && buffer == r.buffer;
+}
+
+bool RNA::operator!=(const RNA& r) const
+{
+	return !(*this == r);
+}
+
 
 bool RNA::IsComplimentary(const RNA r)
 {

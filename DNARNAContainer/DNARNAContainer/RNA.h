@@ -13,11 +13,11 @@ public:
 	~RNA();
 	void AddNucleotide(nucleotide n);
 	void PushBuffer();
-	RNA& operator+ (RNA r)const;
+	RNA& operator+ (const RNA& r) const;
 	RNA& operator=  (const RNA& r);
 	RNA& operator! () const;
-	bool operator== (RNA r);
-	bool operator!= (RNA r);
+	bool operator== (const RNA& r)const;
+	bool operator!= (const RNA& r)const;
 	bool IsComplimentary(RNA r);
 	nucleotide operator[](unsigned int index)const;
 	std::pair<RNA, RNA> Split(int index);
