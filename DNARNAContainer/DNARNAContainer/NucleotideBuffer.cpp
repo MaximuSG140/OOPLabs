@@ -45,6 +45,10 @@ NucleotideBuffer::NucleotideBuffer(const NucleotideStake basis)
 
 bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer buffer) const
 {
+	if(nucleotideAmmount != buffer.nucleotideAmmount)
+	{
+		return false;
+	}
 	for(int i = 0; i < nucleotideAmmount; ++i)
 	{
 		if(Complimentary((*this)[i]) != buffer[i])

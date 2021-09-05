@@ -27,6 +27,10 @@ RNA& RNA::operator=(const RNA& r)
 
 bool RNA::IsComplimentary(RNA r)
 {
+	if(storage.size() != r.storage.size())
+	{
+		return false;
+	}
 	for(unsigned int i = 0; i < storage.size(); ++i)
 	{
 		if(!NucleotideBuffer(storage[i]).IsComplimentary(r.storage[i]))
