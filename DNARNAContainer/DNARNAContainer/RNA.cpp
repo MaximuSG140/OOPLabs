@@ -28,6 +28,25 @@ void RNA::AddNucleotide(const nucleotide n)
 	buffer.AddNucleotide(n);
 }
 
+void RNA::PushBuffer()
+{
+	if(!buffer.IsFull())
+	{
+		storage.push_back(buffer.GetStake());
+		buffer.Clear();
+	}
+}
+
+RNA& RNA::operator+(RNA r)
+{
+	RNA* res = new RNA(*this);
+	for(int i = 0; i < r.storage.size() * 4; ++i)
+	{
+		res->AddNucleotide(r[i]);
+	}
+
+}
+
 RNA& RNA::operator=(const RNA& r)
 {
 	this->storage = std::vector<NucleotideStake>(r.storage);
@@ -37,12 +56,12 @@ RNA& RNA::operator=(const RNA& r)
 
 RNA& RNA::operator!() const
 {
-	RNA* res = new RNA();
+	RNA* res = new RNA();				//where to delete?
 	for(unsigned int i = 0; i < storage.size() * 4; ++i)
 	{
 		res->AddNucleotide((*this)[i]);
 	}
-	res->AddNucleotide(a);			//to  push already filled buffer to storage;
+	res->PushBuffer();
 	res->buffer = !(this->buffer);
 	return *res;
 }

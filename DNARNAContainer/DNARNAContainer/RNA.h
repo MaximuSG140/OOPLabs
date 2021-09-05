@@ -12,7 +12,8 @@ public:
 	explicit RNA(RNA& r);
 	~RNA();
 	void AddNucleotide(nucleotide n);
-	RNA& operator+ (RNA r);
+	void PushBuffer();
+	RNA& operator+ (RNA r)const;
 	RNA& operator=  (const RNA& r);
 	RNA& operator! () const;
 	bool operator== (RNA r);
