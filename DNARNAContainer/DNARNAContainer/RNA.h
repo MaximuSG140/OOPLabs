@@ -7,8 +7,8 @@ class RNA
 {
 public:
 	RNA();
-	RNA(int capacity);
-	RNA(int capacity, nucleotide baseValue);
+	explicit RNA(int capacity);
+	explicit RNA(int capacity, nucleotide baseValue);
 	//RNA(RNA r);
 	~RNA();
 	RNA operator+ (RNA r);
@@ -17,7 +17,7 @@ public:
 	bool operator== (RNA r);
 	bool operator!= (RNA r);
 	bool IsComplimentary(RNA r);
-	RNA operator[](int index);
+	nucleotide operator[](unsigned int index)const;
 	std::pair<RNA, RNA> Split(int index);
 private:
 	std::vector<NucleotideStake>storage;
