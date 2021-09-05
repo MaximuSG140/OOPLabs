@@ -1,3 +1,5 @@
+#pragma once
+#include<utility>
 #include "RNA.h"
 
 RNA::RNA() = default;
@@ -108,5 +110,31 @@ nucleotide RNA::operator[](const unsigned int index) const
 		return buffer[index % 4];
 	}
 	return NucleotideBuffer(storage[index / 4])[index % 4];
+}
+
+/**
+ * \brief
+ *  Splits RNA into two
+ * \param index
+ *	Index of last element of first RNA after splitting
+ * \return
+ *	Pair of pointers on RNA first is before given index, second - after
+ */
+std::pair<RNA*, RNA*> RNA::Split(const int index)
+{
+	RNA *firstPart, *secondPart;
+	firstPart = new RNA();
+	secondPart = new RNA();
+	for(int i = 0; i < index; ++i)
+	{
+		firstPart->AddNucleotide((*this)[i]);
+	}
+	for(int i = index; i < storage.size()*4 + buffer.GetAmmount(); ++i)
+	{
+		secondPart->AddNucleotide((*this)[i]);
+	}
+	std::pair<int, int>res = std::make_pair(2, 3);
+	
+	return std::make_pair(firstPart, secondPart);
 }
 

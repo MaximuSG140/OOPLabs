@@ -20,7 +20,7 @@ public:
 	bool operator!= (const RNA& r)const;
 	bool IsComplimentary(RNA r);
 	nucleotide operator[](unsigned int index)const;
-	std::pair<RNA, RNA> Split(int index);
+	std::pair<RNA*, RNA*> Split(const int index);
 private:
 	std::vector<NucleotideStake>storage;
 	NucleotideBuffer buffer;
