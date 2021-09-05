@@ -11,9 +11,10 @@ public:
 	explicit RNA(int capacity, nucleotide baseValue);
 	explicit RNA(RNA& r);
 	~RNA();
+	void AddNucleotide(nucleotide n);
 	RNA& operator+ (RNA r);
 	RNA& operator=  (const RNA& r);
-	RNA& operator! ();
+	RNA& operator! () const;
 	bool operator== (RNA r);
 	bool operator!= (RNA r);
 	bool IsComplimentary(RNA r);

@@ -13,6 +13,8 @@ public:
 	NucleotideBuffer(int number, nucleotide value);
 	NucleotideBuffer(NucleotideStake basis);
 	bool IsComplimentary(const NucleotideBuffer buffer) const;
+	bool IsFull()const;
+	NucleotideBuffer& operator! ()const;
 private:
 	NucleotideStake current = 0;
 	int nucleotideAmmount = 0;

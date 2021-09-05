@@ -59,6 +59,21 @@ bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer buffer) const
 	return true;
 }
 
+bool NucleotideBuffer::IsFull() const
+{
+	return nucleotideAmmount == 4;
+}
+
+NucleotideBuffer& NucleotideBuffer::operator!()const
+{
+	NucleotideBuffer* res = new NucleotideBuffer();
+	for(unsigned int i = 0; i < nucleotideAmmount; ++i)
+	{
+		res->AddNucleotide(Complimentary((*this)[i]));
+	}
+	return *res;
+}
+
 nucleotide NucleotideBuffer::operator[](unsigned int index) const
 {
 	return static_cast<nucleotide>((current >> (3 - nucleotideAmmount) * 2) & 3);

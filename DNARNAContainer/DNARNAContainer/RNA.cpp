@@ -18,6 +18,16 @@ RNA::RNA(RNA& r) = default;
 
 RNA::~RNA() = default;
 
+void RNA::AddNucleotide(const nucleotide n)
+{
+	if(buffer.IsFull())
+	{
+		storage.push_back(buffer.GetStake());
+		buffer.Clear();
+	}
+	buffer.AddNucleotide(n);
+}
+
 RNA& RNA::operator=(const RNA& r)
 {
 	this->storage = std::vector<NucleotideStake>(r.storage);
@@ -25,7 +35,19 @@ RNA& RNA::operator=(const RNA& r)
 	return *this;
 }
 
-bool RNA::IsComplimentary(RNA r)
+RNA& RNA::operator!() const
+{
+	RNA* res = new RNA();
+	for(unsigned int i = 0; i < storage.size() * 4; ++i)
+	{
+		res->AddNucleotide((*this)[i]);
+	}
+	res->AddNucleotide(a);			//to  push already filled buffer to storage;
+	res->buffer = !(this->buffer);
+	return *res;
+}
+
+bool RNA::IsComplimentary(const RNA r)
 {
 	if(storage.size() != r.storage.size())
 	{
