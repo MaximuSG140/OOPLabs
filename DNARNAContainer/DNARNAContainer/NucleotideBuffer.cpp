@@ -37,10 +37,22 @@ NucleotideBuffer::NucleotideBuffer(const int number, const nucleotide value)
 	}
 }
 
-NucleotideBuffer::NucleotideBuffer(NucleotideStake basis)
+NucleotideBuffer::NucleotideBuffer(const NucleotideStake basis)
 {
 	current = basis;
 	nucleotideAmmount = 4;
+}
+
+bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer buffer) const
+{
+	for(int i = 0; i < nucleotideAmmount; ++i)
+	{
+		if(Complimentary((*this)[i]) != buffer[i])
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 nucleotide NucleotideBuffer::operator[](unsigned int index) const

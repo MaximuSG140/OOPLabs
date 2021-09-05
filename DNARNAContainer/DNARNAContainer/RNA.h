@@ -9,11 +9,11 @@ public:
 	RNA();
 	explicit RNA(int capacity);
 	explicit RNA(int capacity, nucleotide baseValue);
-	//RNA(RNA r);
+	explicit RNA(RNA& r);
 	~RNA();
-	RNA operator+ (RNA r);
+	RNA& operator+ (RNA r);
 	RNA& operator=  (const RNA& r);
-	RNA operator! ();
+	RNA& operator! ();
 	bool operator== (RNA r);
 	bool operator!= (RNA r);
 	bool IsComplimentary(RNA r);
@@ -23,4 +23,5 @@ private:
 	std::vector<NucleotideStake>storage;
 	NucleotideBuffer buffer;
 };
+
 

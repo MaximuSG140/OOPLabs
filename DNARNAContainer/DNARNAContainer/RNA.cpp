@@ -14,6 +14,8 @@ RNA::RNA(const int capacity, const nucleotide baseValue)
 	buffer = NucleotideBuffer(capacity % 4, baseValue);
 }
 
+RNA::RNA(RNA& r) = default;
+
 RNA::~RNA() = default;
 
 RNA& RNA::operator=(const RNA& r)
@@ -21,6 +23,18 @@ RNA& RNA::operator=(const RNA& r)
 	this->storage = std::vector<NucleotideStake>(r.storage);
 	this->buffer = r.buffer;
 	return *this;
+}
+
+bool RNA::IsComplimentary(RNA r)
+{
+	for(unsigned int i = 0; i < storage.size(); ++i)
+	{
+		if(!NucleotideBuffer(storage[i]).IsComplimentary(r.storage[i]))
+		{
+			return false;
+		}
+	}
+	return buffer.IsComplimentary(r.buffer);
 }
 
 nucleotide RNA::operator[](const unsigned int index) const
