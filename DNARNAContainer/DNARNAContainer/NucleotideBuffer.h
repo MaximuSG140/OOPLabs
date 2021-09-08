@@ -13,10 +13,10 @@ public:
 	NucleotideBuffer();
 	NucleotideBuffer(int number, nucleotide value);
 	NucleotideBuffer(NucleotideStake basis);
-	bool IsComplimentary(const NucleotideBuffer buffer) const;
+	bool IsComplimentary(const NucleotideBuffer secondNucleotideBuffer) const;
 	bool IsFull()const;
 	unsigned int GetAmmount()const;
-	NucleotideBuffer& operator! ()const;
+	NucleotideBuffer operator! ()const;
 private:
 	NucleotideStake current = 0;
 	unsigned int nucleotideAmmount = 0;

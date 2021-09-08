@@ -2,20 +2,20 @@
 typedef char NucleotideStake;
 
 enum nucleotide : char {
-	a, c, t, g
+	adenine, cytosine, thymine, guanine
 };
 
-inline nucleotide Complimentary(const nucleotide n)
+inline nucleotide GetComplimentaryNucleotide(const nucleotide n)
 {
 	switch (n)
 	{
-	case a:
-		return t;
-	case c: 
-		return g;
-	case t: 
-		return a;
-	case g: 
-		return c;
+	case adenine:
+		return thymine;
+	case cytosine: 
+		return guanine;
+	case thymine: 
+		return adenine;
+	case guanine: 
+		return cytosine;
 	}
 }

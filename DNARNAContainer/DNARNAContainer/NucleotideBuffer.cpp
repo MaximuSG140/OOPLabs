@@ -31,6 +31,10 @@ NucleotideBuffer::NucleotideBuffer() = default;
 
 NucleotideBuffer::NucleotideBuffer(const int number, const nucleotide value)
 {
+	if(number > 4 || number <= 0)
+	{
+		return;
+	}
 	for (int i = 0; i < number; i++) 
 	{
 		this->AddNucleotide(value);
@@ -43,15 +47,15 @@ NucleotideBuffer::NucleotideBuffer(const NucleotideStake basis)
 	nucleotideAmmount = 4;
 }
 
-bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer buffer) const
+bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer secondNucleotideBuffer) const
 {
-	if(nucleotideAmmount != buffer.nucleotideAmmount)
+	if(nucleotideAmmount != secondNucleotideBuffer.nucleotideAmmount)
 	{
 		return false;
 	}
 	for(int i = 0; i < nucleotideAmmount; ++i)
 	{
-		if(Complimentary((*this)[i]) != buffer[i])
+		if(GetComplimentaryNucleotide((*this)[i]) != secondNucleotideBuffer[i])
 		{
 			return false;
 		}
@@ -69,19 +73,19 @@ unsigned int NucleotideBuffer::GetAmmount() const
 	return nucleotideAmmount;
 }
 
-NucleotideBuffer& NucleotideBuffer::operator!()const
+NucleotideBuffer NucleotideBuffer::operator!()const
 {
-	NucleotideBuffer* res = new NucleotideBuffer();
+	NucleotideBuffer res;
 	for(unsigned int i = 0; i < nucleotideAmmount; ++i)
 	{
-		res->AddNucleotide(Complimentary((*this)[i]));
+		res.AddNucleotide(GetComplimentaryNucleotide((*this)[i]));
 	}
-	return *res;
+	return res;
 }
 
-nucleotide NucleotideBuffer::operator[](unsigned int index) const
+nucleotide NucleotideBuffer::operator[](const unsigned int index) const
 {
-	return static_cast<nucleotide>((current >> (3 - nucleotideAmmount) * 2) & 3);
+	return static_cast<nucleotide>((current >> (3 - index) * 2) & 3);
 }
 
 bool NucleotideBuffer::operator==(const NucleotideBuffer& buffer) const

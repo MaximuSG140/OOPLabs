@@ -1,13 +1,20 @@
-#pragma once
 #include<utility>
 #include "RNA.h"
 
 RNA::RNA() = default;
 
+RNA::RNA(const std::vector<nucleotide>&chain)
+{
+	for (const auto i : chain)
+	{
+		AddNucleotide(i);
+	}
+}
+
 RNA::RNA(const int capacity)
 {
 	storage = std::vector<NucleotideStake>(capacity/4);
-	buffer.AddNucleotide(a);
+	buffer = NucleotideBuffer(capacity%4, static_cast<nucleotide>(0));
 }
 
 RNA::RNA(const int capacity, const nucleotide baseValue)
@@ -18,43 +25,65 @@ RNA::RNA(const int capacity, const nucleotide baseValue)
 
 RNA::RNA(RNA& r) = default;
 
+RNA::RNA(RNA&& r) = default;
+
 RNA::~RNA() = default;
 
+unsigned int RNA::GetCapacity()const
+{
+	return storage.size() * 4 + buffer.GetAmmount();
+}
+
+unsigned int RNA::GetCardinality(const nucleotide example) const
+{
+	unsigned int exampleEncounters = 0;
+	for(int i = 0; i < GetCapacity(); ++i)
+	{
+		if(example == (*this)[i])
+		{
+			exampleEncounters++;
+		}
+	}
+	return exampleEncounters;
+}
+
+std::unordered_map<nucleotide, int, std::hash<int>> RNA::GetCardinality() const
+{
+	std::unordered_map<nucleotide, int, std::hash<int>> resultMap{{adenine, 0}, {thymine, 0}, {guanine, 0}, {thymine, 0}};
+	for(int i = 0; i < GetCapacity(); ++i)
+	{
+		resultMap[(*this)[i]]++;
+	}
+	return resultMap;
+}
+
 void RNA::AddNucleotide(const nucleotide n)
+{
+	PushBuffer();
+	buffer.AddNucleotide(n);
+}
+
+void RNA::PushBuffer()
 {
 	if(buffer.IsFull())
 	{
 		storage.push_back(buffer.GetStake());
 		buffer.Clear();
 	}
-	buffer.AddNucleotide(n);
 }
 
-void RNA::PushBuffer()
+RNA RNA::operator+(const RNA& r) const
 {
-	if(!buffer.IsFull())
+	RNA res;
+	for (int i = 0; i < GetCapacity(); ++i)
 	{
-		storage.push_back(buffer.GetStake());
-		buffer.Clear();
+		res.AddNucleotide((*this)[i]);
 	}
-}
-
-RNA& RNA::operator+(const RNA& r) const
-{
-	RNA* res = new RNA();
-	for (int i = 0; i < storage.size() * 4 + buffer.GetAmmount(); ++i)
+	for(int i = 0; i < r.GetCapacity(); ++i)
 	{
-		res->AddNucleotide((*this)[i]);
+		res.AddNucleotide(r[i]);
 	}
-	for (int i = 0; i < buffer.GetAmmount(); ++i)
-	{
-		res->AddNucleotide(buffer[i]);
-	}
-	for(int i = 0; i < r.storage.size() * 4 + r.buffer.GetAmmount(); ++i)
-	{
-		res->AddNucleotide(r[i]);
-	}
-	return *res;
+	return res;
 }
 
 RNA& RNA::operator=(const RNA& r)
@@ -64,16 +93,16 @@ RNA& RNA::operator=(const RNA& r)
 	return *this;
 }
 
-RNA& RNA::operator!() const
+RNA RNA::operator!() const
 {
-	RNA* res = new RNA();				//where to delete?
+	RNA res;
 	for(unsigned int i = 0; i < storage.size() * 4; ++i)
 	{
-		res->AddNucleotide((*this)[i]);
+		res.AddNucleotide((*this)[i]);
 	}
-	res->PushBuffer();
-	res->buffer = !(this->buffer);
-	return *res;
+	res.PushBuffer();
+	res.buffer = !(this->buffer);
+	return res;
 }
 
 bool RNA::operator==(const RNA& r)const
@@ -87,7 +116,7 @@ bool RNA::operator!=(const RNA& r) const
 }
 
 
-bool RNA::IsComplimentary(const RNA r)
+bool RNA::IsComplimentary(const RNA& r)const
 {
 	if(storage.size() != r.storage.size())
 	{
@@ -105,6 +134,10 @@ bool RNA::IsComplimentary(const RNA r)
 
 nucleotide RNA::operator[](const unsigned int index) const
 {
+	if(index >= GetCapacity() || index < 0)
+	{
+		throw std::out_of_range("index is out of range of allowed values");
+	}
 	if(index >= 4 * storage.size())
 	{
 		return buffer[index % 4];
@@ -120,20 +153,17 @@ nucleotide RNA::operator[](const unsigned int index) const
  * \return
  *	Pair of pointers on RNA first is before given index, second - after
  */
-std::pair<RNA*, RNA*> RNA::Split(const int index)
+std::pair<RNA, RNA> RNA::Split(const int index) const
 {
-	RNA *firstPart, *secondPart;
-	firstPart = new RNA();
-	secondPart = new RNA();
+	RNA firstPart, secondPart;
 	for(int i = 0; i < index; ++i)
 	{
-		firstPart->AddNucleotide((*this)[i]);
+		firstPart.AddNucleotide((*this)[i]);
 	}
-	for(int i = index; i < storage.size()*4 + buffer.GetAmmount(); ++i)
+	for(int i = index; i < GetCapacity(); ++i)
 	{
-		secondPart->AddNucleotide((*this)[i]);
+		secondPart.AddNucleotide((*this)[i]);
 	}
-	std::pair<int, int>res = std::make_pair(2, 3);
 	
 	return std::make_pair(firstPart, secondPart);
 }

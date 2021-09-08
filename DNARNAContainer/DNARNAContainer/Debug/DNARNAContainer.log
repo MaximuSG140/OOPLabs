@@ -1,2 +1,11 @@
-﻿  RNA.cpp
-  DNARNAContainer.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\DNARNAContainer.exe
+﻿  NucleotideBuffer.cpp
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\nucleotidebuffer.cpp(56): warning C4018: <: несоответствие типов со знаком и без знака
+  RNA.cpp
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.cpp(40): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.cpp(53): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.cpp(78): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.cpp(82): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.cpp(163): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\nucleotides.h(21): warning C4715: GetComplimentaryNucleotide: значение возвращается не при всех путях выполнения
+  DNARNAContainer.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\DNARNAContainer.lib
