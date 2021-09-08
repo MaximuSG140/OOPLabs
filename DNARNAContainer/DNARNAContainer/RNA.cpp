@@ -37,7 +37,7 @@ unsigned int RNA::GetCapacity()const
 unsigned int RNA::GetCardinality(const nucleotide example) const
 {
 	unsigned int exampleEncounters = 0;
-	for(int i = 0; i < GetCapacity(); ++i)
+	for(unsigned int i = 0; i < GetCapacity(); ++i)
 	{
 		if(example == (*this)[i])
 		{
@@ -50,7 +50,7 @@ unsigned int RNA::GetCardinality(const nucleotide example) const
 std::unordered_map<nucleotide, int, std::hash<int>> RNA::GetCardinality() const
 {
 	std::unordered_map<nucleotide, int, std::hash<int>> resultMap{{adenine, 0}, {thymine, 0}, {guanine, 0}, {thymine, 0}};
-	for(int i = 0; i < GetCapacity(); ++i)
+	for(unsigned int i = 0; i < GetCapacity(); ++i)
 	{
 		resultMap[(*this)[i]]++;
 	}
@@ -61,6 +61,7 @@ void RNA::AddNucleotide(const nucleotide n)
 {
 	PushBuffer();
 	buffer.AddNucleotide(n);
+	PushBuffer();
 }
 
 void RNA::PushBuffer()
@@ -75,11 +76,11 @@ void RNA::PushBuffer()
 RNA RNA::operator+(const RNA& r) const
 {
 	RNA res;
-	for (int i = 0; i < GetCapacity(); ++i)
+	for (unsigned int i = 0; i < GetCapacity(); ++i)
 	{
 		res.AddNucleotide((*this)[i]);
 	}
-	for(int i = 0; i < r.GetCapacity(); ++i)
+	for(unsigned int i = 0; i < r.GetCapacity(); ++i)
 	{
 		res.AddNucleotide(r[i]);
 	}
@@ -156,11 +157,11 @@ nucleotide RNA::operator[](const unsigned int index) const
 std::pair<RNA, RNA> RNA::Split(const int index) const
 {
 	RNA firstPart, secondPart;
-	for(int i = 0; i < index; ++i)
+	for(int i = 0; i <= index; ++i)
 	{
 		firstPart.AddNucleotide((*this)[i]);
 	}
-	for(int i = index; i < GetCapacity(); ++i)
+	for(unsigned int i = index + 1; i < GetCapacity(); ++i)
 	{
 		secondPart.AddNucleotide((*this)[i]);
 	}
