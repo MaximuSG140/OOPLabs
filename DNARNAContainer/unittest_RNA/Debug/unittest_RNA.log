@@ -1,3 +1,4 @@
 ﻿cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
-  test.cpp
+  RNAUnitTest.cpp
+DNARNAContainer.lib(RNA.obj) : warning LNK4075: эх єўшЄ√трхЄё  "/EDITANDCONTINUE" шч-чр ёяхЎшЇшърЎшш "/SAFESEH"
   unittest_RNA.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\unittest_RNA.exe

@@ -99,7 +99,7 @@ RNA RNA::operator!() const
 	RNA res;
 	for(unsigned int i = 0; i < storage.size() * 4; ++i)
 	{
-		res.AddNucleotide((*this)[i]);
+		res.AddNucleotide(GetComplimentaryNucleotide((*this)[i]));
 	}
 	res.PushBuffer();
 	res.buffer = !(this->buffer);
@@ -152,7 +152,7 @@ nucleotide RNA::operator[](const unsigned int index) const
  * \param index
  *	Index of last element of first RNA after splitting
  * \return
- *	Pair of pointers on RNA first is before given index, second - after
+ *	Pair of RNA first is before given index, second - after
  */
 std::pair<RNA, RNA> RNA::Split(const int index) const
 {

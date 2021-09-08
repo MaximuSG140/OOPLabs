@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtaTestDurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Executable>C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\unittest_RNA.exe</Executable>
+  <TestDurations>
+    <TestDuration Test="TestRNAMethods.TestGetCapacity" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestGetCardinality" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorSum" Duration="1" />
+    <TestDuration Test="TestRNAMethods.testVectorConstructor" Duration="1" />
+    <TestDuration Test="TestRNAMethods.testSameElementConstructor" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorIsEqual" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorIsComplimentary" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestAddNucleotide" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestSplit" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorInvert" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestIndexator" Duration="1" />
+  </TestDurations>
+</GtaTestDurations>
