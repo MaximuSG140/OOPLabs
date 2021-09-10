@@ -149,12 +149,36 @@ TEST(TestRNAMethods, TestSplit)
 	EXPECT_EQ(RNA({ adenine, thymine, guanine}), RNA({ adenine, adenine, thymine, guanine}).Split(0).second);
 }
 
+TEST(TestRNAMethods, TestOperatorIsNotEqual)
+{
+	EXPECT_EQ(false, RNA({ adenine, cytosine, cytosine, thymine, adenine }) != RNA({ adenine, cytosine, cytosine, thymine, adenine }));
+	EXPECT_EQ(true, RNA() != RNA(1));
+	EXPECT_EQ(false, RNA() != RNA());
+	EXPECT_EQ(true, RNA({ adenine, thymine, cytosine }) != RNA({ cytosine, thymine, guanine }));
+	EXPECT_EQ(false, RNA(5, adenine) != RNA(5, adenine));
+	EXPECT_EQ(true, RNA(5, guanine) != RNA(5, adenine));
+}
+
 TEST(TestRNAMethods, TestOperatorInvert)
 {
 	EXPECT_EQ(RNA(1, adenine), !RNA(1, thymine));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine, guanine }), !RNA({ thymine, guanine, adenine, cytosine }));
 	EXPECT_EQ(true, RNA().IsComplimentary(!RNA()));
 	EXPECT_EQ(true, RNA({ adenine, guanine, adenine, guanine }).IsComplimentary(!RNA({ adenine, guanine, adenine, guanine })));
+}
+
+TEST(TestRNAMethods, TestOperatorAssign)
+{
+	EXPECT_EQ(RNA(), RNA(10, adenine) = RNA());
+	RNA r;
+	r.AddNucleotide(adenine);
+	r.AddNucleotide(thymine);
+	r.AddNucleotide(adenine);
+	RNA testExample = r;
+	EXPECT_EQ(RNA({ adenine, thymine, adenine }), testExample);
+	EXPECT_EQ(RNA({ guanine, thymine, cytosine }), RNA({ guanine, adenine, guanine }) = RNA({ guanine, thymine, cytosine }));
+	testExample = RNA({ cytosine, thymine, adenine });
+	EXPECT_EQ(RNA({ cytosine, thymine, adenine }), testExample);
 }
 
 TEST(TestRNAMethods, TestIndexator)
@@ -165,6 +189,13 @@ TEST(TestRNAMethods, TestIndexator)
 	testExample.AddNucleotide(guanine);
 	testExample.AddNucleotide(thymine);
 	testExample.AddNucleotide(thymine);
+	EXPECT_EQ(adenine, testExample[0]);
+	EXPECT_EQ(cytosine, testExample[1]);
+	EXPECT_EQ(guanine, testExample[2]);
+	EXPECT_EQ(thymine, testExample[3]);
+	EXPECT_EQ(thymine, testExample[4]);
+
+	testExample = std::vector<nucleotide>{ adenine, cytosine, guanine, thymine, thymine };
 	EXPECT_EQ(adenine, testExample[0]);
 	EXPECT_EQ(cytosine, testExample[1]);
 	EXPECT_EQ(guanine, testExample[2]);
