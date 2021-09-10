@@ -18,6 +18,7 @@ public:
 	unsigned int GetCardinality(const nucleotide example)const;
 	std::unordered_map<nucleotide, int, std::hash<int>>GetCardinality()const;
 	void AddNucleotide(nucleotide n);
+	void Trim(unsigned int index);
 	bool IsComplimentary(const RNA& r)const;
 	std::pair<RNA, RNA> Split(const int index) const;
 

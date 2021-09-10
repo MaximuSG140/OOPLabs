@@ -62,6 +62,22 @@ void RNA::AddNucleotide(const nucleotide n)
 	PushBuffer();
 }
 
+void RNA::Trim(const unsigned int index)
+{
+	std::vector<NucleotideStake> newStorage(index / 4);
+	for(unsigned int i = 0; i < index / 4; ++i)
+	{
+		newStorage[i] = storage[i];
+	}
+	NucleotideBuffer newBuffer;
+	for(unsigned int i = index - index % 4; i < index; ++i)
+	{
+		newBuffer.AddNucleotide((*this)[i]);
+	}
+	this->buffer = newBuffer;
+	this->storage = newStorage;
+}
+
 void RNA::PushBuffer()
 {
 	if(buffer.IsFull())
