@@ -62,7 +62,7 @@ void RNA::AddNucleotide(const nucleotide n)
 	PushBuffer();
 }
 
-void RNA::Trim(const unsigned int lastIndex)
+RNA RNA::Trim(const unsigned int lastIndex)
 {
 	std::vector<NucleotideStake> newStorage(lastIndex / 4);
 	for(unsigned int i = 0; i < lastIndex / 4; ++i)
@@ -70,12 +70,14 @@ void RNA::Trim(const unsigned int lastIndex)
 		newStorage[i] = storage[i];
 	}
 	NucleotideBuffer newBuffer;
-	for(unsigned int i = lastIndex - lastIndex % 4; i < lastIndex; ++i)
+	for(unsigned int i = lastIndex - lastIndex % 4; i <= lastIndex; ++i)
 	{
 		newBuffer.AddNucleotide((*this)[i]);
 	}
 	this->buffer = newBuffer;
 	this->storage = newStorage;
+	PushBuffer();
+	return *this;
 }
 
 void RNA::PushBuffer()
