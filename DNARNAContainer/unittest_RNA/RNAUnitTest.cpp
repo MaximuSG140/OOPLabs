@@ -203,3 +203,12 @@ TEST(TestRNAMethods, TestIndexator)
 	EXPECT_EQ(thymine, testExample[4]);
 }
 
+TEST(TestRNAMethods, TestTrim)
+{
+	EXPECT_EQ(RNA(std::vector<nucleotide>{ adenine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(0));
+	EXPECT_EQ(RNA(std::vector<nucleotide>{ adenine, cytosine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(1));
+	EXPECT_EQ(RNA({ adenine, cytosine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(2));
+	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(3));
+	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(4));
+}
+
