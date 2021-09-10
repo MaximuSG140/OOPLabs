@@ -11,8 +11,7 @@ public:
 	RNA(const std::vector<nucleotide>& chain);
 	explicit RNA(int capacity);
 	explicit RNA(int capacity, nucleotide baseValue);
-	explicit RNA(RNA& r);
-	RNA(RNA&& r);
+	RNA(const RNA& r);
 	~RNA();
 
 	unsigned int GetCapacity()const ;
@@ -24,6 +23,7 @@ public:
 
 	RNA operator+ (const RNA& r) const;
 	RNA& operator=  (const RNA& r);
+	RNA& operator= (RNA&& r);
 	RNA operator! () const;
 	bool operator== (const RNA& r)const;
 	bool operator!= (const RNA& r)const;

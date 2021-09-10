@@ -23,9 +23,7 @@ RNA::RNA(const int capacity, const nucleotide baseValue)
 	buffer = NucleotideBuffer(capacity % 4, baseValue);
 }
 
-RNA::RNA(RNA& r) = default;
-
-RNA::RNA(RNA&& r) = default;
+RNA::RNA(const RNA& r) = default;
 
 RNA::~RNA() = default;
 
@@ -93,6 +91,8 @@ RNA& RNA::operator=(const RNA& r)
 	this->buffer = r.buffer;
 	return *this;
 }
+
+RNA& RNA::operator=(RNA&& r) = default;
 
 RNA RNA::operator!() const
 {
