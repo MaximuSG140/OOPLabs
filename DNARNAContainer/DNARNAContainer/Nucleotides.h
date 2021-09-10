@@ -1,4 +1,5 @@
 #pragma once
+#define uracile thymine
 typedef char NucleotideStake;
 
 enum nucleotide : char {
