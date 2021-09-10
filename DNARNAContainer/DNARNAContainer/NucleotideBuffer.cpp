@@ -53,7 +53,7 @@ bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer secondNucleotideBu
 	{
 		return false;
 	}
-	for(int i = 0; i < nucleotideAmmount; ++i)
+	for(unsigned int i = 0; i < nucleotideAmmount; ++i)
 	{
 		if(GetComplimentaryNucleotide((*this)[i]) != secondNucleotideBuffer[i])
 		{
