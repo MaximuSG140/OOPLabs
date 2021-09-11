@@ -13,5 +13,8 @@
     <TestDuration Test="TestRNAMethods.TestSplit" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestOperatorInvert" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestIndexator" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorIsNotEqual" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestOperatorAssign" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestTrim" Duration="1" />
   </TestDurations>
 </GtaTestDurations>

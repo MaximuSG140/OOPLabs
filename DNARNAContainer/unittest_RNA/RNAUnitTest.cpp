@@ -55,7 +55,8 @@ TEST(TestRNAMethods, TestOperatorSum)
 
 TEST(TestRNAMethods, testVectorConstructor)
 {
-	RNA r({ adenine, guanine, thymine, cytosine, cytosine, cytosine });
+	nucleotide nucleotideChain[] = { adenine, guanine, thymine, cytosine, cytosine, cytosine };
+	RNA r(vector<nucleotide>(nucleotideChain));
 	EXPECT_EQ(adenine, r[0]);
 	EXPECT_EQ(guanine, r[1]);
 	EXPECT_EQ(thymine, r[2]);
