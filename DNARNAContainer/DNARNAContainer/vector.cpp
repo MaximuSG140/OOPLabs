@@ -42,7 +42,7 @@ vector<T>& vector<T>::operator=(const vector<T>& example)
 {
 	if(this == &example)
 	{
-		return (*this);
+		return *this;
 	}
 	const T* oldStorage = storage;
 	storage = new T[example.capacity];
@@ -53,7 +53,7 @@ vector<T>& vector<T>::operator=(const vector<T>& example)
 	delete[] oldStorage;
 	size = example.size;
 	capacity = example.capacity;
-	return (*this);
+	return *this;
 }
 
 template <class T>
@@ -80,4 +80,17 @@ void vector<T>::push_back(const T value)
 	storage[size] = value;
 	size++;
 }
+
+template <class T>
+int vector<T>::Size() const
+{
+	return size;
+}
+
+template <class T>
+T& vector<T>::operator[](int index)
+{
+	return storage[index];
+}
+
 

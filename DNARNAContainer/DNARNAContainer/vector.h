@@ -13,6 +13,8 @@ public:
 	vector<T>& operator=(const vector<T>& example);
 
 	void push_back(T value);
+	int Size() const;
+	T& operator[](int index);
 private:
 	T* storage = nullptr;
 	int size = 0;
