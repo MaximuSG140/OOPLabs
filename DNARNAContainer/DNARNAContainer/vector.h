@@ -15,6 +15,7 @@ public:
 private:
 	T* storage = nullptr;
 	int size = 0;
+	int capacity = 0;
 };
 
 

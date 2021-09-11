@@ -5,17 +5,14 @@ template <class T>
 vector<T>::vector() = default;
 
 template <class T>
-vector<T>::vector(const int n)
+vector<T>::vector(const int n) :size(n), capacity(n)
 {
 	storage = new T[n];
-	size = n;
 }
 
 template <class T>
-vector<T>::vector(const int n, const T example)
+vector<T>::vector(const int n, const T example):vector(n)
 {
-	storage = new T[n];
-	size = n;
 	for(int i = 0; i < n; ++i)
 	{
 		storage[i] = example;
@@ -43,12 +40,19 @@ vector<T>::~vector()
 template <class T>
 vector<T>& vector<T>::operator=(const vector<T>& example)
 {
-	delete[] storage;
-	storage = new T[example.size];
-	size = example.size;
-	for(int i = 0; i < size; ++i)
+	if(this == &example)
+	{
+		return (*this);
+	}
+	const T* oldStorage = storage;
+	storage = new T[example.capacity];
+	for(int i = 0; i < example.size(); ++i)
 	{
 		storage[i] = example.storage[i];
 	}
+	delete[] oldStorage;
+	size = example.size;
+	capacity = example.capacity;
+	return (*this);
 }
 
