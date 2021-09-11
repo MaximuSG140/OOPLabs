@@ -3,23 +3,23 @@
 
 RNA::RNA() = default;
 
-RNA::RNA(const std::vector<nucleotide>&chain)
+RNA::RNA(const vector<nucleotide>&chain)
 {
-	for (const auto i : chain)
+	for (int i = 0; i < chain.Size(); ++i)
 	{
-		AddNucleotide(i);
+		AddNucleotide(static_cast<vector<nucleotide>>(chain)[i]);
 	}
 }
 
 RNA::RNA(const int capacity)
 {
-	storage = std::vector<NucleotideStake>(capacity/4);
+	storage = vector<NucleotideStake>(capacity/4);
 	buffer = NucleotideBuffer(capacity%4, static_cast<nucleotide>(0));
 }
 
 RNA::RNA(const int capacity, const nucleotide baseValue)
 {
-	storage = std::vector<NucleotideStake>(capacity / 4, NucleotideBuffer(4, baseValue).GetStake());
+	storage = vector<NucleotideStake>(capacity / 4, NucleotideBuffer(4, baseValue).GetStake());
 	buffer = NucleotideBuffer(capacity % 4, baseValue);
 }
 
@@ -29,7 +29,7 @@ RNA::~RNA() = default;
 
 unsigned int RNA::GetCapacity()const
 {
-	return storage.size() * 4 + buffer.GetAmmount();
+	return storage.Size() * 4 + buffer.GetAmmount();
 }
 
 unsigned int RNA::GetCardinality(const nucleotide example) const
@@ -64,7 +64,7 @@ void RNA::AddNucleotide(const nucleotide n)
 
 RNA RNA::Trim(const unsigned int lastIndex)
 {
-	std::vector<NucleotideStake> newStorage(lastIndex / 4);
+	vector<NucleotideStake> newStorage(lastIndex / 4);
 	for(unsigned int i = 0; i < lastIndex / 4; ++i)
 	{
 		newStorage[i] = storage[i];
@@ -105,7 +105,7 @@ RNA RNA::operator+(const RNA& r) const
 
 RNA& RNA::operator=(const RNA& r)
 {
-	this->storage = std::vector<NucleotideStake>(r.storage);
+	this->storage = vector<NucleotideStake>(r.storage);
 	this->buffer = r.buffer;
 	return *this;
 }
@@ -115,7 +115,7 @@ RNA& RNA::operator=(RNA&& r) = default;
 RNA RNA::operator!() const
 {
 	RNA res;
-	for(unsigned int i = 0; i < storage.size() * 4; ++i)
+	for(unsigned int i = 0; i < storage.Size() * 4; ++i)
 	{
 		res.AddNucleotide(GetComplimentaryNucleotide((*this)[i]));
 	}
@@ -137,13 +137,13 @@ bool RNA::operator!=(const RNA& r) const
 
 bool RNA::IsComplimentary(const RNA& r)const
 {
-	if(storage.size() != r.storage.size())
+	if(storage.Size() != r.storage.Size())
 	{
 		return false;
 	}
-	for(unsigned int i = 0; i < storage.size(); ++i)
+	for(unsigned int i = 0; i < storage.Size(); ++i)
 	{
-		if(!NucleotideBuffer(storage[i]).IsComplimentary(r.storage[i]))
+		if(!NucleotideBuffer(static_cast<vector<char>>(storage)[i]).IsComplimentary(static_cast<vector<char>>(r.storage)[i]))
 		{
 			return false;
 		}
@@ -157,11 +157,11 @@ nucleotide RNA::operator[](const unsigned int index) const
 	{
 		throw std::out_of_range("index is out of range of allowed values");
 	}
-	if(index >= 4 * storage.size())
+	if(index >= 4 * storage.Size())
 	{
 		return buffer[index % 4];
 	}
-	return NucleotideBuffer(storage[index / 4])[index % 4];
+	return NucleotideBuffer(static_cast<vector<NucleotideStake>>(storage)[index / 4])[index % 4];
 }
 
 /**

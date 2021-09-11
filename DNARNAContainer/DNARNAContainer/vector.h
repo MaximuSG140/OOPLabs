@@ -3,8 +3,8 @@ template <class T> class vector
 {
 public:
 	vector();
-	explicit vector(const int n);
-	explicit vector(const int n, const T example);
+	explicit vector(const unsigned int n);
+	explicit vector(const unsigned int n, const T example);
 	vector(const T array[]);
 	vector(const vector<T>& example);
 
@@ -13,12 +13,13 @@ public:
 	vector<T>& operator=(const vector<T>& example);
 
 	void push_back(T value);
-	int Size() const;
-	T& operator[](int index);
+	unsigned int Size() const;
+	T& operator[](unsigned int index);
+	bool operator==(const vector& otherVector) const;
 private:
 	T* storage = nullptr;
-	int size = 0;
-	int capacity = 0;
+	unsigned int size = 0;
+	unsigned int capacity = 0;
 };
 
 

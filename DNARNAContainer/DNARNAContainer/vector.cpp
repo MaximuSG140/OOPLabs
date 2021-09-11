@@ -5,13 +5,13 @@ template <class T>
 vector<T>::vector() = default;
 
 template <class T>
-vector<T>::vector(const int n) :size(n), capacity(n)
+vector<T>::vector(const unsigned int n) :size(n), capacity(n)
 {
 	storage = new T[n];
 }
 
 template <class T>
-vector<T>::vector(const int n, const T example):vector(n)
+vector<T>::vector(const unsigned int n, const T example):vector(n)
 {
 	for(int i = 0; i < n; ++i)
 	{
@@ -82,15 +82,32 @@ void vector<T>::push_back(const T value)
 }
 
 template <class T>
-int vector<T>::Size() const
+unsigned int vector<T>::Size() const
 {
 	return size;
 }
 
 template <class T>
-T& vector<T>::operator[](int index)
+T& vector<T>::operator[](unsigned int index)
 {
 	return storage[index];
+}
+
+template <class T>
+bool vector<T>::operator==(const vector& otherVector) const
+{
+	if(size != otherVector.size || capacity != otherVector.capacity)
+	{
+		return false;
+	}
+	for(int i = 0; i < size; ++i)
+	{
+		if(storage[i] != otherVector[i])
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 

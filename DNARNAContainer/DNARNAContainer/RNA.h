@@ -1,6 +1,6 @@
 #pragma once
 #include <unordered_map>
-#include <vector>
+#include "vector.h"
 #include "Nucleotides.h"
 #include "NucleotideBuffer.h"
 
@@ -8,7 +8,7 @@ class RNA
 {
 public:
 	RNA();
-	RNA(const std::vector<nucleotide>& chain);
+	RNA(const vector<nucleotide>& chain);
 	explicit RNA(int capacity);
 	explicit RNA(int capacity, nucleotide baseValue);
 	RNA(const RNA& r);
@@ -31,7 +31,7 @@ public:
 	nucleotide operator[](const unsigned int index)const;
 private:
 	void PushBuffer();
-	std::vector<NucleotideStake>storage;
+	vector<NucleotideStake>storage;
 	NucleotideBuffer buffer;
 };
 
