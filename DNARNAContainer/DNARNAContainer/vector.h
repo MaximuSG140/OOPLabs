@@ -1,5 +1,4 @@
 #pragma once
-#include "Nucleotides.h"
 template <class T> class vector
 {
 public:
@@ -12,6 +11,8 @@ public:
 	~vector();
 
 	vector<T>& operator=(const vector<T>& example);
+
+	void push_back(T value);
 private:
 	T* storage = nullptr;
 	int size = 0;

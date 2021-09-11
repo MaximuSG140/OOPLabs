@@ -56,3 +56,28 @@ vector<T>& vector<T>::operator=(const vector<T>& example)
 	return (*this);
 }
 
+template <class T>
+void vector<T>::push_back(const T value)
+{
+	if(size == capacity)
+	{
+		if(size == 0)
+		{
+			storage = new T[1];
+			capacity = 1;
+		}
+		else
+		{
+			T* oldStorage = storage;
+			storage = new T[capacity *= 2];
+			for(int i = 0; i < size; ++i)
+			{
+				storage[i] = oldStorage[i];
+			}
+			delete[] oldStorage;
+		}
+	}
+	storage[size] = value;
+	size++;
+}
+
