@@ -55,8 +55,8 @@ TEST(TestRNAMethods, TestOperatorSum)
 
 TEST(TestRNAMethods, testVectorConstructor)
 {
-	nucleotide nucleotideChain[] = { adenine, guanine, thymine, cytosine, cytosine, cytosine };
-	RNA r(vector<nucleotide>(nucleotideChain));
+	vector<nucleotide> chain({ adenine, guanine, thymine, cytosine, cytosine, cytosine });
+	RNA r(vector<nucleotide>({ adenine, guanine, thymine, cytosine, cytosine, cytosine }));
 	EXPECT_EQ(adenine, r[0]);
 	EXPECT_EQ(guanine, r[1]);
 	EXPECT_EQ(thymine, r[2]);
@@ -195,8 +195,7 @@ TEST(TestRNAMethods, TestIndexator)
 	EXPECT_EQ(guanine, testExample[2]);
 	EXPECT_EQ(thymine, testExample[3]);
 	EXPECT_EQ(thymine, testExample[4]);
-
-	testExample = std::vector<nucleotide>{ adenine, cytosine, guanine, thymine, thymine };
+	testExample = RNA(vector<nucleotide>{ adenine, cytosine, guanine, thymine, thymine });
 	EXPECT_EQ(adenine, testExample[0]);
 	EXPECT_EQ(cytosine, testExample[1]);
 	EXPECT_EQ(guanine, testExample[2]);
@@ -206,8 +205,8 @@ TEST(TestRNAMethods, TestIndexator)
 
 TEST(TestRNAMethods, TestTrim)
 {
-	EXPECT_EQ(RNA(std::vector<nucleotide>{ adenine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(0));
-	EXPECT_EQ(RNA(std::vector<nucleotide>{ adenine, cytosine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(1));
+	EXPECT_EQ(RNA(vector<nucleotide>{ adenine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(0));
+	EXPECT_EQ(RNA(vector<nucleotide>{ adenine, cytosine}), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(1));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(2));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(3));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(4));
