@@ -1,12 +1,15 @@
 #pragma once
+#include<initializer_list>
+
 template <class T> class vector
 {
 public:
 	vector();
 	explicit vector(const unsigned int n);
 	explicit vector(const unsigned int n, const T example);
-	vector(const T array[]);
+	vector(const std::initializer_list<T>& initList);
 	vector(const vector<T>& example);
+	vector(const vector<T>&& example);
 
 	~vector();
 
@@ -21,5 +24,3 @@ private:
 	unsigned int size = 0;
 	unsigned int capacity = 0;
 };
-
-

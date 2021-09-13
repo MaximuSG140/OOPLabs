@@ -1,5 +1,6 @@
 #pragma once
 #include "vector.h"
+#include "Nucleotides.h"
 
 template <class T>
 vector<T>::vector() = default;
@@ -13,23 +14,38 @@ vector<T>::vector(const unsigned int n) :size(n), capacity(n)
 template <class T>
 vector<T>::vector(const unsigned int n, const T example):vector(n)
 {
-	for(int i = 0; i < n; ++i)
+	for(unsigned int i = 0; i < n; ++i)
 	{
 		storage[i] = example;
 	}
 }
 
 template <class T>
-vector<T>::vector(const T array[]):vector(sizeof(array)/sizeof(T))
+vector<T>::vector(const std::initializer_list<T>& initList):vector(initList.size())
 {
-	for(int i = 0; i < size; ++i)
+	for(unsigned int i = 0; i < size; ++i)
 	{
-		storage[i] = array[i];
+		storage[i] = initList.begin()[i];
 	}
 }
 
 template <class T>
-vector<T>::vector(const vector<T>& example) :vector(example.storage){}
+vector<T>::vector(const vector<T>& example):vector(example.size)
+{
+	for(unsigned int i = 0; i < size; ++i)
+	{
+		storage[i] = example.storage[i];
+	}
+}
+
+template <class T>
+vector<T>::vector(const vector<T>&& example):vector(example.size)
+{
+	for (unsigned int i = 0; i < size; ++i)
+	{
+		storage[i] = example.storage[i];
+	}
+};
 
 template <class T>
 vector<T>::~vector()
@@ -46,7 +62,7 @@ vector<T>& vector<T>::operator=(const vector<T>& example)
 	}
 	const T* oldStorage = storage;
 	storage = new T[example.capacity];
-	for(int i = 0; i < example.size(); ++i)
+	for(unsigned int i = 0; i < example.size; ++i)
 	{
 		storage[i] = example.storage[i];
 	}
@@ -70,7 +86,7 @@ void vector<T>::push_back(const T value)
 		{
 			T* oldStorage = storage;
 			storage = new T[capacity *= 2];
-			for(int i = 0; i < size; ++i)
+			for(unsigned int i = 0; i < size; ++i)
 			{
 				storage[i] = oldStorage[i];
 			}
@@ -96,13 +112,13 @@ T& vector<T>::operator[](unsigned int index)
 template <class T>
 bool vector<T>::operator==(const vector& otherVector) const
 {
-	if(size != otherVector.size || capacity != otherVector.capacity)
+	if(size != otherVector.size)
 	{
 		return false;
 	}
-	for(int i = 0; i < size; ++i)
+	for(unsigned int i = 0; i < size; ++i)
 	{
-		if(storage[i] != otherVector[i])
+		if(storage[i] != otherVector.storage[i])
 		{
 			return false;
 		}
@@ -110,4 +126,6 @@ bool vector<T>::operator==(const vector& otherVector) const
 	return true;
 }
 
+template vector<nucleotide>;
+template vector<NucleotideStake>;
 
