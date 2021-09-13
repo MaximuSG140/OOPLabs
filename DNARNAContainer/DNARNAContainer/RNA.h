@@ -8,7 +8,8 @@ class RNA
 {
 public:
 	RNA();
-	RNA(const vector<nucleotide>& chain);
+	explicit RNA(const vector<nucleotide>& chain);
+	explicit RNA(const vector<nucleotide>&& chain);
 	explicit RNA(int capacity);
 	explicit RNA(int capacity, nucleotide baseValue);
 	RNA(const RNA& r);

@@ -5,7 +5,15 @@ RNA::RNA() = default;
 
 RNA::RNA(const vector<nucleotide>&chain)
 {
-	for (int i = 0; i < chain.Size(); ++i)
+	for (unsigned int i = 0; i < chain.Size(); ++i)
+	{
+		AddNucleotide(static_cast<vector<nucleotide>>(chain)[i]);
+	}
+}
+
+RNA::RNA(const vector<nucleotide>&& chain)
+{
+	for (unsigned int i = 0; i < chain.Size(); ++i)
 	{
 		AddNucleotide(static_cast<vector<nucleotide>>(chain)[i]);
 	}
@@ -13,7 +21,7 @@ RNA::RNA(const vector<nucleotide>&chain)
 
 RNA::RNA(const int capacity)
 {
-	storage = vector<NucleotideStake>(capacity/4);
+	storage = vector<NucleotideStake>(capacity/4, static_cast<nucleotide>(0));
 	buffer = NucleotideBuffer(capacity%4, static_cast<nucleotide>(0));
 }
 
