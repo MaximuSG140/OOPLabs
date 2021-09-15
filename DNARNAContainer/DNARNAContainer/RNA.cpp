@@ -1,6 +1,28 @@
 #include<utility>
 #include "RNA.h"
 
+RNA::Proxy& RNA::Proxy::operator=(const nucleotide value)
+{
+	if(index >= 4 * This->storage.Size())
+	{
+		This->buffer[index % 4] = value;
+		return *this;
+	}
+	NucleotideBuffer temporaryBuffer(This->storage[index / 4]);
+	temporaryBuffer[index % 4] = value;
+	This->storage[index / 4] = temporaryBuffer.GetStake();
+	return *this;
+}
+
+RNA::Proxy::operator const nucleotide() const
+{
+	if(index >= 4 * This->storage.Size())
+	{
+		return This->buffer[index % 4];
+	}
+	return NucleotideBuffer((This->storage)[index / 4])[index % 4];
+}
+
 RNA::RNA() = default;
 
 RNA::RNA(const vector<nucleotide>&chain)
@@ -113,12 +135,17 @@ RNA RNA::operator+(const RNA& r) const
 
 RNA& RNA::operator=(const RNA& r)
 {
-	this->storage = vector<NucleotideStake>(r.storage);
-	this->buffer = r.buffer;
+	storage = r.storage;
+	buffer = r.buffer;
 	return *this;
 }
-
-RNA& RNA::operator=(RNA&& r) = default;
+;
+RNA& RNA::operator=(RNA&& r)
+{
+	storage = r.storage;
+	buffer = r.buffer;
+	return *this;
+}
 
 RNA RNA::operator!() const
 {
@@ -159,17 +186,13 @@ bool RNA::IsComplimentary(const RNA& r)const
 	return buffer.IsComplimentary(r.buffer);
 }
 
-NucleotideBuffer::proxy RNA::operator[](const unsigned int index)
+RNA::Proxy RNA::operator[](const unsigned int index)
 {
 	if(index >= GetCapacity() || index < 0)
 	{
 		throw std::out_of_range("index is out of range of allowed values");
 	}
-	if(index >= 4 * storage.Size())
-	{
-		return buffer[index % 4];
-	}
-	return NucleotideBuffer(static_cast<vector<NucleotideStake>>(storage)[index / 4])[index % 4];
+	return Proxy(this, index);
 }
 
 /**

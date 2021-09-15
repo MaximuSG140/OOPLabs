@@ -9,6 +9,15 @@
 class RNA
 {
 public:
+	struct Proxy
+	{
+		RNA *const This;
+		unsigned int index;
+		Proxy(RNA*const This, const unsigned int index):This(This), index(index){}
+		Proxy& operator=(nucleotide value);
+		operator const nucleotide() const;
+	};
+
 	RNA();
 	explicit RNA(const vector<nucleotide>& chain);
 	explicit RNA(const vector<nucleotide>&& chain);
@@ -31,7 +40,7 @@ public:
 	RNA operator! () const;
 	bool operator== (const RNA& r)const;
 	bool operator!= (const RNA& r)const;
-	NucleotideBuffer::proxy operator[](const unsigned int index);
+	Proxy operator[](const unsigned int index);
 private:
 	void PushBuffer();
 	vector<NucleotideStake>storage;

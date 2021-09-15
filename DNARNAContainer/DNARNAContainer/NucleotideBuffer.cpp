@@ -1,13 +1,13 @@
 #include "NucleotideBuffer.h"
 
-NucleotideBuffer::proxy& NucleotideBuffer::proxy::operator=(const nucleotide newValue)
+NucleotideBuffer::Proxy& NucleotideBuffer::Proxy::operator=(const nucleotide newValue)
 {
 	This->current &= ((1 << 8) - 1) - (3 << (6 - 2 * index));
 	This->current |= static_cast<int>(newValue) << (6 - 2 * index);
 	return *this;
 }
 
-NucleotideBuffer::proxy::operator const nucleotide() const
+NucleotideBuffer::Proxy::operator const nucleotide() const
 {
 	return static_cast<nucleotide>((This->current >> (3 - index) * 2) & 3);
 }
@@ -95,9 +95,9 @@ NucleotideBuffer NucleotideBuffer::operator!()const
 	return res;
 }
 
-NucleotideBuffer::proxy NucleotideBuffer::operator[](const unsigned int index)
+NucleotideBuffer::Proxy NucleotideBuffer::operator[](const unsigned int index)
 {
-	return proxy(this, index);
+	return Proxy(this, index);
 }
 
 bool NucleotideBuffer::operator==(const NucleotideBuffer& buffer) const
