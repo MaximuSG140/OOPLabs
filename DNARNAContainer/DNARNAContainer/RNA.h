@@ -4,6 +4,8 @@
 #include "Nucleotides.h"
 #include "NucleotideBuffer.h"
 
+
+
 class RNA
 {
 public:
@@ -29,7 +31,7 @@ public:
 	RNA operator! () const;
 	bool operator== (const RNA& r)const;
 	bool operator!= (const RNA& r)const;
-	nucleotide operator[](const unsigned int index)const;
+	NucleotideBuffer::proxy operator[](const unsigned int index);
 private:
 	void PushBuffer();
 	vector<NucleotideStake>storage;

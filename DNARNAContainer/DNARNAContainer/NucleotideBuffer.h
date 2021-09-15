@@ -9,11 +9,7 @@ public:
 		NucleotideBuffer *const This;
 		unsigned int index;
 		proxy(NucleotideBuffer *const This, const unsigned int index) : This(This), index(index){}
-		void operator=(const nucleotide newValue)const
-		{
-			This->current &= ((1 << 8) - 1) - (3 << (6 - 2 * index));
-			This->current |= static_cast<int>(newValue) << (6 - 2 * index);
-		}
+		proxy& operator=(const nucleotide newValue);
 		operator const nucleotide()const;
 	};
 	void AddNucleotide(const nucleotide newNucleotide);

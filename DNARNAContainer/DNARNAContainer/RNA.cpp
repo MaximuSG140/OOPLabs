@@ -45,7 +45,7 @@ unsigned int RNA::GetCardinality(const nucleotide example) const
 	unsigned int exampleEncounters = 0;
 	for(unsigned int i = 0; i < GetCapacity(); ++i)
 	{
-		if(example == (*this)[i])
+		if(example == static_cast<RNA>(*this)[i])
 		{
 			exampleEncounters++;
 		}
@@ -58,7 +58,7 @@ std::unordered_map<nucleotide, int, std::hash<int>> RNA::GetCardinality() const
 	std::unordered_map<nucleotide, int, std::hash<int>> resultMap{{adenine, 0}, {thymine, 0}, {guanine, 0}, {thymine, 0}};
 	for(unsigned int i = 0; i < GetCapacity(); ++i)
 	{
-		resultMap[(*this)[i]]++;
+		resultMap[static_cast<RNA>(*this)[i]]++;
 	}
 	return resultMap;
 }
@@ -102,11 +102,11 @@ RNA RNA::operator+(const RNA& r) const
 	RNA res;
 	for (unsigned int i = 0; i < GetCapacity(); ++i)
 	{
-		res.AddNucleotide((*this)[i]);
+		res.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
 	for(unsigned int i = 0; i < r.GetCapacity(); ++i)
 	{
-		res.AddNucleotide(r[i]);
+		res.AddNucleotide(static_cast<RNA>(r)[i]);
 	}
 	return res;
 }
@@ -125,7 +125,7 @@ RNA RNA::operator!() const
 	RNA res;
 	for(unsigned int i = 0; i < storage.Size() * 4; ++i)
 	{
-		res.AddNucleotide(GetComplimentaryNucleotide((*this)[i]));
+		res.AddNucleotide(GetComplimentaryNucleotide(static_cast<RNA>(*this)[i]));
 	}
 	res.PushBuffer();
 	res.buffer = !(this->buffer);
@@ -159,7 +159,7 @@ bool RNA::IsComplimentary(const RNA& r)const
 	return buffer.IsComplimentary(r.buffer);
 }
 
-nucleotide RNA::operator[](const unsigned int index) const
+NucleotideBuffer::proxy RNA::operator[](const unsigned int index)
 {
 	if(index >= GetCapacity() || index < 0)
 	{
@@ -185,11 +185,11 @@ std::pair<RNA, RNA> RNA::Split(const int index) const
 	RNA firstPart, secondPart;
 	for(int i = 0; i <= index; ++i)
 	{
-		firstPart.AddNucleotide((*this)[i]);
+		firstPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
 	for(unsigned int i = index + 1; i < GetCapacity(); ++i)
 	{
-		secondPart.AddNucleotide((*this)[i]);
+		secondPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
 	
 	return std::make_pair(firstPart, secondPart);
