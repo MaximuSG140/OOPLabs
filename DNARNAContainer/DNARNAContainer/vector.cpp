@@ -2,6 +2,17 @@
 #include "vector.h"
 #include "Nucleotides.h"
 
+class invalid_index_exception: std::exception
+{
+private:
+	unsigned int index;
+	unsigned int maximumIndex;
+	unsigned int minimumIndex;
+public:
+	char const* what() const override;
+	invalid_index_exception(unsigned int i, unsigned int min, unsigned int max):exception(), index(i), maximumIndex(max), minimumIndex(min){}
+};
+
 template <class T>
 vector<T>::vector() = default;
 
@@ -106,6 +117,10 @@ unsigned int vector<T>::Size() const
 template <class T>
 T& vector<T>::operator[](unsigned int index)
 {
+	if(index < 0 || index > size)
+	{
+		throw 
+	}
 	return storage[index];
 }
 

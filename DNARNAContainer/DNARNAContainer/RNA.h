@@ -15,6 +15,7 @@ public:
 		unsigned int index;
 		Proxy(RNA*const This, const unsigned int index):This(This), index(index){}
 		Proxy& operator=(nucleotide value);
+		Proxy& operator=(const Proxy& other);
 		operator const nucleotide() const;
 	};
 
@@ -26,7 +27,9 @@ public:
 	RNA(const RNA& r);
 	~RNA();
 
-	unsigned int GetCapacity()const ;
+	unsigned int GetSize()const ;
+	unsigned int GetLength()const;
+	unsigned int GetCapacity()const;
 	unsigned int GetCardinality(const nucleotide example)const;
 	std::unordered_map<nucleotide, int, std::hash<int>>GetCardinality()const;
 	void AddNucleotide(nucleotide n);

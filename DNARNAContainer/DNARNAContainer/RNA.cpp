@@ -14,6 +14,11 @@ RNA::Proxy& RNA::Proxy::operator=(const nucleotide value)
 	return *this;
 }
 
+RNA::Proxy& RNA::Proxy::operator=(const Proxy& other)
+{
+	return (*this) = static_cast<nucleotide>((*other.This)[other.index]);
+}
+
 RNA::Proxy::operator const nucleotide() const
 {
 	if(index >= 4 * This->storage.Size())
@@ -57,15 +62,25 @@ RNA::RNA(const RNA& r) = default;
 
 RNA::~RNA() = default;
 
-unsigned int RNA::GetCapacity()const
+unsigned int RNA::GetSize()const
 {
 	return storage.Size() * 4 + buffer.GetAmmount();
+}
+
+unsigned RNA::GetLength() const
+{
+	return  GetSize() + 1;
+}
+
+unsigned RNA::GetCapacity() const
+{
+	return storage.Size();
 }
 
 unsigned int RNA::GetCardinality(const nucleotide example) const
 {
 	unsigned int exampleEncounters = 0;
-	for(unsigned int i = 0; i < GetCapacity(); ++i)
+	for(unsigned int i = 0; i < GetSize(); ++i)
 	{
 		if(example == static_cast<RNA>(*this)[i])
 		{
@@ -78,7 +93,7 @@ unsigned int RNA::GetCardinality(const nucleotide example) const
 std::unordered_map<nucleotide, int, std::hash<int>> RNA::GetCardinality() const
 {
 	std::unordered_map<nucleotide, int, std::hash<int>> resultMap{{adenine, 0}, {thymine, 0}, {guanine, 0}, {thymine, 0}};
-	for(unsigned int i = 0; i < GetCapacity(); ++i)
+	for(unsigned int i = 0; i < GetSize(); ++i)
 	{
 		resultMap[static_cast<RNA>(*this)[i]]++;
 	}
@@ -122,11 +137,11 @@ void RNA::PushBuffer()
 RNA RNA::operator+(const RNA& r) const
 {
 	RNA res;
-	for (unsigned int i = 0; i < GetCapacity(); ++i)
+	for (unsigned int i = 0; i < GetSize(); ++i)
 	{
 		res.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
-	for(unsigned int i = 0; i < r.GetCapacity(); ++i)
+	for(unsigned int i = 0; i < r.GetSize(); ++i)
 	{
 		res.AddNucleotide(static_cast<RNA>(r)[i]);
 	}
@@ -188,7 +203,7 @@ bool RNA::IsComplimentary(const RNA& r)const
 
 RNA::Proxy RNA::operator[](const unsigned int index)
 {
-	if(index >= GetCapacity() || index < 0)
+	if(index >= GetSize() || index < 0)
 	{
 		throw std::out_of_range("index is out of range of allowed values");
 	}
@@ -210,7 +225,7 @@ std::pair<RNA, RNA> RNA::Split(const int index) const
 	{
 		firstPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
-	for(unsigned int i = index + 1; i < GetCapacity(); ++i)
+	for(unsigned int i = index + 1; i < GetSize(); ++i)
 	{
 		secondPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}

@@ -16,5 +16,6 @@
     <TestDuration Test="TestRNAMethods.TestOperatorIsNotEqual" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestOperatorAssign" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestTrim" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestGetSize" Duration="1" />
   </TestDurations>
 </GtaTestDurations>

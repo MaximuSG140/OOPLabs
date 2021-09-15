@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "../DNARNAContainer/RNA.h"
 
-TEST(TestRNAMethods, TestGetCapacity)
+TEST(TestRNAMethods, TestGetSize)
 {
-	EXPECT_EQ(0, RNA().GetCapacity());
-	EXPECT_EQ(4, RNA(4, adenine).GetCapacity());
-	EXPECT_EQ(1, RNA(1, cytosine).GetCapacity());
-	EXPECT_EQ(11, RNA(11).GetCapacity());
+	EXPECT_EQ(0, RNA().GetSize());
+	EXPECT_EQ(4, RNA(4, adenine).GetSize());
+	EXPECT_EQ(1, RNA(1, cytosine).GetSize());
+	EXPECT_EQ(11, RNA(11).GetSize());
 }
 
 TEST(TestRNAMethods, TestGetCardinality)
@@ -130,14 +130,14 @@ TEST(TestRNAMethods, TestAddNucleotide)
 	r.AddNucleotide(cytosine);
 	r.AddNucleotide(adenine);
 	EXPECT_EQ(r, RNA({ adenine, adenine, thymine, cytosine, adenine }));
-	EXPECT_EQ(5, r.GetCapacity());
+	EXPECT_EQ(5, r.GetSize());
 	EXPECT_EQ(3, r.GetCardinality(adenine));
 	EXPECT_EQ(1, r.GetCardinality(thymine));
 	EXPECT_EQ(1, r.GetCardinality(cytosine));
 	EXPECT_EQ(0, r.GetCardinality(guanine));
 	r.AddNucleotide(guanine);
 	EXPECT_EQ(r, RNA({ adenine, adenine, thymine, cytosine, adenine, guanine }));
-	EXPECT_EQ(6, r.GetCapacity());
+	EXPECT_EQ(6, r.GetSize());
 	EXPECT_EQ(3, r.GetCardinality(adenine));
 	EXPECT_EQ(1, r.GetCardinality(thymine));
 	EXPECT_EQ(1, r.GetCardinality(cytosine));
@@ -201,6 +201,24 @@ TEST(TestRNAMethods, TestIndexator)
 	EXPECT_EQ(guanine, testExample[2]);
 	EXPECT_EQ(thymine, testExample[3]);
 	EXPECT_EQ(thymine, testExample[4]);
+	testExample = RNA(5, adenine);
+	testExample[0] = adenine;
+	testExample[1] = cytosine;
+	testExample[2] = guanine;
+	testExample[3] = thymine;
+	testExample[4] = thymine;
+	EXPECT_EQ(adenine, testExample[0]);
+	EXPECT_EQ(cytosine, testExample[1]);
+	EXPECT_EQ(guanine, testExample[2]);
+	EXPECT_EQ(thymine, testExample[3]);
+	EXPECT_EQ(thymine, testExample[4]);
+	RNA testExample2(5);
+	testExample2[0] = testExample[0];
+	testExample2[1] = testExample[1];
+	testExample2[2] = testExample[2];
+	testExample2[3] = testExample[3];
+	testExample2[4] = testExample[4];
+	EXPECT_EQ(testExample, testExample2);
 }
 
 TEST(TestRNAMethods, TestTrim)
