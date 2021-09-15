@@ -128,4 +128,4 @@ bool vector<T>::operator==(const vector& otherVector) const
 
 template vector<nucleotide>;
 template vector<NucleotideStake>;
-
+template vector<char>;

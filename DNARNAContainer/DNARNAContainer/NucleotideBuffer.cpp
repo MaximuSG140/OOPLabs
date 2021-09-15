@@ -1,5 +1,16 @@
 #include "NucleotideBuffer.h"
 
+void NucleotideBuffer::proxy::operator=(const nucleotide newValue) const
+{
+	This->current &= ((1 << 8) - 1) - (3 << (6 - 2 * index));
+	This->current |= static_cast<int>(newValue) << (6 - 2 * index);
+}
+
+NucleotideBuffer::proxy::operator const nucleotide() const
+{
+	return static_cast<nucleotide>((This->current >> (3 - index) * 2) & 3);
+}
+
 void NucleotideBuffer::AddNucleotide(const nucleotide newNucleotide)
 {
 	current &= NucleotideStake(((1 << nucleotideAmmount * 2) - 1) << (4 - nucleotideAmmount) * 2);
@@ -47,7 +58,7 @@ NucleotideBuffer::NucleotideBuffer(const NucleotideStake basis)
 	nucleotideAmmount = 4;
 }
 
-bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer secondNucleotideBuffer) const
+bool NucleotideBuffer::IsComplimentary(NucleotideBuffer secondNucleotideBuffer) const
 {
 	if(nucleotideAmmount != secondNucleotideBuffer.nucleotideAmmount)
 	{
@@ -55,7 +66,7 @@ bool NucleotideBuffer::IsComplimentary(const NucleotideBuffer secondNucleotideBu
 	}
 	for(unsigned int i = 0; i < nucleotideAmmount; ++i)
 	{
-		if(GetComplimentaryNucleotide((*this)[i]) != secondNucleotideBuffer[i])
+		if(GetComplimentaryNucleotide(static_cast<NucleotideBuffer>(*this)[i]) != secondNucleotideBuffer[i])
 		{
 			return false;
 		}
@@ -78,14 +89,14 @@ NucleotideBuffer NucleotideBuffer::operator!()const
 	NucleotideBuffer res;
 	for(unsigned int i = 0; i < nucleotideAmmount; ++i)
 	{
-		res.AddNucleotide(GetComplimentaryNucleotide((*this)[i]));
+		res.AddNucleotide(GetComplimentaryNucleotide(static_cast<NucleotideBuffer>(*this)[i]));
 	}
 	return res;
 }
 
-nucleotide NucleotideBuffer::operator[](const unsigned int index) const
+NucleotideBuffer::proxy NucleotideBuffer::operator[](const unsigned int index)
 {
-	return static_cast<nucleotide>((current >> (3 - index) * 2) & 3);
+	return proxy(this, index);
 }
 
 bool NucleotideBuffer::operator==(const NucleotideBuffer& buffer) const
