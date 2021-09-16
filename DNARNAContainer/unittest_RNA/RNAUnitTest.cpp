@@ -9,6 +9,22 @@ TEST(TestRNAMethods, TestGetSize)
 	EXPECT_EQ(11, RNA(11).GetSize());
 }
 
+TEST(TestRNAMethods, TestGetLength)
+{
+	EXPECT_EQ(0, RNA().GetLength());
+	EXPECT_EQ(4, RNA(4, adenine).GetLength());
+	EXPECT_EQ(1, RNA(1, cytosine).GetLength());
+	EXPECT_EQ(11, RNA(11).GetLength());
+}
+
+TEST(TestRNAMethods, TestGetCapacity)
+{
+	EXPECT_EQ(0, RNA().GetCapacity());
+	EXPECT_EQ(1, RNA(4, adenine).GetCapacity());
+	EXPECT_EQ(0, RNA(1, cytosine).GetCapacity());
+	EXPECT_EQ(2, RNA(11).GetCapacity());
+}
+
 TEST(TestRNAMethods, TestGetCardinality)
 {
 	EXPECT_EQ(0, RNA().GetCardinality()[adenine]);
@@ -55,7 +71,6 @@ TEST(TestRNAMethods, TestOperatorSum)
 
 TEST(TestRNAMethods, testVectorConstructor)
 {
-	vector<nucleotide> chain({ adenine, guanine, thymine, cytosine, cytosine, cytosine });
 	RNA r(vector<nucleotide>({ adenine, guanine, thymine, cytosine, cytosine, cytosine }));
 	EXPECT_EQ(adenine, r[0]);
 	EXPECT_EQ(guanine, r[1]);
@@ -148,6 +163,39 @@ TEST(TestRNAMethods, TestSplit)
 {
 	EXPECT_EQ(RNA({ adenine, cytosine, adenine, adenine }), RNA({ adenine, cytosine, adenine, adenine, adenine, thymine }).Split(3).first);
 	EXPECT_EQ(RNA({ adenine, thymine, guanine}), RNA({ adenine, adenine, thymine, guanine}).Split(0).second);
+	bool wasThrown = false;
+	try
+	{
+		RNA().Split(1);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(1, 0, -1), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(1, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine).Split(5);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(5, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine).Split(-1);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(-1, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
 }
 
 TEST(TestRNAMethods, TestOperatorIsNotEqual)
@@ -219,6 +267,39 @@ TEST(TestRNAMethods, TestIndexator)
 	testExample2[3] = testExample[3];
 	testExample2[4] = testExample[4];
 	EXPECT_EQ(testExample, testExample2);
+	bool wasThrown = false;
+	try
+	{
+		RNA()[1];
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(1, 0, -1), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(1, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine)[5];
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(5, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine)[-1];
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(-1, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
 }
 
 TEST(TestRNAMethods, TestTrim)
@@ -228,5 +309,38 @@ TEST(TestRNAMethods, TestTrim)
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(2));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(3));
 	EXPECT_EQ(RNA({ adenine, cytosine, thymine, adenine, thymine }), RNA({ adenine, cytosine, thymine, adenine, thymine }).Trim(4));
+	bool wasThrown = false;
+	try
+	{
+		RNA().Trim(1);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(1, 0, -1), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(1, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine).Trim(5);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(5, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
+	wasThrown = false;
+	try
+	{
+		RNA(5, thymine).Trim(-1);
+	}
+	catch (invalid_index_exception& e)
+	{
+		EXPECT_EQ(invalid_index_exception(-1, 0, 4), e);
+		wasThrown = true;
+	}
+	EXPECT_EQ(true, wasThrown);
 }
 
