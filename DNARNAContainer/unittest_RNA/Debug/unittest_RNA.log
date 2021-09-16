@@ -1,160 +1,30 @@
 ﻿cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
   RNAUnitTest.cpp
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(58): error C2664: "RNA::RNA(const RNA &)": невозможно преобразовать аргумент 1 из "initializer list" в "const vector<nucleotide> &"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(58): note: Причина: невозможно преобразовать "initializer list" в "const vector<nucleotide>"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(58): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(93): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(93): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(93): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(93): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): error C2672: "testing::internal::EqHelper<true>::Compare": не найдена соответствующая перегруженная функция
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,testing::internal::Secret *,T *): требует аргументов: 4, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1465): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,const T1 &,const T2 &,EnableIf<!testing::internal::is_pointer<T2>::value>::type *): требует аргументов: 5, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1448): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(96): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): error C2672: "testing::internal::EqHelper<true>::Compare": не найдена соответствующая перегруженная функция
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,testing::internal::Secret *,T *): требует аргументов: 4, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1465): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,const T1 &,const T2 &,EnableIf<!testing::internal::is_pointer<T2>::value>::type *): требует аргументов: 5, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1448): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(119): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(120): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(120): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(120): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(120): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(131): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(131): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(131): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(131): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(138): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(138): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(138): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(138): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(148): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(148): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(148): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(148): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(149): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(149): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(149): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(149): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): error C2672: "testing::internal::EqHelper<true>::Compare": не найдена соответствующая перегруженная функция
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,testing::internal::Secret *,T *): требует аргументов: 4, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1465): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): error C2780: testing::AssertionResult testing::internal::EqHelper<true>::Compare(const char *,const char *,const T1 &,const T2 &,EnableIf<!testing::internal::is_pointer<T2>::value>::type *): требует аргументов: 5, имеется: 3
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1448): note:  см. объявление "testing::internal::EqHelper<true>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(154): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(157): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(157): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(157): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(157): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(165): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(165): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(165): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(165): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(167): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(167): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(167): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(167): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(178): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(178): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(178): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(178): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(179): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(179): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(179): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(179): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(180): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(180): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(181): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(181): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(181): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 3 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(181): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(198): error C2679: бинарный "=": не найден оператор, принимающий правый операнд типа "std::vector<nucleotide,std::allocator<_Ty>>" (или приемлемое преобразование отсутствует)
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1392): warning C4805: ==: небезопасное смешение типа "const T1" и типа "const T2" в операции
           with
           [
-              _Ty=nucleotide
+              T1=int
           ]
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.h(27): note: может быть "RNA &RNA::operator =(RNA &&)"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\rna.h(26): note: или       "RNA &RNA::operator =(const RNA &)"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(198): note: при попытке сопоставить список аргументов "(RNA, std::vector<nucleotide,std::allocator<_Ty>>)"
+          and
+          [
+              T2=bool
+          ]
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1421): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::CmpHelperEQ<T1,T2>(const char *,const char *,const T1 &,const T2 &)"
           with
           [
-              _Ty=nucleotide
+              T1=int,
+              T2=bool
           ]
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): error C2440: <function-style-cast>: невозможно преобразовать "std::vector<nucleotide,std::allocator<_Ty>>" в "RNA"
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(176): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
           with
           [
-              _Ty=nucleotide
+              T1=int,
+              T2=bool
           ]
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(208): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): error C2440: <function-style-cast>: невозможно преобразовать "std::vector<nucleotide,std::allocator<_Ty>>" в "RNA"
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(176): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
           with
           [
-              _Ty=nucleotide
+              T1=int,
+              T2=bool
           ]
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(209): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(210): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(210): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(210): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(210): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(211): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(211): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(211): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(211): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(212): error C2440: <function-style-cast>: невозможно преобразовать "initializer list" в "RNA"
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(212): note: Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(212): error C2660: testing::internal::EqHelper<false>::Compare: функция не принимает 2 аргументов
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1430): note:  см. объявление "testing::internal::EqHelper<false>::Compare"
-c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(212): error C2512: testing::AssertionResult: нет подходящего конструктора по умолчанию
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(256): note:  см. объявление "testing::AssertionResult"
+  unittest_RNA.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\unittest_RNA.exe
