@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include "RNAExceptions.h"
 #include "vector.h"
 #include "Nucleotides.h"
 #include "NucleotideBuffer.h"
@@ -13,7 +14,7 @@ public:
 	{
 		RNA *const This;
 		unsigned int index;
-		Proxy(RNA*const This, const unsigned int index):This(This), index(index){}
+		Proxy(RNA *const This, const unsigned int index):This(This), index(index){}
 		Proxy& operator=(nucleotide value);
 		Proxy& operator=(const Proxy& other);
 		operator const nucleotide() const;
@@ -27,7 +28,7 @@ public:
 	RNA(const RNA& r);
 	~RNA();
 
-	unsigned int GetSize()const ;
+	unsigned int GetSize()const;
 	unsigned int GetLength()const;
 	unsigned int GetCapacity()const;
 	unsigned int GetCardinality(const nucleotide example)const;
@@ -35,7 +36,7 @@ public:
 	void AddNucleotide(nucleotide n);
 	RNA Trim(unsigned int lastIndex);
 	bool IsComplimentary(const RNA& r)const;
-	std::pair<RNA, RNA> Split(const int index) const;
+	std::pair<RNA, RNA> Split(const unsigned index) const;
 
 	RNA operator+ (const RNA& r) const;
 	RNA& operator=  (const RNA& r);

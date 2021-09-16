@@ -67,17 +67,18 @@ unsigned int RNA::GetSize()const
 	return storage.Size() * 4 + buffer.GetAmmount();
 }
 
-unsigned RNA::GetLength() const
+unsigned RNA::GetLength()const
 {
-	return  GetSize() + 1;
+
+	return  GetSize();
 }
 
-unsigned RNA::GetCapacity() const
+unsigned RNA::GetCapacity()const
 {
 	return storage.Size();
 }
 
-unsigned int RNA::GetCardinality(const nucleotide example) const
+unsigned int RNA::GetCardinality(const nucleotide example)const
 {
 	unsigned int exampleEncounters = 0;
 	for(unsigned int i = 0; i < GetSize(); ++i)
@@ -109,6 +110,10 @@ void RNA::AddNucleotide(const nucleotide n)
 
 RNA RNA::Trim(const unsigned int lastIndex)
 {
+	if(lastIndex >= GetSize())
+	{
+		throw invalid_index_exception(lastIndex, 0, GetSize() - 1);
+	}
 	vector<NucleotideStake> newStorage(lastIndex / 4);
 	for(unsigned int i = 0; i < lastIndex / 4; ++i)
 	{
@@ -205,7 +210,7 @@ RNA::Proxy RNA::operator[](const unsigned int index)
 {
 	if(index >= GetSize() || index < 0)
 	{
-		throw std::out_of_range("index is out of range of allowed values");
+		throw invalid_index_exception(index, 0, GetSize() - 1);
 	}
 	return Proxy(this, index);
 }
@@ -218,10 +223,14 @@ RNA::Proxy RNA::operator[](const unsigned int index)
  * \return
  *	Pair of RNA first is before given index, second - after
  */
-std::pair<RNA, RNA> RNA::Split(const int index) const
+std::pair<RNA, RNA> RNA::Split(const unsigned int index) const
 {
+	if (index >= GetSize() || index < 0)
+	{
+		throw invalid_index_exception(index, 0, GetSize() - 1);
+	}
 	RNA firstPart, secondPart;
-	for(int i = 0; i <= index; ++i)
+	for(unsigned int i = 0; i <= index; ++i)
 	{
 		firstPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
