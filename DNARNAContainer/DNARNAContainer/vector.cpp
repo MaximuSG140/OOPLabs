@@ -1,5 +1,6 @@
 #pragma once
 #include "vector.h"
+#include <exception>
 #include "Nucleotides.h"
 
 class invalid_index_exception: std::exception
@@ -117,9 +118,9 @@ unsigned int vector<T>::Size() const
 template <class T>
 T& vector<T>::operator[](unsigned int index)
 {
-	if(index < 0 || index > size)
+	if(index < 0 || index >= size)
 	{
-		throw 
+		throw invalid_index_exception(index, 0, size - 1);
 	}
 	return storage[index];
 }
