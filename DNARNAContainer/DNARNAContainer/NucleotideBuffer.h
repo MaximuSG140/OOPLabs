@@ -4,19 +4,19 @@
 class NucleotideBuffer
 {
 public:
-	struct Proxy
+	struct NucleotideBufferNucleotideReference
 	{
 		NucleotideBuffer *const This;
 		unsigned int index;
-		Proxy(NucleotideBuffer *const This, const unsigned int index) : This(This), index(index){}
-		Proxy& operator=(const nucleotide newValue);
+		NucleotideBufferNucleotideReference(NucleotideBuffer *const This, const unsigned int index) : This(This), index(index){}
+		NucleotideBufferNucleotideReference& operator=(const nucleotide newValue);
 		operator const nucleotide()const;
 	};
 	void AddNucleotide(const nucleotide newNucleotide);
 	void RemoveLast();
 	void Clear();
 	NucleotideStake GetStake() const;
-	Proxy operator[](unsigned int index);
+	NucleotideBufferNucleotideReference operator[](unsigned int index);
 	bool operator==(const NucleotideBuffer& buffer) const;
 	NucleotideBuffer();
 	NucleotideBuffer(const int number, const nucleotide value);
