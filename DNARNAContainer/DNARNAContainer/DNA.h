@@ -1,6 +1,6 @@
 #pragma once
 #include"RNA.h"
-
+#include "DNAExceptions.h"
 
 class DNA
 {
