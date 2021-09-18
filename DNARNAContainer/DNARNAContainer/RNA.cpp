@@ -1,7 +1,7 @@
 #include<utility>
 #include "RNA.h"
 
-RNA::Proxy& RNA::Proxy::operator=(const nucleotide value)
+RNA::RNANucleotideReference& RNA::RNANucleotideReference::operator=(const nucleotide value)
 {
 	if(index >= 4 * This->storage.Size())
 	{
@@ -14,12 +14,12 @@ RNA::Proxy& RNA::Proxy::operator=(const nucleotide value)
 	return *this;
 }
 
-RNA::Proxy& RNA::Proxy::operator=(const Proxy& other)
+RNA::RNANucleotideReference& RNA::RNANucleotideReference::operator=(const RNANucleotideReference& other)
 {
 	return (*this) = static_cast<nucleotide>((*other.This)[other.index]);
 }
 
-RNA::Proxy::operator const nucleotide() const
+RNA::RNANucleotideReference::operator const nucleotide() const
 {
 	if(index >= 4 * This->storage.Size())
 	{
@@ -201,13 +201,13 @@ bool RNA::IsComplimentary(const RNA& r)const
 	return buffer.IsComplimentary(r.buffer);
 }
 
-RNA::Proxy RNA::operator[](const unsigned int index)
+RNA::RNANucleotideReference RNA::operator[](const unsigned int index)
 {
 	if(index >= GetSize() || index < 0)
 	{
 		throw invalid_index_exception(index, 0, GetSize() - 1);
 	}
-	return Proxy(this, index);
+	return RNANucleotideReference(this, index);
 }
 
 /**
