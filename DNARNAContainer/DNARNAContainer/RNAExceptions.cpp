@@ -19,12 +19,7 @@ char const* invalid_index_exception::what() const
 	delete[] minIndexStr;
 	delete[] maxIndexStr;
 	delete[] indexStr;
-	char* cstringMsg = new char[msg.length()];
-	for(unsigned int i = 0; i < msg.length(); ++i)
-	{
-		cstringMsg[i] = msg[i];
-	}
-	return cstringMsg;
+	return msg.c_str();
 }
 
 bool invalid_index_exception::operator==(const invalid_index_exception& e) const

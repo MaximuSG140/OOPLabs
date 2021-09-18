@@ -9,7 +9,7 @@ private:
 	unsigned int minimumIndex;
 public:
 	char const* what() const override;
-	invalid_index_exception(unsigned int i, unsigned int min, unsigned int max) :exception(), index(i), maximumIndex(max), minimumIndex(min) {}
+	invalid_index_exception(const unsigned int i, const unsigned int min, const unsigned int max) :exception(), index(i), maximumIndex(max), minimumIndex(min) {}
 	bool operator==(const invalid_index_exception& e)const;
 };
 
