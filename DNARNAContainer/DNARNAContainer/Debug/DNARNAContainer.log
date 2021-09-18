@@ -1,3 +1,9 @@
-﻿  RNA.cpp
+﻿  DNA.cpp
+  DNAExceptions.cpp
+  NucleotideBuffer.cpp
+  RNA.cpp
+  vector.cpp
+  Создание кода...
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\nucleotides.h(22): warning C4715: GetComplimentaryNucleotide: значение возвращается не при всех путях выполнения
 c:\users\maxim\source\repos\ooplabs\dnarnacontainer\dnarnacontainer\nucleotides.h(22): warning C4715: GetComplimentaryNucleotide: значение возвращается не при всех путях выполнения
   DNARNAContainer.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\DNARNAContainer.lib

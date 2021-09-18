@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DNA.cpp" />
+    <ClCompile Include="DNAExceptions.cpp" />
     <ClCompile Include="NucleotideBuffer.cpp" />
     <ClCompile Include="RNA.cpp" />
     <ClCompile Include="RNAExceptions.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DNA.h" />
+    <ClInclude Include="DNAExceptions.h" />
     <ClInclude Include="NucleotideBuffer.h" />
     <ClInclude Include="Nucleotides.h" />
     <ClInclude Include="RNA.h" />
