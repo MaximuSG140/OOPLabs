@@ -1,10 +1,10 @@
 #pragma once
-#define uracile thymine
 typedef char NucleotideStake;
 
 enum nucleotide : char {
 	adenine, cytosine, thymine, guanine
 };
+constexpr  nucleotide uracile = thymine;
 
 inline nucleotide GetComplimentaryNucleotide(const nucleotide n)
 {
