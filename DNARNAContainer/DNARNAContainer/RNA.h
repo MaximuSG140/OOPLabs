@@ -10,13 +10,13 @@
 class RNA
 {
 public:
-	struct Proxy
+	struct RNANucleotideReference
 	{
 		RNA *const This;
 		unsigned int index;
-		Proxy(RNA *const This, const unsigned int index):This(This), index(index){}
-		Proxy& operator=(nucleotide value);
-		Proxy& operator=(const Proxy& other);
+		RNANucleotideReference(RNA *const This, const unsigned int index):This(This), index(index){}
+		RNANucleotideReference& operator=(nucleotide value);
+		RNANucleotideReference& operator=(const RNANucleotideReference& other);
 		operator const nucleotide() const;
 	};
 
@@ -26,6 +26,7 @@ public:
 	explicit RNA(int capacity);
 	explicit RNA(int capacity, nucleotide baseValue);
 	RNA(const RNA& r);
+	RNA(const RNA&& r);
 	~RNA();
 
 	unsigned int GetSize()const;
@@ -36,7 +37,7 @@ public:
 	void AddNucleotide(nucleotide n);
 	RNA Trim(unsigned int lastIndex);
 	bool IsComplimentary(const RNA& r)const;
-	std::pair<RNA, RNA> Split(const unsigned index) const;
+	std::pair<RNA, RNA> Split(const unsigned int index) const;
 
 	RNA operator+ (const RNA& r) const;
 	RNA& operator=  (const RNA& r);
@@ -44,7 +45,7 @@ public:
 	RNA operator! () const;
 	bool operator== (const RNA& r)const;
 	bool operator!= (const RNA& r)const;
-	Proxy operator[](const unsigned int index);
+	RNANucleotideReference operator[](const unsigned int index);
 private:
 	void PushBuffer();
 	vector<NucleotideStake>storage;

@@ -60,6 +60,12 @@ RNA::RNA(const int capacity, const nucleotide baseValue)
 
 RNA::RNA(const RNA& r) = default;
 
+RNA::RNA(const RNA&& r)
+{
+	storage = r.storage;
+	buffer = r.buffer;
+}
+
 RNA::~RNA() = default;
 
 unsigned int RNA::GetSize()const
@@ -69,7 +75,6 @@ unsigned int RNA::GetSize()const
 
 unsigned RNA::GetLength()const
 {
-
 	return  GetSize();
 }
 
@@ -153,19 +158,9 @@ RNA RNA::operator+(const RNA& r) const
 	return res;
 }
 
-RNA& RNA::operator=(const RNA& r)
-{
-	storage = r.storage;
-	buffer = r.buffer;
-	return *this;
-}
-;
-RNA& RNA::operator=(RNA&& r)
-{
-	storage = r.storage;
-	buffer = r.buffer;
-	return *this;
-}
+RNA& RNA::operator=(const RNA& r)= default;
+
+RNA& RNA::operator=(RNA&& r) = default;
 
 RNA RNA::operator!() const
 {
@@ -238,7 +233,6 @@ std::pair<RNA, RNA> RNA::Split(const unsigned int index) const
 	{
 		secondPart.AddNucleotide(static_cast<RNA>(*this)[i]);
 	}
-	
 	return std::make_pair(firstPart, secondPart);
 }
 
