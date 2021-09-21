@@ -69,6 +69,32 @@ TEST(TestRNAMethods, TestOperatorSum)
 	EXPECT_EQ(testExample, RNA(3, adenine) + RNA(2, guanine) + RNA(2, adenine) + RNA(1, thymine));
 }
 
+TEST(TestRNAMethods, TestBaseConstructor)
+{
+	EXPECT_EQ(RNA(), RNA());
+	RNA r;
+	EXPECT_EQ(0, r.GetCapacity());
+	EXPECT_EQ(0, r.GetSize());
+	EXPECT_EQ(0, r.GetLength());
+	EXPECT_EQ(0, r.GetCardinality(adenine));
+	EXPECT_EQ(0, r.GetCardinality(thymine));
+	EXPECT_EQ(0, r.GetCardinality(cytosine));
+	EXPECT_EQ(0, r.GetCardinality(guanine));
+}
+
+TEST(TestRNAMethods, TestCopyConstructor)
+{
+	RNA r1(vector<nucleotide>{adenine, thymine, cytosine});
+	RNA r2(r1);
+	EXPECT_EQ(r1, r2);
+}
+
+TEST(TestRNAMethods, TestMoveConstructor)
+{
+	RNA r(RNA({ adenine, adenine, adenine }));
+	EXPECT_EQ(RNA({ adenine, adenine, adenine }), r);
+}
+
 TEST(TestRNAMethods, testVectorConstructor)
 {
 	RNA r(vector<nucleotide>({ adenine, guanine, thymine, cytosine, cytosine, cytosine }));
@@ -228,6 +254,9 @@ TEST(TestRNAMethods, TestOperatorAssign)
 	EXPECT_EQ(RNA({ guanine, thymine, cytosine }), RNA({ guanine, adenine, guanine }) = RNA({ guanine, thymine, cytosine }));
 	testExample = RNA({ cytosine, thymine, adenine });
 	EXPECT_EQ(RNA({ cytosine, thymine, adenine }), testExample);
+	RNA rnaCopy(r);
+	r = r;
+	EXPECT_EQ(rnaCopy, r);
 }
 
 TEST(TestRNAMethods, TestIndexator)
