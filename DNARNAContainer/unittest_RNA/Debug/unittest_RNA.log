@@ -15,13 +15,13 @@ c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletes
               T1=int,
               T2=bool
           ]
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(176): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(202): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
           with
           [
               T1=int,
               T2=bool
           ]
-  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(176): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(202): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
           with
           [
               T1=int,

@@ -156,7 +156,6 @@
     <ClCompile Include="NucleotideBuffer.cpp" />
     <ClCompile Include="RNA.cpp" />
     <ClCompile Include="RNAExceptions.cpp" />
-    <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DNA.h" />

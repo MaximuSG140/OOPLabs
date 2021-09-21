@@ -18,5 +18,8 @@
     <TestDuration Test="TestRNAMethods.TestTrim" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestGetSize" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestGetLength" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestBaseConstructor" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestCopyConstructor" Duration="1" />
+    <TestDuration Test="TestRNAMethods.TestMoveConstructor" Duration="1" />
   </TestDurations>
 </GtaTestDurations>

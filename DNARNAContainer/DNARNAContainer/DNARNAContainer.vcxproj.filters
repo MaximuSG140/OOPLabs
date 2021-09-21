@@ -24,9 +24,6 @@
     <ClCompile Include="DNA.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="vector.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="RNAExceptions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
