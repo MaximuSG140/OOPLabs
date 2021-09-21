@@ -4,29 +4,31 @@
 class NucleotideBuffer
 {
 public:
-	struct NucleotideBufferNucleotideReference
+	class NucleotideReference
 	{
+	public:
+		NucleotideReference(NucleotideBuffer *const This, const unsigned int index) : This(This), index(index){}
+		NucleotideReference& operator=(nucleotide newValue);
+		operator const nucleotide()const;
+	private:
 		NucleotideBuffer *const This;
 		unsigned int index;
-		NucleotideBufferNucleotideReference(NucleotideBuffer *const This, const unsigned int index) : This(This), index(index){}
-		NucleotideBufferNucleotideReference& operator=(const nucleotide newValue);
-		operator const nucleotide()const;
 	};
-	void AddNucleotide(const nucleotide newNucleotide);
+	void AddNucleotide(nucleotide newNucleotide);
 	void RemoveLast();
 	void Clear();
 	NucleotideStake GetStake() const;
-	NucleotideBufferNucleotideReference operator[](unsigned int index);
+	NucleotideReference operator[](unsigned int index);
 	bool operator==(const NucleotideBuffer& buffer) const;
 	NucleotideBuffer();
-	NucleotideBuffer(const int number, const nucleotide value);
-	NucleotideBuffer(const NucleotideStake basis);
+	NucleotideBuffer(int number, nucleotide value);
+	NucleotideBuffer(NucleotideStake basis);
 	bool IsComplimentary(NucleotideBuffer secondNucleotideBuffer) const;
 	bool IsFull()const;
 	unsigned int GetAmmount()const;
 	NucleotideBuffer operator! ()const;
 private:
-	NucleotideStake current = 0;
+	NucleotideStake stake = 0;
 	unsigned int nucleotideAmmount = 0;
 };
 

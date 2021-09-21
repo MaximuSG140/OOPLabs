@@ -1,21 +1,21 @@
 #include "NucleotideBuffer.h"
 
-NucleotideBuffer::NucleotideBufferNucleotideReference& NucleotideBuffer::NucleotideBufferNucleotideReference::operator=(const nucleotide newValue)
+NucleotideBuffer::NucleotideReference& NucleotideBuffer::NucleotideReference::operator=(const nucleotide newValue)
 {
-	This->current &= ((1 << 8) - 1) - (3 << (6 - 2 * index));
-	This->current |= static_cast<int>(newValue) << (6 - 2 * index);
+	This->stake &= ((1 << 8) - 1) - (3 << (6 - 2 * index));
+	This->stake |= static_cast<NucleotideStake>(newValue << (6 - 2 * index));
 	return *this;
 }
 
-NucleotideBuffer::NucleotideBufferNucleotideReference::operator const nucleotide() const
+NucleotideBuffer::NucleotideReference::operator const nucleotide() const
 {
-	return static_cast<nucleotide>((This->current >> (3 - index) * 2) & 3);
+	return static_cast<nucleotide>((This->stake >> (3 - index) * 2) & 3);
 }
 
 void NucleotideBuffer::AddNucleotide(const nucleotide newNucleotide)
 {
-	current &= NucleotideStake(((1 << nucleotideAmmount * 2) - 1) << (4 - nucleotideAmmount) * 2);
-	current |= newNucleotide << ((3 - nucleotideAmmount) << 1);
+	stake &= NucleotideStake(((1 << nucleotideAmmount * 2) - 1) << (4 - nucleotideAmmount) * 2);
+	stake |= newNucleotide << ((3 - nucleotideAmmount) << 1);
 	nucleotideAmmount++;
 }
 
@@ -30,13 +30,13 @@ void NucleotideBuffer::RemoveLast()
 
 void NucleotideBuffer::Clear()
 {
-	current = 0;
+	stake = 0;
 	nucleotideAmmount = 0;
 }
 
 NucleotideStake NucleotideBuffer::GetStake() const
 {
-	return current;
+	return stake;
 }
 
 NucleotideBuffer::NucleotideBuffer() = default;
@@ -55,7 +55,7 @@ NucleotideBuffer::NucleotideBuffer(const int number, const nucleotide value)
 
 NucleotideBuffer::NucleotideBuffer(const NucleotideStake basis)
 {
-	current = basis;
+	stake = basis;
 	nucleotideAmmount = 4;
 }
 
@@ -95,12 +95,12 @@ NucleotideBuffer NucleotideBuffer::operator!()const
 	return res;
 }
 
-NucleotideBuffer::NucleotideBufferNucleotideReference NucleotideBuffer::operator[](const unsigned int index)
+NucleotideBuffer::NucleotideReference NucleotideBuffer::operator[](const unsigned int index)
 {
-	return NucleotideBufferNucleotideReference(this, index);
+	return NucleotideReference(this, index);
 }
 
 bool NucleotideBuffer::operator==(const NucleotideBuffer& buffer) const
 {
-	return nucleotideAmmount == buffer.nucleotideAmmount && current == buffer.current;
+	return nucleotideAmmount == buffer.nucleotideAmmount && stake == buffer.stake;
 }
