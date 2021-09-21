@@ -1,7 +1,7 @@
 #include<utility>
 #include "RNA.h"
 
-RNA::RNANucleotideReference& RNA::RNANucleotideReference::operator=(const nucleotide value)
+RNA::NucleotideReference& RNA::NucleotideReference::operator=(const nucleotide value)
 {
 	if(index >= 4 * This->storage.Size())
 	{
@@ -14,12 +14,12 @@ RNA::RNANucleotideReference& RNA::RNANucleotideReference::operator=(const nucleo
 	return *this;
 }
 
-RNA::RNANucleotideReference& RNA::RNANucleotideReference::operator=(const RNANucleotideReference& other)
+RNA::NucleotideReference& RNA::NucleotideReference::operator=(const NucleotideReference& other)
 {
 	return (*this) = static_cast<nucleotide>((*other.This)[other.index]);
 }
 
-RNA::RNANucleotideReference::operator const nucleotide() const
+RNA::NucleotideReference::operator const nucleotide() const
 {
 	if(index >= 4 * This->storage.Size())
 	{
@@ -44,12 +44,6 @@ RNA::RNA(const vector<nucleotide>&& chain)
 	{
 		AddNucleotide(static_cast<vector<nucleotide>>(chain)[i]);
 	}
-}
-
-RNA::RNA(const int capacity)
-{
-	storage = vector<NucleotideStake>(capacity/4, static_cast<nucleotide>(0));
-	buffer = NucleotideBuffer(capacity%4, static_cast<nucleotide>(0));
 }
 
 RNA::RNA(const int capacity, const nucleotide baseValue)
@@ -201,13 +195,13 @@ bool RNA::IsComplimentary(const RNA& r)const
 	return buffer.IsComplimentary(r.buffer);
 }
 
-RNA::RNANucleotideReference RNA::operator[](const unsigned int index)
+RNA::NucleotideReference RNA::operator[](const unsigned int index)
 {
 	if(index >= GetSize() || index < 0)
 	{
 		throw invalid_index_exception(index, 0, GetSize() - 1);
 	}
-	return RNANucleotideReference(this, index);
+	return NucleotideReference(this, index);
 }
 
 /**

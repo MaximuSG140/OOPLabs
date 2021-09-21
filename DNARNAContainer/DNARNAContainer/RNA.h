@@ -10,21 +10,22 @@
 class RNA
 {
 public:
-	struct RNANucleotideReference
+	class NucleotideReference
 	{
+	public:
+		NucleotideReference(RNA *const This, const unsigned int index):This(This), index(index){}
+		NucleotideReference& operator=(nucleotide value);
+		NucleotideReference& operator=(const NucleotideReference& other);
+		operator const nucleotide() const;
+	private:
 		RNA *const This;
 		unsigned int index;
-		RNANucleotideReference(RNA *const This, const unsigned int index):This(This), index(index){}
-		RNANucleotideReference& operator=(nucleotide value);
-		RNANucleotideReference& operator=(const RNANucleotideReference& other);
-		operator const nucleotide() const;
 	};
 
 	RNA();
 	explicit RNA(const vector<nucleotide>& chain);
 	explicit RNA(const vector<nucleotide>&& chain);
-	explicit RNA(int capacity);
-	explicit RNA(int capacity, nucleotide baseValue);
+	explicit RNA(int capacity, nucleotide baseValue = static_cast<nucleotide>(0));
 	RNA(const RNA& r);
 	RNA(const RNA&& r);
 	~RNA();
@@ -32,12 +33,12 @@ public:
 	unsigned int GetSize()const;
 	unsigned int GetLength()const;
 	unsigned int GetCapacity()const;
-	unsigned int GetCardinality(const nucleotide example)const;
+	unsigned int GetCardinality(nucleotide example)const;
 	std::unordered_map<nucleotide, int, std::hash<int>>GetCardinality()const;
 	void AddNucleotide(nucleotide n);
 	RNA Trim(unsigned int lastIndex);
 	bool IsComplimentary(const RNA& r)const;
-	std::pair<RNA, RNA> Split(const unsigned int index) const;
+	std::pair<RNA, RNA> Split(unsigned int index) const;
 
 	RNA operator+ (const RNA& r) const;
 	RNA& operator=  (const RNA& r);
@@ -45,7 +46,7 @@ public:
 	RNA operator! () const;
 	bool operator== (const RNA& r)const;
 	bool operator!= (const RNA& r)const;
-	RNANucleotideReference operator[](const unsigned int index);
+	NucleotideReference operator[](unsigned int index);
 private:
 	void PushBuffer();
 	vector<NucleotideStake>storage;
