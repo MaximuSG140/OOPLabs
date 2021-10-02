@@ -21,5 +21,6 @@
     <TestDuration Test="TestRNAMethods.TestBaseConstructor" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestCopyConstructor" Duration="1" />
     <TestDuration Test="TestRNAMethods.TestMoveConstructor" Duration="1" />
+    <TestDuration Test="TestRNAWork.TestBigRNA" Duration="138" />
   </TestDurations>
 </GtaTestDurations>

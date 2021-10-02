@@ -1,4 +1,5 @@
 ﻿  DNA.cpp
+  NucleotideBuffer.cpp
   RNA.cpp
   Создание кода...
   DNARNAContainer.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\DNARNAContainer.lib

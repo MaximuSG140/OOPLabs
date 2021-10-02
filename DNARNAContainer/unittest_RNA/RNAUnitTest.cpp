@@ -1,4 +1,7 @@
 #include "pch.h"
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include "../DNARNAContainer/RNA.h"
 
 TEST(TestRNAMethods, TestGetSize)
@@ -373,3 +376,12 @@ TEST(TestRNAMethods, TestTrim)
 	EXPECT_EQ(true, wasThrown);
 }
 
+TEST(TestRNAWork, TestBigRNA)
+{
+	RNA r;
+	for(int i = 0; i < 1000000; ++i)
+	{
+		r.AddNucleotide(static_cast<nucleotide>(i % 4));
+	}
+	EXPECT_EQ(1, 1);
+}
