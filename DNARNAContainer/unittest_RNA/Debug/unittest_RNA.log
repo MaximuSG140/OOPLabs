@@ -1,0 +1,30 @@
+﻿cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  RNAUnitTest.cpp
+c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1392): warning C4805: ==: небезопасное смешение типа "const T1" и типа "const T2" в операции
+          with
+          [
+              T1=int
+          ]
+          and
+          [
+              T2=bool
+          ]
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest.h(1421): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::CmpHelperEQ<T1,T2>(const char *,const char *,const T1 &,const T2 &)"
+          with
+          [
+              T1=int,
+              T2=bool
+          ]
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(205): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
+          with
+          [
+              T1=int,
+              T2=bool
+          ]
+  c:\users\maxim\source\repos\ooplabs\dnarnacontainer\unittest_rna\rnaunittest.cpp(205): note: выполняется компиляция ссылки на экземпляр шаблон функции "testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)"
+          with
+          [
+              T1=int,
+              T2=bool
+          ]
+  unittest_RNA.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\DNARNAContainer\Debug\unittest_RNA.exe
