@@ -2,18 +2,18 @@
 #include <string>
 #include <fstream>
 #include <map>
-#include <sstream>
 #include "Task.h"
 
 class BlockReader
 {
 public:
-	BlockReader(std::stringstream* blockStream):blockStream(blockStream){}
+	BlockReader(const std::string& fileName):fileName(fileName){}
 	BlockReader() = default;
-	~BlockReader();
+
 	std::map<int, Task*>ReadAllBlocks();
+
+	static bool IsCorrect(const std::string& fileName);
 private:
-	
-	std::stringstream* blockStream;
+	std::string fileName;
 };
 
