@@ -5,7 +5,8 @@ class FileSplitter
 {
 public:
 	FileSplitter() = delete;
-	static std::stringstream* GetBlockPart(const std::string&);
-	static std::stringstream* GetNodePart(const std::string&);
+	static void GetBlockPart(const std::string&);
+	static void GetNodePart(const std::string&);
+	static bool HasCorrectDescription(const std::string&);
 };
 

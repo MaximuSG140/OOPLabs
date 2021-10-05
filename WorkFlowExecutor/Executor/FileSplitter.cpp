@@ -4,7 +4,7 @@
 #include <fstream>
 #include <exception>
 
-std::stringstream* FileSplitter::GetBlockPart(const std::string& fileName)
+void FileSplitter::GetBlockPart(const std::string& fileName)
 {
 	std::ifstream targetFile(fileName);
 	std::string currentLine;
@@ -14,24 +14,78 @@ std::stringstream* FileSplitter::GetBlockPart(const std::string& fileName)
 		targetFile.close();
 		throw std::exception();		//TODO: Make proper exception class
 	}
-	std::stringstream* res = new std::stringstream();
-	while(targetFile >> currentLine && currentLine != "csed")
+	std::ofstream res("BlockSequence.txt");
+	char* cStr = new char[1000];
+	targetFile.getline(cStr, 1000);
+	while(targetFile.getline(cStr, 1000) && std::string(cStr) != "csed")
 	{
-		*res << currentLine;
+		res << std::string(cStr) << std::endl;
 	}
+	delete cStr;
 	targetFile.close();
-	return res;
+	res.close();
 }
 
-std::stringstream* FileSplitter::GetNodePart(const std::string& fileName)
+void FileSplitter::GetNodePart(const std::string& fileName)
 {
 	std::ifstream targetFile(fileName);
-	std::string currentLine;
-	while(targetFile >> currentLine && currentLine != "csed"){}
-	std::stringstream* res = new std::stringstream();
-	while(targetFile >> currentLine)
+	std::string currentWord;
+	while(targetFile >> currentWord && currentWord != "csed"){}
+	std::ofstream res("NodeSequence.txt");
+	while(targetFile >> currentWord)
 	{
-		*res << currentLine;
+		if(currentWord != "->")
+		{
+			int number;
+			try
+			{
+				number = std::stoi(currentWord);
+			}
+			catch(std::exception&)
+			{
+				throw std::exception();		//TODO: add proper exception for this case
+			}
+			if(number <= 0)
+			{
+				throw std::exception();		//TODO: add proper exception for this case
+			}
+		}
+		res << currentWord << " ";
 	}
-	return res;
+	targetFile.close();
+	res.close();
+}
+
+bool FileSplitter::HasCorrectDescription(const std::string& fileName)
+{
+	std::ifstream targetFile(fileName);
+	std::string currentWord;
+	bool foundStart = false;
+	bool foundEnd = false;
+	while(targetFile >> currentWord)
+	{
+		if(currentWord == "desc" && foundStart == false)
+		{
+			foundStart = true;
+		}
+		else
+		{
+			if (currentWord == "desc")
+			{
+				return false;
+			}
+		}
+		if(currentWord == "csed" && foundStart == true && foundEnd == false)
+		{
+			foundEnd = true;
+		}
+		else
+		{
+			if(currentWord == "csed")
+			{
+				return false;
+			}
+		}
+	}
+	return foundStart && foundEnd;
 }
