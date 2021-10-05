@@ -1,22 +1,48 @@
 #include "NodeReader.h"
 #include <string>
 
-NodeReader::~NodeReader()
+bool NodeReader::HasNodes() const
 {
-	delete instructionStream;
-}
-
-bool NodeReader::HasNodes()
-{
-	return instructionStream->eof();
+	return !instructionStream.eof();
 }
 
 Task* NodeReader::ReadNext()
 {
-	std::string instructionNumber;
-	*instructionStream >> instructionNumber;
-	int instruction = std::stoi(instructionNumber);
+	int instruction;
+	instructionStream >> instruction;
 	std::string arrow;
-	*instructionStream >> arrow;
+	instructionStream >> arrow;
 	return taskMap[instruction];
+}
+
+bool NodeReader::IsCorrect(const std::string& fileName, std::map<int, Task*>taskMap)
+{
+	std::string instructionNumber;
+	std::ifstream targetFile(fileName);
+	while(targetFile >> instructionNumber)
+	{
+		try
+		{
+			std::stoi(instructionNumber);
+		}
+		catch(std::exception&)
+		{
+			return false;	//incorrect number
+		}
+		try
+		{
+			taskMap[std::stoi(instructionNumber)];
+		}
+		catch(std::exception&)
+		{
+			return false;	//incorrect block number
+		}
+		std::string arrow;
+		targetFile >> arrow;
+		if(arrow != "->")
+		{
+			return false;	//incorrect instruction ptr
+		}
+	}
+	return true;
 }
