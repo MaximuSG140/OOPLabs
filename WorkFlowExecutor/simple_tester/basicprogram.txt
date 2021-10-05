@@ -1,0 +1,8 @@
+desc
+1 = readfile input.txt
+2 = grep a
+3 = writefile
+4 = sort
+5 = dump dump.txt
+csed
+1 -> 2 -> 5 -> 4 -> 3
