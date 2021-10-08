@@ -1,23 +1,21 @@
 #pragma once
 #include "Task.h"
 #include <map>
-#include <fstream>
 #include <utility>
 
 class NodeReader
 {
 public:
 	NodeReader() = default;
-	NodeReader(const std::string& fileName, std::map<int, Task*>taskMap):instructionStream(fileName), taskMap(
-		                                                                      std::move(taskMap)){}
+	NodeReader(std::vector<int> sequence, std::map<int, Task*>taskMap):instructionSequence(std::move(sequence)), taskMap(
+		                                                                   std::move(taskMap)){}
+	void DeleteTasks();
 
 	bool HasNodes() const;
 	Task* ReadNext();
-
-	static bool IsCorrect(const std::string&, std::map<int, Task*> taskMap);
 private:
-
-	std::ifstream instructionStream;
+	size_t currentPosition = 0;
+	std::vector<int> instructionSequence;
 	std::map<int, Task*>taskMap;
 };
 

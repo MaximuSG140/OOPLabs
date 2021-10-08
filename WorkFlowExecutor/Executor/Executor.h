@@ -5,9 +5,10 @@
 class Executor
 {
 public:
-	Executor(const std::string& fileName);
+	Executor(const std::string fileName);
 	void Run();
+
+	~Executor();
 private:
 	NodeReader runner;
-	BlockReader compiler;
 };

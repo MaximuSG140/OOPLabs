@@ -1,7 +1,7 @@
 desc
 1 = readfile input.txt
 2 = grep a
-3 = writefile
+3 = writefile output.txt
 4 = sort
 5 = dump dump.txt
 csed
