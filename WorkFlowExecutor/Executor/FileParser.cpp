@@ -1,4 +1,6 @@
 #include "FileParser.h"
+#include "ParseExceptions.h"
+#include "CompileTimeExceptions.h"
 #include <string>
 #include <sstream>
 #include <fstream>
@@ -25,7 +27,7 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		}
 		catch(std::exception&)
 		{
-			throw std::exception();
+			throw invalid_number(fileName, number);
 		}
 		sstream >> newBlock.assignment;
 		std::string operationName;
@@ -55,7 +57,7 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 			newBlock.operation = operations::dump;
 		}else
 		{
-			throw std::exception();	//TODO: add proper exception
+			throw invalid_operation_name(fileName, operationName);
 		}
 		std::string arg;
 		while(sstream >> arg)
@@ -75,10 +77,16 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 	std::string currentWord;
 	while (targetFile >> currentWord && currentWord != "csed") {}
 	std::vector<int> res;
+	bool afterNumber = false;
 	while (targetFile >> currentWord)
 	{
 		if (currentWord != "->")
 		{
+			if(afterNumber)
+			{
+				throw invalid_arrow(fileName, currentWord);
+			}
+			afterNumber = true;
 			int number;
 			try
 			{
@@ -86,13 +94,21 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 			}
 			catch (std::exception&)
 			{
-				throw std::exception();		//TODO: add proper exception for this case
+				throw invalid_number(fileName, currentWord);	
 			}
 			if (number <= 0)
 			{
-				throw std::exception();		//TODO: add proper exception for this case
+				throw invalid_number(fileName, std::_Integral_to_string<char>(number));
 			}
 			res.push_back(number);
+		}
+		else
+		{
+			if(!afterNumber)
+			{
+				throw invalid_number(fileName, currentWord);
+			}
+			afterNumber = false;
 		}
 		
 	}

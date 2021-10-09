@@ -1,15 +1,33 @@
 #include "TaskReplace.h"
 #include <string>
+#include <sstream>
 
-void TaskReplace::Complete(std::vector<std::string>& data)
+void TaskReplace::Complete(DataWrapper& shell)
 {
-	for(auto line: data)
+	if(!shell.isFilled)
 	{
-		while(line.find(keyWord) != std::string::npos)
+		throw invalid_data_condition(false);
+	}
+	for (auto& line : shell.data)
+	{
+		std::stringstream words(line);
+		std::string word;
+		std::string newLine;
+		while(words >> word)
 		{
-			size_t pos = line.find(keyWord);
-			line.erase(pos, keyWord.length());
-			line.insert(pos, toChange);
+			if (!newLine.empty())
+			{
+				newLine += " ";
+			}
+			if(word == keyWord)
+			{
+				newLine += toChange;
+			}
+			else
+			{
+				newLine += word;
+			}
 		}
+		line = newLine;
 	}
 }

@@ -3,7 +3,7 @@
 class TaskGrep : public Task
 {
 public:
-	void Complete(std::vector<std::string>&) override;
+	void Complete(DataWrapper&) override;
 	TaskGrep(std::string keyWord):keyWord(std::move(keyWord)){}
 private:
 	std::string keyWord;

@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
+#include "RuntimeExceptions.h"
+#include "DataWrapper.h"
 
 class Task
 {
-private:
 public:
-	virtual void Complete(std::vector<std::string>&)=0;
+	virtual void Complete(DataWrapper&)=0;
 	virtual ~Task() = default;
 };
 

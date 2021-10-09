@@ -1,14 +1,18 @@
 #include "TaskGrep.h"
 
-void TaskGrep::Complete(std::vector<std::string>&data)
+void TaskGrep::Complete(DataWrapper& shell)
 {
+	if(!shell.isFilled)
+	{
+		throw invalid_data_condition(false);
+	}
 	std::vector<std::string>newData;
-	for(auto line:data)
+	for(const auto& line : shell.data)
 	{
 		if(line.find(keyWord) != std::string::npos)
 		{
 			newData.push_back(line);
 		}
 	}
-	data = newData;
+	shell.data = newData;
 }

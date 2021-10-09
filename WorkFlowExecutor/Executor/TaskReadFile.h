@@ -5,7 +5,7 @@
 class TaskReadFile : public Task
 {
 public:
-	void Complete(std::vector<std::string>&) override;
+	void Complete(DataWrapper&) override;
 	TaskReadFile(std::string fileName) :fileName(std::move(fileName)) {}
 private:
 	std::string fileName;

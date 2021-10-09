@@ -1,7 +1,11 @@
 #include "TaskSort.h"
 #include <algorithm>
 
-void TaskSort::Complete(std::vector<std::string>& data)
+void TaskSort::Complete(DataWrapper& shell)
 {
-	std::sort(data.begin(), data.end());
+	if(!shell.isFilled)
+	{
+		throw invalid_data_condition(false);
+	}
+	std::sort(shell.data.begin(), shell.data.end());
 }
