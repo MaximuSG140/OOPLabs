@@ -1,7 +1,5 @@
 abacaba
-asdf
 bar
 cbab
 foo bar
 foobar
-sdfsa

@@ -8,63 +8,64 @@
 #include "TaskReplace.h"
 #include "TaskDump.h"
 #include "TaskGrep.h"
+#include "CompileTimeExceptions.h"
 
 std::map<int, Task*> BlockReader::ReadAllBlocks(const std::vector<Block>& blocks)
 {
 	std::map<int, Task*> res;
-	for (const auto& block : blocks)
+	for (size_t i = 0; i < blocks.size(); ++i)
 	{
-		if(block.number <= 0)
+		if(blocks[i].number <= 0)
 		{
-			throw std::exception(); //TODO: add proper exception
+			throw invalid_block_number(i + 1, std::string(std::_Integral_to_string<char>(blocks[i].number)));
 		}
-		if(block.assignment != "=")
+		if(blocks[i].assignment != "=")
 		{
-			throw std::exception();
+			throw invalid_assignment_sign(i + 1, blocks[i].assignment);
 		}
-		switch(block.operation)
+		switch(blocks[i].operation)
 		{
 		case operations::read:
-			if(block.arguments.size() != 1)
+			if(blocks[i].arguments.size() != 1)
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 1);	
 			}
-			res[block.number] = new TaskReadFile(block.arguments[0]);
+			res[blocks[i].number] = new TaskReadFile(blocks[i].arguments[0]);
 			break;
 		case operations::write:
-			if (block.arguments.size() != 1)
+			if (blocks[i].arguments.size() != 1)
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 1);
 			}
-			res[block.number] = new TaskWriteFile(block.arguments[0]);
+			res[blocks[i].number] = new TaskWriteFile(blocks[i].arguments[0]);
 			break;
 		case operations::grep:
-			if (block.arguments.size() != 1)
+			if (blocks[i].arguments.size() != 1)
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 1);
 			}
-			res[block.number] = new TaskGrep(block.arguments[0]);
+			res[blocks[i].number] = new TaskGrep(blocks[i].arguments[0]);
 			break;
 		case operations::replace:
-			if (block.arguments.size() != 2)
+			if (blocks[i].arguments.size() != 2)
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 2);
 			}
-			res[block.number] = new TaskReplace(block.arguments[0], block.arguments[1]);
+			res[blocks[i].number] = new TaskReplace(blocks[i].arguments[0], blocks[i].arguments[1]);
 			break;
 		case operations::dump:
-			if (block.arguments.size() != 1)
+			if (blocks[i].arguments.size() != 1)
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 1);
 			}
-			res[block.number] = new TaskDump(block.arguments[0]);
+			res[blocks[i].number] = new TaskDump(blocks[i].arguments[0]);
 			break;
 		case operations::sort:
-			if (!block.arguments.empty())
+			if (!blocks[i].arguments.empty())
 			{
-				throw std::exception();	//TODO: add proper exception
+				throw invalid_argument_ammount(i + 1, blocks[i].arguments.size(), 0);
 			}
-			res[block.number] = new TaskSort();
+			res[blocks[i].number] = new TaskSort();
 			break;
 		}
 	}

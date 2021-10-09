@@ -154,7 +154,6 @@
     <ClCompile Include="BlockReader.cpp" />
     <ClCompile Include="Executor.cpp" />
     <ClCompile Include="FileParser.cpp" />
-    <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskDump.cpp" />
     <ClCompile Include="TaskGrep.cpp" />
     <ClCompile Include="NodeReader.cpp" />
@@ -165,8 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockReader.h" />
+    <ClInclude Include="CompileTimeExceptions.h" />
+    <ClInclude Include="DataWrapper.h" />
     <ClInclude Include="Executor.h" />
     <ClInclude Include="FileParser.h" />
+    <ClInclude Include="ParseExceptions.h" />
+    <ClInclude Include="RuntimeExceptions.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskDump.h" />
     <ClInclude Include="TaskGrep.h" />
