@@ -29,5 +29,11 @@
     <Text Include="output.txt">
       <Filter>Исходные файлы</Filter>
     </Text>
+    <Text Include="basicprogram1.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="dump.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
   </ItemGroup>
 </Project>

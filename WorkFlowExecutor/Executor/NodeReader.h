@@ -7,15 +7,18 @@ class NodeReader
 {
 public:
 	NodeReader() = default;
-	NodeReader(std::vector<int> sequence, std::map<int, Task*>taskMap):instructionSequence(std::move(sequence)), taskMap(
-		                                                                   std::move(taskMap)){}
-	void DeleteTasks();
+	NodeReader(std::vector<int> sequence, std::map<int, std::shared_ptr<Task> >taskMap)
+		:instructionSequence(std::move(sequence)), taskMap(std::move(taskMap)) {}
+
+	NodeReader& operator=(NodeReader&&)noexcept;
 
 	bool HasNodes() const;
-	Task* ReadNext();
+	std::shared_ptr<Task> ReadNext();
+
+	~NodeReader() = default;
 private:
 	size_t currentPosition = 0;
 	std::vector<int> instructionSequence;
-	std::map<int, Task*>taskMap;
+	std::map<int, std::shared_ptr<Task>>taskMap;
 };
 

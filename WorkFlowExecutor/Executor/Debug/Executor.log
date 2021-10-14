@@ -1,2 +1,6 @@
-﻿  FileParser.cpp
+﻿  BlockReader.cpp
+  Executor.cpp
+  FileParser.cpp
+  NodeReader.cpp
+  Создание кода...
   Executor.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\WorkFlowExecutor\Debug\Executor.lib

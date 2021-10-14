@@ -1,6 +1,4 @@
-﻿// Executor.cpp : Определяет функции для статической библиотеки.
-//
-#include "Executor.h"
+﻿#include "Executor.h"
 #include "FileParser.h"
 #include "ParseExceptions.h"
 
@@ -16,17 +14,12 @@ Executor::Executor(const std::string& fileName)
 
 void Executor::Run()
 {
-	DataWrapper data;
-	data.isFilled = false;
-	data.data = std::vector<std::string>();
+	DataWrapper shell;
+	shell.isFilled = false;
+	shell.data = std::vector<std::string>();
 	while (runner.HasNodes())
 	{
-		Task* currentTask = runner.ReadNext();
-		currentTask->Complete(data);
+		std::shared_ptr<Task>currentTask = runner.ReadNext();
+		currentTask->Complete(shell);
 	}
-}
-
-Executor::~Executor()
-{
-	runner.DeleteTasks();
 }

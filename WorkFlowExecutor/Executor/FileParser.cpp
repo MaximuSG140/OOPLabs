@@ -1,10 +1,22 @@
 #include "FileParser.h"
 #include "ParseExceptions.h"
 #include "CompileTimeExceptions.h"
+#include <unordered_map>
 #include <string>
+#include <functional>
 #include <sstream>
 #include <fstream>
 #include <exception>
+
+std::unordered_map<std::string, operations>GetOperation
+{
+	{"writefile", operations::write},
+	{"readfile", operations::read},
+	{"grep", operations::grep},
+	{"sort", operations::sort},
+	{"dump", operations::dump},
+	{"replace", operations::replace}
+};
 
 std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 {
@@ -13,14 +25,13 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 	
 	while(targetFile >> currentLine && currentLine != "desc"){}
 	std::vector<Block> res;
-	char* cStr = new char[1000];
-	targetFile.getline(cStr, 1000);
-	while(targetFile.getline(cStr, 1000) && std::string(cStr) != "csed")
+	std::getline(targetFile, currentLine);
+	while(std::getline(targetFile, currentLine) && currentLine != "csed")
 	{
-		std::stringstream sstream(cStr);
+		std::stringstream words(currentLine);
 		Block newBlock;
 		std::string number;
-		sstream >> number;
+		words >> number;
 		try
 		{
 			newBlock.number = std::stoi(number);
@@ -29,44 +40,24 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		{
 			throw invalid_number(fileName, number);
 		}
-		sstream >> newBlock.assignment;
+		words >> newBlock.assignment;
 		std::string operationName;
-		sstream >> operationName;
-		if(operationName == "readfile")
+		words >> operationName;
+		try
 		{
-			newBlock.operation = operations::read;
-		}else
-		if(operationName == "writefile")
-		{
-			newBlock.operation = operations::write;
-		}else
-		if(operationName == "sort")
-		{
-			newBlock.operation = operations::sort;
-		}else
-		if(operationName == "grep")
-		{
-			newBlock.operation = operations::grep;
-		}else
-		if(operationName == "replace")
-		{
-			newBlock.operation = operations::replace;
-		}else
-		if(operationName == "dump")
-		{
-			newBlock.operation = operations::dump;
-		}else
+			newBlock.operation = GetOperation[operationName];
+		}
+		catch(std::out_of_range&)
 		{
 			throw invalid_operation_name(fileName, operationName);
 		}
 		std::string arg;
-		while(sstream >> arg)
+		while(words >> arg)
 		{
 			newBlock.arguments.push_back(arg);
 		}
 		res.push_back(newBlock);
 	}
-	delete[] cStr;
 	targetFile.close();
 	return res;
 }

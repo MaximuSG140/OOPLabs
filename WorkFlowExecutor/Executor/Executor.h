@@ -5,10 +5,10 @@
 class Executor
 {
 public:
-	Executor(const std::string& fileName);
+	explicit Executor(const std::string&);
 	void Run();
 
-	~Executor();
+	~Executor() = default;
 private:
 	NodeReader runner;
 };

@@ -1,11 +1,11 @@
 #include "NodeReader.h"
 
-void NodeReader::DeleteTasks()
+NodeReader& NodeReader::operator=(NodeReader&& other) noexcept
 {
-	for (auto pair : taskMap)
-	{
-		delete pair.second;
-	}
+	taskMap = std::move(other.taskMap);
+	instructionSequence = std::move(other.instructionSequence);
+	currentPosition = other.currentPosition;
+	return *this;
 }
 
 bool NodeReader::HasNodes() const
@@ -13,7 +13,7 @@ bool NodeReader::HasNodes() const
 	return currentPosition != instructionSequence.size();
 }
 
-Task* NodeReader::ReadNext()
+std::shared_ptr<Task> NodeReader::ReadNext()
 {
 	return taskMap[instructionSequence[currentPosition++]];
 }
