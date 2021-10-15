@@ -15,8 +15,6 @@ Executor::Executor(const std::string& fileName)
 void Executor::Run()
 {
 	DataWrapper shell;
-	shell.isFilled = false;
-	shell.data = std::vector<std::string>();
 	while (runner.HasNodes())
 	{
 		Task* currentTask = runner.ReadNext();
