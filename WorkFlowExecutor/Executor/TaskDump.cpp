@@ -9,6 +9,7 @@ void TaskDump::Complete(DataWrapper& shell)
 	{
 		throw invalid_data_condition(false);
 	}
+
 	std::ofstream targetFile(fileName);
 	for(const auto& line : shell.data)
 	{

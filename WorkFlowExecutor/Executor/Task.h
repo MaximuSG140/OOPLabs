@@ -7,4 +7,3 @@ public:
 	virtual void Complete(DataWrapper&)=0;
 	virtual ~Task() = default;
 };
-

@@ -5,7 +5,8 @@ class TaskWriteFile : public Task
 {
 public:
 	void Complete(DataWrapper&) override;
-	TaskWriteFile(std::string fileName):fileName(std::move(fileName)){}
+	TaskWriteFile(std::string fileName):
+		fileName(std::move(fileName)){}
 private:
 	std::string fileName;
 };

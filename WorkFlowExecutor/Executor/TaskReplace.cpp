@@ -9,6 +9,7 @@ void TaskReplace::Complete(DataWrapper& shell)
 	{
 		throw invalid_data_condition(false);
 	}
+
 	for (auto& line : shell.data)
 	{
 		std::stringstream words(line);
