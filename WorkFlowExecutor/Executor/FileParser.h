@@ -17,7 +17,7 @@ class FileParser
 public:
 	FileParser() = delete;
 
-	static std::vector<Block> GetBlocks(const std::string&);		//returning vectors of elements
+	static std::vector<Block> GetBlocks(const std::string&);
 	static std::vector<int> GetSequence(const std::string&);
 
 	static bool HasCorrectDescription(const std::string&);

@@ -13,7 +13,15 @@ bool NodeReader::HasNodes() const
 	return currentPosition != instructionSequence.size();
 }
 
-std::shared_ptr<Task> NodeReader::ReadNext()
+Task* NodeReader::ReadNext()
 {
 	return taskMap[instructionSequence[currentPosition++]];
+}
+
+NodeReader::~NodeReader()
+{
+	for (auto& pair : taskMap)
+	{
+		delete pair.second;
+	}
 }

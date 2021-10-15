@@ -1,6 +1,7 @@
 #include "TaskDump.h"
 #include <fstream>
 #include <string>
+#include "RuntimeExceptions.h"
 
 void TaskDump::Complete(DataWrapper& shell)
 {

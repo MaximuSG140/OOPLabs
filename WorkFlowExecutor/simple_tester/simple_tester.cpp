@@ -6,7 +6,7 @@
 
 int main()
 {
-	Executor e("basicprogram1.txt");
+	Executor e("basicprogram.txt");
 	e.Run();
 	return 0;
 }

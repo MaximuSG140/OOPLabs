@@ -1,6 +1,7 @@
 #include "TaskReplace.h"
 #include <string>
 #include <sstream>
+#include "RuntimeExceptions.h"
 
 void TaskReplace::Complete(DataWrapper& shell)
 {

@@ -1,4 +1,5 @@
 #include "TaskGrep.h"
+#include "RuntimeExceptions.h"
 
 void TaskGrep::Complete(DataWrapper& shell)
 {

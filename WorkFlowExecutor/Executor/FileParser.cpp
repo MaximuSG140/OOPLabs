@@ -58,7 +58,6 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		}
 		res.push_back(newBlock);
 	}
-	targetFile.close();
 	return res;
 }
 
@@ -103,7 +102,6 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 		}
 		
 	}
-	targetFile.close();
 	return res;
 }
 
@@ -138,6 +136,5 @@ bool FileParser::HasCorrectDescription(const std::string& fileName)
 			}
 		}
 	}
-	targetFile.close();
 	return foundStart && foundEnd;
 }

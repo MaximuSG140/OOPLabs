@@ -19,7 +19,7 @@ void Executor::Run()
 	shell.data = std::vector<std::string>();
 	while (runner.HasNodes())
 	{
-		std::shared_ptr<Task>currentTask = runner.ReadNext();
+		Task* currentTask = runner.ReadNext();
 		currentTask->Complete(shell);
 	}
 }

@@ -1,4 +1,5 @@
 #include "TaskReadFile.h"
+#include "RuntimeExceptions.h"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -21,5 +22,4 @@ void TaskReadFile::Complete(DataWrapper& shell)
 		shell.data.push_back(str);
 	}
 	shell.isFilled = true;
-	targetFile.close();
 }

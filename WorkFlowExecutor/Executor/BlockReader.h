@@ -8,7 +8,6 @@ class BlockReader
 {
 public:
 	BlockReader() = delete;
-	static std::map<int, std::shared_ptr<Task>>ReadAllBlocks(const std::vector<Block>&);
-private:
+	static std::map<int, Task*>ReadAllBlocks(const std::vector<Block>&);
 };
 

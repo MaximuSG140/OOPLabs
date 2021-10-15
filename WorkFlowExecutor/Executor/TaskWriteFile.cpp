@@ -1,6 +1,7 @@
 ﻿#include "TaskWriteFile.h"
 #include <fstream>
 #include <string>
+#include "RuntimeExceptions.h"
 
 void TaskWriteFile::Complete(DataWrapper& shell)
 {
@@ -14,5 +15,4 @@ void TaskWriteFile::Complete(DataWrapper& shell)
 		targetFile << line << std::endl;
 	}
 	shell.isFilled = false;
-	targetFile.close();
 }

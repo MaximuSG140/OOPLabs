@@ -6,7 +6,6 @@ class runtime_error : public std::exception
 {
 public:
 	runtime_error() = default;
-private:
 };
 
 class invalid_file_name : public runtime_error

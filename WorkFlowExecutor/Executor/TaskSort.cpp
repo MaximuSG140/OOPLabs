@@ -1,5 +1,6 @@
 #include "TaskSort.h"
 #include <algorithm>
+#include "RuntimeExceptions.h"
 
 void TaskSort::Complete(DataWrapper& shell)
 {
