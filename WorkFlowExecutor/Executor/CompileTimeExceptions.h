@@ -14,7 +14,9 @@ private:
 class invalid_block_number : public compile_error
 {
 public:
-	invalid_block_number(int line, std::string name):compile_error(line), wrongNumber(std::move(name)){}
+	invalid_block_number(int line, std::string name):
+		compile_error(line),
+		wrongNumber(std::move(name)){}
 private:
 	std::string wrongNumber;
 };
@@ -22,7 +24,9 @@ private:
 class invalid_assignment_sign : public compile_error
 {
 public:
-	invalid_assignment_sign(int line, std::string sign):compile_error(line), wrongSign(std::move(sign)){}
+	invalid_assignment_sign(int line, std::string sign):
+		compile_error(line),
+		wrongSign(std::move(sign)){}
 private:
 	std::string wrongSign;
 };
@@ -30,7 +34,10 @@ private:
 class invalid_argument_ammount : public compile_error
 {
 public:
-	invalid_argument_ammount(int line, size_t ammount, size_t expected):compile_error(line), ammount(ammount), expected(expected){}
+	invalid_argument_ammount(int line, size_t ammount, size_t expected):
+		compile_error(line),
+		ammount(ammount),
+		expected(expected){}
 private:
 	size_t ammount;
 	size_t expected;
