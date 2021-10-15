@@ -1,21 +1,29 @@
 #include "NodeReader.h"
+#include "RuntimeExceptions.h"
 
 NodeReader& NodeReader::operator=(NodeReader&& other) noexcept
 {
 	taskMap = std::move(other.taskMap);
 	instructionSequence = std::move(other.instructionSequence);
-	currentPosition = other.currentPosition;
 	return *this;
 }
 
 bool NodeReader::HasNodes() const
 {
-	return currentPosition != instructionSequence.size();
+	return !instructionSequence.empty();
 }
 
 Task* NodeReader::ReadNext()
 {
-	return taskMap[instructionSequence[currentPosition++]];
+	int number = instructionSequence.front();
+	instructionSequence.pop();
+
+	if(taskMap.count(number) == 0)
+	{
+		throw invalid_node_number(number);
+	}
+
+	return taskMap[number];
 }
 
 NodeReader::~NodeReader()

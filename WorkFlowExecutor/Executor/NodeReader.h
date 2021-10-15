@@ -1,15 +1,17 @@
 #pragma once
 #include "Task.h"
-#include <map>
+#include <unordered_map>
 #include <memory>
 #include <utility>
+#include <queue>
 
 class NodeReader
 {
 public:
 	NodeReader() = default;
-	NodeReader(std::vector<int> sequence, std::map<int, Task*>taskMap)
-		:instructionSequence(std::move(sequence)), taskMap(std::move(taskMap)) {}
+	NodeReader(std::queue<int> sequence, std::unordered_map<int, Task*>taskMap):
+		instructionSequence(std::move(sequence)),
+		taskMap(std::move(taskMap)) {}
 
 	NodeReader& operator=(NodeReader&&)noexcept;
 
@@ -18,8 +20,7 @@ public:
 
 	~NodeReader();
 private:
-	size_t currentPosition = 0;
-	std::vector<int> instructionSequence;
-	std::map<int, Task*>taskMap;
+	std::queue<int> instructionSequence;
+	std::unordered_map<int, Task*> taskMap;
 };
 
