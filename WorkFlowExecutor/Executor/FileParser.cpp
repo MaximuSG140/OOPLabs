@@ -20,16 +20,23 @@ std::unordered_map<std::string, operations>GetOperation
 
 std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 {
+	if(!HasCorrectDescription(fileName))
+	{
+		throw invalid_description_block(fileName);
+	}
+
 	std::ifstream targetFile(fileName);
 	std::string currentLine;
-	
-	while(targetFile >> currentLine && currentLine != "desc"){}
 	std::vector<Block> res;
-	std::getline(targetFile, currentLine);
+	
+	while(std::getline(targetFile, currentLine) && currentLine != "desc"){}
+
+	int descLine = 1;
 	while(std::getline(targetFile, currentLine) && currentLine != "csed")
 	{
 		std::stringstream words(currentLine);
 		Block newBlock;
+
 		std::string number;
 		words >> number;
 		try
@@ -40,33 +47,52 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		{
 			throw invalid_number(fileName, number);
 		}
-		words >> newBlock.assignment;
+		if(newBlock.number <= 0)
+		{
+			throw invalid_number(fileName, number);
+		}
+
+		std::string assignment;
+		words >> assignment;
+		if(assignment != "=")
+		{
+			throw invalid_assignment_sign(descLine, assignment);
+		}
+
 		std::string operationName;
 		words >> operationName;
-		try
-		{
-			newBlock.operation = GetOperation[operationName];
-		}
-		catch(std::out_of_range&)
+		if (GetOperation.count(operationName) == 0)
 		{
 			throw invalid_operation_name(fileName, operationName);
 		}
+		newBlock.operation = GetOperation[operationName];
+
 		std::string arg;
 		while(words >> arg)
 		{
 			newBlock.arguments.push_back(arg);
 		}
+
 		res.push_back(newBlock);
+		descLine++;
 	}
 	return res;
 }
 
-std::vector<int> FileParser::GetSequence(const std::string& fileName)
+std::queue<int> FileParser::GetSequence(const std::string& fileName)
 {
+	if (!HasCorrectDescription(fileName))
+	{
+		throw invalid_description_block(fileName);
+	}
+
 	std::ifstream targetFile(fileName);
-	std::string currentWord;
-	while (targetFile >> currentWord && currentWord != "csed") {}
-	std::vector<int> res;
+	std::string currentWord, currentLine;
+
+	while (std::getline(targetFile, currentLine) && currentLine != "csed") {}
+
+	std::queue<int> res;
+
 	bool afterNumber = false;
 	while (targetFile >> currentWord)
 	{
@@ -77,6 +103,7 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 				throw invalid_arrow(fileName, currentWord);
 			}
 			afterNumber = true;
+
 			int number;
 			try
 			{
@@ -88,9 +115,9 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 			}
 			if (number <= 0)
 			{
-				throw invalid_number(fileName, std::_Integral_to_string<char>(number));
+				throw invalid_number(fileName, currentWord);
 			}
-			res.push_back(number);
+			res.push(number);
 		}
 		else
 		{
@@ -108,29 +135,30 @@ std::vector<int> FileParser::GetSequence(const std::string& fileName)
 bool FileParser::HasCorrectDescription(const std::string& fileName)
 {
 	std::ifstream targetFile(fileName);
-	std::string currentWord;
+	std::string currentLine;
 	bool foundStart = false;
 	bool foundEnd = false;
-	while(targetFile >> currentWord)
+
+	while(std::getline(targetFile, currentLine))
 	{
-		if(currentWord == "desc" && foundStart == false)
+		if(currentLine == "desc" && foundStart == false)
 		{
 			foundStart = true;
 		}
 		else
 		{
-			if (currentWord == "desc")
+			if (currentLine == "desc")
 			{
 				return false;
 			}
 		}
-		if(currentWord == "csed" && foundStart == true && foundEnd == false)
+		if(currentLine == "csed" && foundStart == true && foundEnd == false)
 		{
 			foundEnd = true;
 		}
 		else
 		{
-			if(currentWord == "csed")
+			if(currentLine == "csed")
 			{
 				return false;
 			}
