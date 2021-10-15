@@ -1,5 +1,6 @@
 #include "TaskGrep.h"
 #include "RuntimeExceptions.h"
+#include <sstream>
 
 void TaskGrep::Complete(DataWrapper& shell)
 {
@@ -7,12 +8,20 @@ void TaskGrep::Complete(DataWrapper& shell)
 	{
 		throw invalid_data_condition(false);
 	}
+
 	std::vector<std::string>newData;
 	for(const auto& line : shell.data)
 	{
-		if(line.find(keyWord) != std::string::npos)
+		std::stringstream words(line);
+		std::string currentWord;
+
+		while(words >> currentWord)
 		{
-			newData.push_back(line);
+			if(currentWord == keyWord)
+			{
+				newData.push_back(line);
+				break;
+			}
 		}
 	}
 	shell.data = newData;
