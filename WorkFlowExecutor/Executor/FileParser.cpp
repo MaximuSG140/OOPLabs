@@ -8,21 +8,11 @@
 #include <fstream>
 #include <exception>
 
-std::unordered_map<std::string, operations>GetOperation
-{
-	{"writefile", operations::write},
-	{"readfile", operations::read},
-	{"grep", operations::grep},
-	{"sort", operations::sort},
-	{"dump", operations::dump},
-	{"replace", operations::replace}
-};
-
 std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 {
 	if(!HasCorrectDescription(fileName))
 	{
-		throw invalid_description_block(fileName);
+		throw InvalidDescriptionBlock(fileName);
 	}
 
 	std::ifstream targetFile(fileName);
@@ -45,27 +35,36 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		}
 		catch(std::exception&)
 		{
-			throw invalid_number(fileName, number);
+			throw InvalidNumber(fileName, number);
 		}
 		if(newBlock.number <= 0)
 		{
-			throw invalid_number(fileName, number);
+			throw InvalidNumber(fileName, number);
 		}
 
 		std::string assignment;
 		words >> assignment;
 		if(assignment != "=")
 		{
-			throw invalid_assignment_sign(descLine, assignment);
+			throw InvalidAssignmentSign(descLine, assignment);
 		}
 
+		std::unordered_map<std::string, operations>getOperation
+		{
+			{"writefile", operations::write},
+			{"readfile", operations::read},
+			{"grep", operations::grep},
+			{"sort", operations::sort},
+			{"dump", operations::dump},
+			{"replace", operations::replace}
+		};
 		std::string operationName;
 		words >> operationName;
-		if (GetOperation.count(operationName) == 0)
+		if (getOperation.count(operationName) == 0)
 		{
-			throw invalid_operation_name(fileName, operationName);
+			throw InvalidOperationName(fileName, operationName);
 		}
-		newBlock.operation = GetOperation[operationName];
+		newBlock.operation = getOperation[operationName];
 
 		std::string arg;
 		while(words >> arg)
@@ -83,7 +82,7 @@ std::queue<int> FileParser::GetSequence(const std::string& fileName)
 {
 	if (!HasCorrectDescription(fileName))
 	{
-		throw invalid_description_block(fileName);
+		throw InvalidDescriptionBlock(fileName);
 	}
 
 	std::ifstream targetFile(fileName);
@@ -100,7 +99,7 @@ std::queue<int> FileParser::GetSequence(const std::string& fileName)
 		{
 			if(afterNumber)
 			{
-				throw invalid_arrow(fileName, currentWord);
+				throw InvalidArrow(fileName, currentWord);
 			}
 			afterNumber = true;
 
@@ -111,11 +110,11 @@ std::queue<int> FileParser::GetSequence(const std::string& fileName)
 			}
 			catch (std::exception&)
 			{
-				throw invalid_number(fileName, currentWord);	
+				throw InvalidNumber(fileName, currentWord);	
 			}
 			if (number <= 0)
 			{
-				throw invalid_number(fileName, currentWord);
+				throw InvalidNumber(fileName, currentWord);
 			}
 			res.push(number);
 		}
@@ -123,7 +122,7 @@ std::queue<int> FileParser::GetSequence(const std::string& fileName)
 		{
 			if(!afterNumber)
 			{
-				throw invalid_number(fileName, currentWord);
+				throw InvalidNumber(fileName, currentWord);
 			}
 			afterNumber = false;
 		}

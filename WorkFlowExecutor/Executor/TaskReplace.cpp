@@ -3,11 +3,11 @@
 #include <sstream>
 #include "RuntimeExceptions.h"
 
-void TaskReplace::Complete(DataWrapper& shell)
+void TaskReplace::Complete(DataWrapper& shell, const std::vector<std::string>& arguments)const
 {
 	if(!shell.isFilled)
 	{
-		throw invalid_data_condition(false);
+		throw InvalidDataCondition(false);
 	}
 
 	for (auto& line : shell.data)
@@ -21,9 +21,9 @@ void TaskReplace::Complete(DataWrapper& shell)
 			{
 				newLine += " ";
 			}
-			if(word == keyWord)
+			if(word == arguments[0])
 			{
-				newLine += toChange;
+				newLine += arguments[1];
 			}
 			else
 			{

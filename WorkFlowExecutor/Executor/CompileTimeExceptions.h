@@ -3,39 +3,39 @@
 #include <string>
 #include <utility>
 
-class compile_error : public std::exception
+class CompileError : public std::exception
 {
 public:
-	compile_error(int line):lineNumber(line){}
+	explicit CompileError(const int line):lineNumber(line){}
 private:
 	int lineNumber;
 };
 
-class invalid_block_number : public compile_error
+class InvalidBlockNumber final : public CompileError
 {
 public:
-	invalid_block_number(int line, std::string name):
-		compile_error(line),
+	InvalidBlockNumber(const int line, std::string name):
+		CompileError(line),
 		wrongNumber(std::move(name)){}
 private:
 	std::string wrongNumber;
 };
 
-class invalid_assignment_sign : public compile_error
+class InvalidAssignmentSign final : public CompileError
 {
 public:
-	invalid_assignment_sign(int line, std::string sign):
-		compile_error(line),
+	InvalidAssignmentSign(const int line, std::string sign):
+		CompileError(line),
 		wrongSign(std::move(sign)){}
 private:
 	std::string wrongSign;
 };
 
-class invalid_argument_ammount : public compile_error
+class InvalidArgumentAmmount final : public CompileError
 {
 public:
-	invalid_argument_ammount(int line, size_t ammount, size_t expected):
-		compile_error(line),
+	InvalidArgumentAmmount(const int line, const size_t ammount, const size_t expected):
+		CompileError(line),
 		ammount(ammount),
 		expected(expected){}
 private:

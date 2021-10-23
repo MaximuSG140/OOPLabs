@@ -2,11 +2,11 @@
 #include "RuntimeExceptions.h"
 #include <sstream>
 
-void TaskGrep::Complete(DataWrapper& shell)
+void TaskGrep::Complete(DataWrapper& shell, const std::vector<std::string>& arguments)const
 {
 	if(!shell.isFilled)
 	{
-		throw invalid_data_condition(false);
+		throw InvalidDataCondition(false);
 	}
 
 	std::vector<std::string>newData;
@@ -17,7 +17,7 @@ void TaskGrep::Complete(DataWrapper& shell)
 
 		while(words >> currentWord)
 		{
-			if(currentWord == keyWord)
+			if(currentWord == arguments[0])
 			{
 				newData.push_back(line);
 				break;

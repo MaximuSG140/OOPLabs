@@ -3,11 +3,13 @@
 #include <unordered_map>
 #include "Task.h"
 #include "FileParser.h"
+#include "NodeReader.h"
 
 class BlockReader
 {
 public:
 	BlockReader() = delete;
-	static std::unordered_map<int, Task*>ReadAllBlocks(const std::vector<Block>&);
-};
+	static std::unordered_map<int, Action> ReadAllBlocks(const std::vector<Block>&,
+	                                                     std::unordered_map<operations, Task*>& taskGetter);
 
+};

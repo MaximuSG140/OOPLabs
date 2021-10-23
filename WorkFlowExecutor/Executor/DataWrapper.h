@@ -4,7 +4,7 @@
 struct DataWrapper
 {
 	bool isFilled;
-	std::vector<std::string>data;
+	std::vector<std::string> data;
 	DataWrapper();
 };
 

@@ -3,10 +3,6 @@
 class TaskGrep : public Task
 {
 public:
-	void Complete(DataWrapper&) override;
-	TaskGrep(std::string keyWord):
-		keyWord(std::move(keyWord)){}
-private:
-	std::string keyWord;
+	void Complete(DataWrapper&, const std::vector<std::string>&)const override;
 };
 

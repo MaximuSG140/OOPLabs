@@ -1,96 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
+    <Filter Include="Tasks">
+      <UniqueIdentifier>{c1956b2a-b583-43a0-8dbe-7d047de748a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
+    <Filter Include="NodeReader">
+      <UniqueIdentifier>{c8695f28-8e6e-4b12-8a6e-e9d26a84fcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BlockReader">
+      <UniqueIdentifier>{1c505eb4-e950-45ad-8381-b6ae648dedcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Executor">
+      <UniqueIdentifier>{ed0a25af-e9f4-4dac-a643-bd2e7b5444eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{99a02984-f7b4-4c3e-8420-38e48985d5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Executor.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskReadFile.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskSort.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskGrep.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskReplace.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="FileParser.cpp">
+      <Filter>Parser</Filter>
     </ClCompile>
     <ClCompile Include="TaskDump.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskGrep.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskReadFile.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskReplace.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskSort.cpp">
+      <Filter>Tasks</Filter>
     </ClCompile>
     <ClCompile Include="TaskWriteFile.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeReader.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Tasks</Filter>
     </ClCompile>
     <ClCompile Include="BlockReader.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>BlockReader</Filter>
     </ClCompile>
-    <ClCompile Include="FileParser.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="NodeReader.cpp">
+      <Filter>NodeReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Executor.cpp">
+      <Filter>Executor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Executor.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskReadFile.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskWriteFile.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskSort.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskGrep.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskReplace.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskDump.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeReader.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockReader.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="FileParser.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="CompileTimeExceptions.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="ParseExceptions.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeExceptions.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskDump.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskGrep.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskReadFile.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskReplace.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskSort.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskWriteFile.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="FileParser.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockReader.h">
+      <Filter>BlockReader</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeReader.h">
+      <Filter>NodeReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Executor.h">
+      <Filter>Executor</Filter>
     </ClInclude>
     <ClInclude Include="DataWrapper.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks.h">
+      <Filter>Tasks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

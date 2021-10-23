@@ -13,23 +13,15 @@ bool NodeReader::HasNodes() const
 	return !instructionSequence.empty();
 }
 
-Task* NodeReader::ReadNext()
+Action NodeReader::ReadNext()
 {
 	int number = instructionSequence.front();
 	instructionSequence.pop();
 
 	if(taskMap.count(number) == 0)
 	{
-		throw invalid_node_number(number);
+		throw InvalidNodeNumber(number);
 	}
 
 	return taskMap[number];
-}
-
-NodeReader::~NodeReader()
-{
-	for (auto& pair : taskMap)
-	{
-		delete pair.second;
-	}
 }

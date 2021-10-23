@@ -4,7 +4,6 @@
 class TaskSort : public Task
 {
 public:
-	TaskSort() = default;
-	void Complete(DataWrapper&) override;
+	void Complete(DataWrapper&, const std::vector<std::string>& arguments)const override;
 };
 

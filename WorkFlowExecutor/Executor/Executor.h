@@ -8,7 +8,11 @@ public:
 	explicit Executor(const std::string&);
 	void Run();
 
-	~Executor() = default;
+	Executor(Executor&) = delete;
+	Executor& operator=(Executor&) = delete;
+
+	~Executor();
 private:
+	std::unordered_map<operations, Task*> taskGetter;
 	NodeReader runner;
 };

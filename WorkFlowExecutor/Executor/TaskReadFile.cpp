@@ -4,17 +4,17 @@
 #include <string>
 #include <vector>
 
-void TaskReadFile::Complete(DataWrapper& shell)
+void TaskReadFile::Complete(DataWrapper& shell, const std::vector<std::string>& arguments)const
 {
 	if(shell.isFilled)
 	{
-		throw invalid_data_condition(true);
+		throw InvalidDataCondition(true);
 	}
 
-	std::ifstream targetFile(fileName);
+	std::ifstream targetFile(arguments[0]);
 	if(!targetFile)
 	{
-		throw invalid_file_name(fileName);
+		throw InvalidFileName(arguments[0]);
 	}
 
 	shell.data = std::vector<std::string>();

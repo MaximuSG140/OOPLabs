@@ -176,6 +176,7 @@
     <ClInclude Include="NodeReader.h" />
     <ClInclude Include="TaskReadFile.h" />
     <ClInclude Include="TaskReplace.h" />
+    <ClInclude Include="Tasks.h" />
     <ClInclude Include="TaskSort.h" />
     <ClInclude Include="TaskWriteFile.h" />
   </ItemGroup>

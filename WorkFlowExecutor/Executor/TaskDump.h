@@ -4,9 +4,5 @@
 class TaskDump : public Task
 {
 public:
-	void Complete(DataWrapper&) override;
-	TaskDump(std::string fileName):
-		fileName(std::move(fileName)){}
-private:
-	std::string fileName;
+	void Complete(DataWrapper&, const std::vector<std::string>&)const override;
 };

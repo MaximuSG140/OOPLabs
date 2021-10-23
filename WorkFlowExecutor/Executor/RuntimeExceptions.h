@@ -2,34 +2,34 @@
 #include <exception>
 #include <string>
 
-class runtime_error : public std::exception
+class RuntimeError : public std::exception
 {
 public:
-	runtime_error() = default;
+	RuntimeError() = default;
 };
 
-class invalid_file_name : public runtime_error
+class InvalidFileName final : public RuntimeError
 {
 public:
-	invalid_file_name(std::string name):
+	explicit InvalidFileName(std::string name):
 		fileName(std::move(name)){}
 private:
 	std::string fileName;
 };
 
-class invalid_data_condition : public runtime_error
+class InvalidDataCondition final : public RuntimeError
 {
 public:
-	invalid_data_condition(bool isFilled):
+	explicit InvalidDataCondition(const bool isFilled):
 		isFilled(isFilled){}
 private:
 	bool isFilled;
 };
 
-class invalid_node_number: public runtime_error
+class InvalidNodeNumber final : public RuntimeError
 {
 public:
-	invalid_node_number(int wrongNumber):
+	explicit InvalidNodeNumber(const int wrongNumber):
 		wrong(wrongNumber){}
 private:
 	int wrong;

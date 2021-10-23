@@ -2,11 +2,11 @@
 #include <algorithm>
 #include "RuntimeExceptions.h"
 
-void TaskSort::Complete(DataWrapper& shell)
+void TaskSort::Complete(DataWrapper& shell, const std::vector<std::string>& arguments)const
 {
 	if(!shell.isFilled)
 	{
-		throw invalid_data_condition(false);
+		throw InvalidDataCondition(false);
 	}
 
 	std::sort(shell.data.begin(), shell.data.end());
