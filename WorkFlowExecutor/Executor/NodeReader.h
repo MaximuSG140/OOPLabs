@@ -31,7 +31,7 @@ public:
 	NodeReader& operator=(NodeReader&&)noexcept;
 
 	bool HasNodes() const;
-	Action ReadNext();
+	const Action& ReadNext();
 private:
 	std::queue<int> instructionSequence;
 	std::unordered_map<int, Action> taskMap;

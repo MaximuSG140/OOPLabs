@@ -60,11 +60,14 @@ std::vector<Block> FileParser::GetBlocks(const std::string& fileName)
 		};
 		std::string operationName;
 		words >> operationName;
-		if (getOperation.count(operationName) == 0)
+		try
+		{
+			newBlock.operation = getOperation.at(operationName);
+		}
+		catch(std::out_of_range&)
 		{
 			throw InvalidOperationName(fileName, operationName);
 		}
-		newBlock.operation = getOperation[operationName];
 
 		std::string arg;
 		while(words >> arg)
@@ -91,8 +94,8 @@ std::queue<int> FileParser::GetSequence(const std::string& fileName)
 	while (std::getline(targetFile, currentLine) && currentLine != "csed") {}
 
 	std::queue<int> res;
-
 	bool afterNumber = false;
+
 	while (targetFile >> currentWord)
 	{
 		if (currentWord != "->")

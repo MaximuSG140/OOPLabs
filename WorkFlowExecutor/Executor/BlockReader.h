@@ -10,6 +10,6 @@ class BlockReader
 public:
 	BlockReader() = delete;
 	static std::unordered_map<int, Action> ReadAllBlocks(const std::vector<Block>&,
-	                                                     std::unordered_map<operations, Task*>& taskGetter);
+	                                                     const std::unordered_map<operations, Task*>& taskGetter);
 
 };

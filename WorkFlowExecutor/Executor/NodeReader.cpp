@@ -13,7 +13,7 @@ bool NodeReader::HasNodes() const
 	return !instructionSequence.empty();
 }
 
-Action NodeReader::ReadNext()
+const Action& NodeReader::ReadNext()
 {
 	int number = instructionSequence.front();
 	instructionSequence.pop();

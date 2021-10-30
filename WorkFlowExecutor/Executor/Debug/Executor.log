@@ -1,12 +1,3 @@
 ﻿  BlockReader.cpp
-  Executor.cpp
-  FileParser.cpp
-  NodeReader.cpp
-  TaskDump.cpp
-  TaskGrep.cpp
-  TaskReadFile.cpp
-  TaskReplace.cpp
-  TaskSort.cpp
-  TaskWriteFile.cpp
-  Создание кода...
+c:\users\maxim\source\repos\ooplabs\workflowexecutor\executor\blockreader.cpp(56): warning C4018: <: несоответствие типов со знаком и без знака
   Executor.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\WorkFlowExecutor\Debug\Executor.lib
