@@ -1,0 +1,7 @@
+﻿  main.cpp
+C:\Users\stepa\Documents\GitHub\OOPLabs\2PGame\MarineBattle\main.cpp(46,65): warning C4244: аргумент: преобразование "_Rep" в "unsigned int", возможна потеря данных
+          with
+          [
+              _Rep=std::chrono::system_clock::rep
+          ]
+  MarineBattle.vcxproj -> C:\Users\stepa\Documents\GitHub\OOPLabs\2PGame\MarineBattle\Debug\MarineBattle.exe
