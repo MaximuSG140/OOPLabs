@@ -12,7 +12,7 @@ public:
     void OnHit(Position) override;
     void OnKill(Position) override;
 private:
-    size_t clearTiles = 0;
+    int clearTiles = 0;
     std::queue<Position> prioritizedAims;
 };
 

@@ -34,10 +34,10 @@ void PrintField(const std::vector<std::vector<tile_state> >& field)
 {
 	std::cout << " |0|1|2|3|4|5|6|7|8|9|" << std::endl;
 	std::cout << "----------------------" << std::endl;
-	for(size_t i = 0; i < MAP_SIZE; ++i)
+	for(int i = 0; i < MAP_SIZE; ++i)
 	{
 		std::cout << i << "|";
-		for(size_t j = 0; j < MAP_SIZE; ++j)
+		for(int j = 0; j < MAP_SIZE; ++j)
 		{
 			std::cout << GetTileIcon(field[i][j]) << "|";
 		}

@@ -8,6 +8,6 @@ public:
 	void EmplaceShips() override;
 	void OnShot() override;
 private:
-	size_t shotsAmount = 0;
+	int shotsAmount = 0;
 };
 

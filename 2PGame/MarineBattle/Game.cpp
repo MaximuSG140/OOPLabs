@@ -19,7 +19,7 @@ Player* CreatePlayer(const player_type type)
 	}
 }
 
-Game::Game(const size_t amountOfRounds, const player_type first, const player_type second)
+Game::Game(const int amountOfRounds, const player_type first, const player_type second)
 	: amountOfRounds(amountOfRounds)
 {
 	this->first = CreatePlayer(first);
@@ -28,7 +28,7 @@ Game::Game(const size_t amountOfRounds, const player_type first, const player_ty
 
 void Game::Start()
 {
-	for(size_t i = 0; i < amountOfRounds; ++i)
+	for(int i = 0; i < amountOfRounds; ++i)
 	{
 		first->EmplaceShips();
 		second->EmplaceShips();
@@ -52,4 +52,10 @@ void Game::PublishWinner() const
 	{
 		std::cout << "Second player won" << std::endl;
 	}
+}
+
+Game::~Game()
+{
+	delete first;
+	delete second;
 }

@@ -9,7 +9,7 @@ enum class tile_state{unknown = 0, empty, has_ship, has_attacked_ship};
 
 enum class shot_result{miss, hit, death};
 
-constexpr size_t MAP_SIZE = 10;
+constexpr int MAP_SIZE = 10;
 
 bool IsOffBorders(const Position position);
 

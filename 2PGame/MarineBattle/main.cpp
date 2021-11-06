@@ -1,50 +1,38 @@
 #include "Game.h"
-#include "../optionparser-1.7/src/optionparser.h"
+#include <boost/program_options.hpp>
 #include <chrono>
 #include <iostream>
+#include <string>
 
-constexpr option::Descriptor usage[] = {
-	{
-		0, 0, "h" ,"help", option::Arg::None, "--help Writes info about options"
-	},
-	{
-		1, 0, "c", "count", option::Arg::None, "--count Sets amount of rounds play to"
-	},
-	{
-		2, 0, "f", "first", option::Arg::None, "--first Sets type of first player"
-	},
-	{
-		3, 0, "s", "second", option::Arg::None, "--second Sets type of second player"
-	}
-};
-
-player_type GetPlayer(const option::Option& playerOption)
+player_type GetPlayerType(std::string type)
 {
-	std::string playerType(&playerOption.name[1]);
-	if (playerType == "optimize")return player_type::optimize;
-	if (playerType == "random")return player_type::random;
-	if (playerType == "interactive")return player_type::user;
-	return player_type::random;
-}
-
-size_t GetRoundCount(const option::Option& countOption)
-{
-	if (!countOption)return 1;
-	char* end;
-	return strtoul(&countOption.name[1], &end, 10);
+	if (type == "console")return player_type::user;
+	if (type == "random")return player_type::random;
+	if (type == "optimize")return player_type::optimize;
 }
 
 int main(int argc, char** argv)
 {
-	option::Stats  stats(usage, argc, argv);
-	option::Option *options = new option::Option[stats.options_max], *buffer = new option::Option[stats.buffer_max];
-	option::Parser parse(true, usage, argc, argv, options, buffer);
-	if (options[0] || argc == 0) {
-		printUsage(std::cout, usage);
+	/*boost::program_options::options_description desc("Options");
+	desc.add_options()
+		("help,h","write info about options")
+		("count,c", boost::program_options::value<int>(), "Set rounds ammount")
+		("first,f", boost::program_options::value<std::string>(), "Set first player type(console, random, optimize)")
+		("second,s", boost::program_options::value<std::string>(), "Set second player type(console, random, optimize)");
+
+	boost::program_options::variables_map map;
+	boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), map);
+	boost::program_options::notify(map);
+	if (map.count("help,h")) 
+	{
+		std::cout << desc << "\n";
 		return 0;
 	}
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
-	Game newGame{GetRoundCount(buffer[0]), GetPlayer(buffer[1]), GetPlayer(buffer[2])};
+	Game newGame{map.count("count,c") ? map["count,c"].as<int>() : 1,
+		map.count("first,f") ? GetPlayerType(map["first,f"].as<std::string>()):player_type::random,
+		map.count("second,f") ? GetPlayerType(map["second,f"].as<std::string>()):player_type::random};*/
+	Game newGame{ 1, player_type::user, player_type::optimize };
 	newGame.Start();
 	newGame.PublishWinner();
 	return 0;

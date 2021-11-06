@@ -5,20 +5,21 @@ enum class player_type{random, user, optimize};
 
 struct Score
 {
-	size_t firstPlayerScore = 0;
-	size_t secondPlayerScore = 0;
+	int firstPlayerScore = 0;
+	int secondPlayerScore = 0;
 };
 
 class Game
 {
 public:
-	explicit Game(size_t amountOfRounds = 1, player_type first = player_type::random, player_type second = player_type::random);
+	explicit Game(int amountOfRounds = 1, player_type first = player_type::random, player_type second = player_type::random);
 	void Start();
 	void PublishWinner() const;
+	~Game();
 private:
 	Player* first;
 	Player* second;
-	size_t amountOfRounds;
+	int amountOfRounds;
 	Score score;
 };
 

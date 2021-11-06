@@ -1,4 +1,5 @@
 #include "EffectivePlayer.h"
+#include <cstdlib>
 #include <algorithm>
 #include <iostream>
 
@@ -7,9 +8,10 @@ Position EffectivePlayer::GetAim()
 	if(prioritizedAims.empty())
 	{
 		Position aim = { 0, 0 };
-		while(!IsOffBorders(aim) && enemyField[aim] != tile_state::unknown)
+
+		auto MoveNextTile = [&]()->void
 		{
-			if(aim.x < MAP_SIZE - 1)
+			if (aim.x < MAP_SIZE - 1)
 			{
 				aim.x++;
 			}
@@ -18,6 +20,11 @@ Position EffectivePlayer::GetAim()
 				aim.y++;
 				aim.x = 0;
 			}
+		};
+
+		while(!IsOffBorders(aim) && enemyField[aim] != tile_state::unknown)
+		{
+			MoveNextTile();
 		}
 		std::cout << aim.x << ' ' << aim.y << std::endl;
 		return aim;
@@ -40,9 +47,9 @@ void EffectivePlayer::EmplaceShips()
 {
 	friendlyField = Map(map_type::friendly);
 	enemyField = Map(map_type::hostile);
-	for (size_t length = MIN_SHIP_LENGTH; length <= MAX_SHIP_LENGTH; ++length)
+	for (int length = MIN_SHIP_LENGTH; length <= MAX_SHIP_LENGTH; ++length)
 	{
-		for (size_t i = 0; i < GetAmmountFromLength(length); ++i)
+		for (int i = 0; i < GetAmmountFromLength(length); ++i)
 		{
 			Position toPlace(rand() % MAP_SIZE, rand() % MAP_SIZE);
 			direction dir = rand() % 2 ? direction::horizontal : direction::vertical;
@@ -95,9 +102,9 @@ void EffectivePlayer::OnKill(const Position position)
 	if (!IsOffBorders(deadShipHead.Down()) 
 		&& enemyField[deadShipHead.Down()] == tile_state::has_attacked_ship)
 	{
-		auto DefineStrip = [&](size_t y) -> void
+		auto DefineStrip = [&](int y) -> void
 		{
-			for (size_t x = std::max(static_cast<int>(deadShipHead.x) - 1, 0); x <= deadShipHead.x + 1; ++x)
+			for (int x = std::max(deadShipHead.x - 1, 0); x <= deadShipHead.x + 1; ++x)
 			{
 				if (!IsOffBorders({ x, y }) && (enemyField[{x, y}] != tile_state::has_attacked_ship))
 				{
@@ -105,7 +112,7 @@ void EffectivePlayer::OnKill(const Position position)
 				}
 			}
 		};
-		size_t y = std::max(static_cast<int>(deadShipHead.y) - 1, 0);
+		int y = std::max(deadShipHead.y - 1, 0);
 		
 		DefineStrip(y);
 		y++;
@@ -118,9 +125,9 @@ void EffectivePlayer::OnKill(const Position position)
 	}
 	else
 	{
-		auto DefineStrip = [&](size_t x) -> void
+		auto DefineStrip = [&](int x) -> void
 		{
-			for (size_t y = std::max(static_cast<int>(deadShipHead.y) - 1, 0); y <= deadShipHead.y + 1; ++y)
+			for (int y = std::max(deadShipHead.y - 1, 0); y <= deadShipHead.y + 1; ++y)
 			{
 				if (!IsOffBorders({ x, y }) && !(enemyField[{x, y}] == tile_state::has_attacked_ship))
 				{
@@ -128,7 +135,7 @@ void EffectivePlayer::OnKill(const Position position)
 				}
 			}
 		};
-		size_t x = std::max(static_cast<int>(deadShipHead.x) - 1, 0);
+		int x = std::max(deadShipHead.x - 1, 0);
 
 		DefineStrip(x);
 		x++;

@@ -2,20 +2,20 @@
 
 enum class direction{vertical, horizontal};
 
-constexpr size_t MIN_SHIP_LENGTH = 1;
-constexpr size_t MAX_SHIP_LENGTH = 4;
+constexpr int MIN_SHIP_LENGTH = 1;
+constexpr int MAX_SHIP_LENGTH = 4;
 
-inline size_t GetAmmountFromLength(size_t l)
+inline int GetAmmountFromLength(int l)
 {
 	return MAX_SHIP_LENGTH - l + 1;
 }
 
 struct Position
 {
-	size_t x = 0;
-	size_t y = 0;
+	int x = 0;
+	int y = 0;
 	Position() = default;
-	Position(const size_t x, const size_t y):
+	Position(const int x, const int y):
 		x(x),
 		y(y){}
 
@@ -62,9 +62,9 @@ struct Ship
 {
 	Position position;
 	direction direction;
-	size_t length;
-	size_t aliveTilesAmount;
-	Ship(const Position position, const size_t length, const enum direction direction):
+	int length;
+	int aliveTilesAmount;
+	Ship(const Position position, const int length, const enum direction direction):
 		position(position),
 		direction(direction),
 		length(length),

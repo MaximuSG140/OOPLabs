@@ -1,5 +1,6 @@
 #include "ConsolePlayer.h"
 #include <iostream>
+#include <string>
 
 Position ConsolePlayer::GetAim()
 {
@@ -16,7 +17,7 @@ Position ConsolePlayer::GetAim()
 	return aim;
 }
 
-Ship GetShipData(size_t length)
+Ship GetShipData(int length)
 {
 	Position pos;
 	std::cout << "Enter the coordinates for " << length << " tile long ship:" << std::endl;
@@ -37,9 +38,9 @@ void ConsolePlayer::EmplaceShips()
 {
 	friendlyField = Map(map_type::friendly);
 	enemyField = Map(map_type::hostile);
-	for(size_t length = MIN_SHIP_LENGTH; length <= MAX_SHIP_LENGTH; length++)
+	for(int length = MIN_SHIP_LENGTH; length <= MAX_SHIP_LENGTH; length++)
 	{
-		for(size_t i = 0; i < GetAmmountFromLength(length); ++i)
+		for(int i = 0; i < GetAmmountFromLength(length); ++i)
 		{
 			while (!friendlyField.PlaceShip(GetShipData(length)))
 			{

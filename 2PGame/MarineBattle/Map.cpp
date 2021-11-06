@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+#include <algorithm>
 
 Map::Map(const map_type relation):
 tileInfo(MAP_SIZE, std::vector<tile_state>(MAP_SIZE, relation == map_type::friendly ? tile_state::empty : tile_state::unknown))
@@ -51,9 +52,9 @@ bool Map::HasEnoughSpace(const Ship newBoat)const
 		{
 			return false;
 		}
-		for(size_t x = std::max(static_cast<int>(newBoat.position.x) - 1, 0); x <= newBoat.position.x + 1; ++x)
+		for(int x = std::max(static_cast<int>(newBoat.position.x) - 1, 0); x <= newBoat.position.x + 1; ++x)
 		{
-			for(size_t y = std::max(static_cast<int>(newBoat.position.y) - 1, 0); y <= newBoat.position.y + newBoat.length; ++y)
+			for(int y = std::max(static_cast<int>(newBoat.position.y) - 1, 0); y <= newBoat.position.y + newBoat.length; ++y)
 			{
 				if(!IsOffBorders({y, x}) && tileInfo[y][x] != tile_state::empty)
 				{
@@ -68,9 +69,9 @@ bool Map::HasEnoughSpace(const Ship newBoat)const
 		{
 			return false;
 		}
-		for (size_t x = std::max(static_cast<int>(newBoat.position.x) - 1, 0); x <= newBoat.position.x + newBoat.length; ++x)
+		for (int x = std::max(static_cast<int>(newBoat.position.x) - 1, 0); x <= newBoat.position.x + newBoat.length; ++x)
 		{
-			for (size_t y = std::max(static_cast<int>(newBoat.position.y) - 1, 0); y <= newBoat.position.y + 1; ++y)
+			for (int y = std::max(static_cast<int>(newBoat.position.y) - 1, 0); y <= newBoat.position.y + 1; ++y)
 			{
 				if (!IsOffBorders({ y, x }))
 				{
@@ -94,14 +95,14 @@ bool Map::PlaceShip(const Ship newBoat)
 	ships.insert(newBoat);
 	if(newBoat.direction == direction::vertical)
 	{
-		for(size_t y = 0; y < newBoat.length; ++y)
+		for(int y = 0; y < newBoat.length; ++y)
 		{
 			tileInfo[newBoat.position.y + y][newBoat.position.x] = tile_state::has_ship;
 		}
 	}
 	else
 	{
-		for (size_t x = 0; x < newBoat.length; ++x)
+		for (int x = 0; x < newBoat.length; ++x)
 		{
 			tileInfo[newBoat.position.y][newBoat.position.x + x] = tile_state::has_ship;
 		}
