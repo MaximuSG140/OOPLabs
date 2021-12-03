@@ -1,0 +1,12 @@
+﻿  ConsolePlayer.cpp
+  EffectivePlayer.cpp
+  Game.cpp
+  Map.cpp
+  Player.cpp
+  RandomPlayer.cpp
+  main.cpp
+  Создание кода...
+c:\users\maxim\source\repos\ooplabs\2pgame\marinebattle\main.cpp(12): warning C4715: GetPlayerType: значение возвращается не при всех путях выполнения
+c:\users\maxim\source\repos\ooplabs\2pgame\marinebattle\player.cpp(31): warning C4715: GetTileIcon: значение возвращается не при всех путях выполнения
+c:\users\maxim\source\repos\ooplabs\2pgame\marinebattle\game.cpp(20): warning C4715: CreatePlayer: значение возвращается не при всех путях выполнения
+  MarineBattle.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\2PGame\MarineBattle\Debug\MarineBattle.exe

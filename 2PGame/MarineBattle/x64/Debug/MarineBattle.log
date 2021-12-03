@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\maxim\source\repos\ooplabs\2pgame\marinebattle\main.cpp(12): warning C4715: GetPlayerType: значение возвращается не при всех путях выполнения
+  MarineBattle.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\2PGame\MarineBattle\x64\Debug\MarineBattle.exe
