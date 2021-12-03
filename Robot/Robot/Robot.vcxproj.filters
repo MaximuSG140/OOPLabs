@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Robotics">
+      <UniqueIdentifier>{7df24803-31c2-49d9-b57f-d6b286b159f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maps">
+      <UniqueIdentifier>{9d3988de-19b6-4a28-808d-6f0e5f56bb0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behaviours">
+      <UniqueIdentifier>{d5cbcf7c-2446-410a-896a-f1d367541af1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{9239f7a2-43e9-4d7a-8b5b-438902ad8d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnvironmentCommand">
+      <UniqueIdentifier>{7d8ca389-c7fe-43b4-a575-ec9c4e3c673e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages">
+      <UniqueIdentifier>{034629ab-b838-4856-9162-805f03a2fcad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UserCommands">
+      <UniqueIdentifier>{7f30f2c6-8938-4632-aabb-a61123816276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{7a78d036-83cd-4158-88a2-7be6d54b9ca6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Collector.cpp">
+      <Filter>Robotics</Filter>
+    </ClCompile>
+    <ClCompile Include="SmartRobot.cpp">
+      <Filter>Robotics</Filter>
+    </ClCompile>
+    <ClCompile Include="Sapper.cpp">
+      <Filter>Robotics</Filter>
+    </ClCompile>
+    <ClCompile Include="LandscapeMap.cpp">
+      <Filter>Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectResources.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Inspect.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotBehaviour.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="SapperBehaviour.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleView.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanControl.cpp">
+      <Filter>Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveRobot.cpp">
+      <Filter>EnvironmentCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveApple.cpp">
+      <Filter>EnvironmentCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveRobot.cpp">
+      <Filter>EnvironmentCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="SetSurroundingsInfo.cpp">
+      <Filter>EnvironmentCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="MineExploded.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaleMap.cpp">
+      <Filter>Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollector.cpp">
+      <Filter>UserCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeRobotBehaviour.cpp">
+      <Filter>UserCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateSapper.cpp">
+      <Filter>UserCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateMap.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRequest.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteRobot.cpp">
+      <Filter>UserCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentQueryWrapper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="UserCommandWrapper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageWrapper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Robot.h">
+      <Filter>Robotics</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartRobot.h">
+      <Filter>Robotics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sapper.h">
+      <Filter>Robotics</Filter>
+    </ClInclude>
+    <ClInclude Include="Collector.h">
+      <Filter>Robotics</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Maps.h">
+      <Filter>Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="LandscapeMap.h">
+      <Filter>Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectResources.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Inspect.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotBehaviour.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="SapperBehaviour.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="FindClosest.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleView.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameView.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanControl.h">
+      <Filter>Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveRobot.h">
+      <Filter>EnvironmentCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveApple.h">
+      <Filter>EnvironmentCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveRobot.h">
+      <Filter>EnvironmentCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="SetSurroundingsInfo.h">
+      <Filter>EnvironmentCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentQuery.h">
+      <Filter>EnvironmentCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="MineExploded.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaleMap.h">
+      <Filter>Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateCollector.h">
+      <Filter>UserCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="UserCommand.h">
+      <Filter>UserCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeRobotBehaviour.h">
+      <Filter>UserCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateSapper.h">
+      <Filter>UserCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateMap.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRequest.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteRobot.h">
+      <Filter>UserCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentQueryWrapper.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="UserCommandWrapper.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageWrapper.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="in.txt">
+      <Filter>Файлы заголовков</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
