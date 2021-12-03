@@ -1,6 +1,6 @@
 desc
 1 = readfile input.txt
-2 = grep abc
+2 = grep amet
 11 = grep b
 3 = writefile output.txt
 4 = sort

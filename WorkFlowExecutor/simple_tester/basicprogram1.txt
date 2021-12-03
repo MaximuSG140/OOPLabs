@@ -4,7 +4,7 @@ desc
 3 = dump dump.txt
 4 = sort
 5 = sort
-5 = grep abc
-6 = replace abc cba
+5 = grep amet
+6 = replace amet AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 csed
-1 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 4 -> 3 -> 5 -> 6 -> 2
+1 -> 3 -> 5 -> 6 -> 2
