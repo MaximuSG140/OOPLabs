@@ -7,11 +7,11 @@ class Sapper final :
 	public SmartRobot
 {
 public:
-	explicit Sapper(std::deque<MessageWrapper>& radio_messages, SmartRobot* master, Position place);
+	explicit Sapper(std::deque<MessageWrapper>& radio_messages, const SmartRobot* master, Position place);
+
 	EnvironmentQueryWrapper PerformAction() override;
 	EnvironmentQueryWrapper Push(Direction push_direction) override;
 	std::string GetRole() override;
-protected:
 	EnvironmentQueryWrapper OnBlow() override;
 private:
 	RobotBehaviour* behaviour_;

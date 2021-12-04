@@ -7,7 +7,7 @@
 class InconsistentOrder final : std::exception
 {};
 
-Sapper::Sapper(std::deque<MessageWrapper>& radio_messages, SmartRobot* master, const Position place) :
+Sapper::Sapper(std::deque<MessageWrapper>& radio_messages, const SmartRobot* master, const Position place) :
 	SmartRobot(radio_messages, master, place, {Attribute::HEAVY, Attribute::UNBREAKABLE}),
 	behaviour_(new SapperBehaviour(this))
 {}

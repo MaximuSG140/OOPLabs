@@ -87,10 +87,10 @@ void Collector::SetCollectResources()
 	Activate();
 }
 
-void Collector::SetRemote(IGameView* view)
+void Collector::SetRemote(IGameView* game_interface)
 {
 	delete behaviour_;
-	behaviour_ = new HumanControl(view);
+	behaviour_ = new HumanControl(game_interface);
 	Activate();
 }
 

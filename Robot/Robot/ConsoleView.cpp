@@ -23,9 +23,13 @@ char InfoToChar(const TileInfo info)
 
 UserCommandWrapper ConsoleView::GetCommand()
 {
-	std::cout << "Enter command:" << std::endl;
+	std::cout << "Enter command:(write END to continue)" << std::endl;
 	std::string command;
 	std::cin >> command;
+	if(command == "END")
+	{
+		return UserCommandWrapper();
+	}
 	std::unordered_map<std::string, std::function<UserCommand*()>> read_answer =
 		{
 			{

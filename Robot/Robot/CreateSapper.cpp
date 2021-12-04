@@ -1,5 +1,4 @@
 #include "CreateSapper.h"
-
 #include "Environment.h"
 
 CreateSapper::CreateSapper(SmartRobot* master) :

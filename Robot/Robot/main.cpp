@@ -1,13 +1,24 @@
+#include <iostream>
 #include "Environment.h"
 #include "Collector.h"
 #include "ConsoleView.h"
+#include "GenerateMap.h"
 
 int main()
 {
-	Environment e(new ConsoleView(), "in.txt");
-	while(true)
+	GenerateMap("in.txt", 1000, 1000);
+	Environment environment(new ConsoleView(), "in.txt");
+	try
 	{
-		e.MakeTurn();
+		while (true)
+		{
+			environment.MakeTurn();
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Critical error:" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return 0;
 }

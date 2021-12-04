@@ -5,13 +5,10 @@
 #include "SmartRobot.h"
 
 class LandscapeMap;
-class Message;
-class SmartRobot;
 class IGameView;
 class EnvironmentQuery;
 
 struct Position;
-
 
 struct RobotInfo
 {
@@ -33,6 +30,8 @@ public:
 	void AddSapper(SmartRobot* master);
 	SmartRobot* CheckoutPosition(Position checked_position);
 	IGameView* GetView() const;
+
+	~Environment();
 private:
 	LandscapeMap real_map_;
 	std::vector<RobotInfo> robot_infos_;

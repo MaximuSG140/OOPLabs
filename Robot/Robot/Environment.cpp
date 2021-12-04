@@ -4,7 +4,6 @@
 #include "Collector.h"
 #include "EnvironmentQueryWrapper.h"
 #include "IGameView.h"
-#include "Message.h"
 #include "LandscapeMap.h"
 #include "UserCommandWrapper.h"
 
@@ -38,9 +37,9 @@ void Environment::RemoveRobot(SmartRobot* remove_id)
 		std::remove_if(
 			robot_infos_.begin(),
 			robot_infos_.end(),
-			[](const RobotInfo info) -> bool
+			[](const RobotInfo checking_info) -> bool
 			{
-				return info.robot == nullptr;
+				return checking_info.robot == nullptr;
 			}),
 		robot_infos_.end());
 	current_radio_messages_.erase(
@@ -66,7 +65,12 @@ void Environment::RemoveRobot(SmartRobot* remove_id)
 
 void Environment::AskForNewOptions()
 {
-	view_->GetCommand().Perform(this);
+	UserCommandWrapper command_wrapper = view_->GetCommand();
+	while(command_wrapper)
+	{
+		command_wrapper.Perform(this);
+		command_wrapper = view_->GetCommand();
+	}
 }
 
 void Environment::MakeTurn()
@@ -95,7 +99,7 @@ void Environment::MakeTurn()
 		AskForNewOptions();
 	}
 	previous_radio_messages_ = std::move(current_radio_messages_);
-	current_radio_messages_.clear();
+	current_radio_messages_ = std::deque<MessageWrapper>();
 }
 
 void Environment::AddCollector()
@@ -135,4 +139,13 @@ SmartRobot* Environment::CheckoutPosition(const Position checked_position)
 IGameView* Environment::GetView() const
 {
 	return view_;
+}
+
+Environment::~Environment()
+{
+	for(auto& info : robot_infos_)
+	{
+		delete info.robot;
+	}
+	delete view_;
 }

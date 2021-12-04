@@ -3,6 +3,8 @@
 #include "SmartRobot.h"
 #include "UserCommandWrapper.h"
 
+char InfoToChar(TileInfo info);
+
 class ConsoleView final :
 	public IGameView
 {

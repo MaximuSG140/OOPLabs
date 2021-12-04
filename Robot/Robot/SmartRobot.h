@@ -1,15 +1,12 @@
 #pragma once
 #include <deque>
 #include <set>
-
 #include "MessageWrapper.h"
 #include "Robot.h"
 
 enum class Attribute{UNBREAKABLE, HEAVY};
 
-struct RadioMessage;
 class ScaleMap;
-class Message;
 
 class SmartRobot :
 	public Robot
@@ -25,15 +22,16 @@ public:
 	void UpdateMap(const ScaleMap& updated_map);
 	void SendMessage(Message* msg);
 	void ReceiveMessage(const MessageWrapper& msg);
+
 	void Activate();
 	void Deactivate();
-	virtual std::string GetRole() = 0;
-
 	virtual EnvironmentQueryWrapper Push(Direction push_direction);
+
 	bool IsActive()const;
 	bool HasAttribute(Attribute a)const;
+	virtual std::string GetRole() = 0;
 	Position GetPosition()const;
-	ScaleMap GetMap() const;
+	ScaleMap GetMap()const;
 	const SmartRobot* GetMasterId()const;
 protected:
 	void Move(Direction move_direction) override;

@@ -1,5 +1,7 @@
 #include "UserCommandWrapper.h"
 
+UserCommandWrapper::UserCommandWrapper() = default;
+
 UserCommandWrapper::UserCommandWrapper(UserCommand* cmd) :
 	cmd_(cmd)
 {}
@@ -12,6 +14,11 @@ void UserCommandWrapper::Perform(Environment* env) const
 UserCommandWrapper::~UserCommandWrapper()
 {
 	delete cmd_;
+}
+
+UserCommandWrapper::operator bool() const
+{
+	return cmd_ != nullptr;
 }
 
 UserCommandWrapper::UserCommandWrapper(UserCommandWrapper&& other) noexcept

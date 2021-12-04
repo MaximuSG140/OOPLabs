@@ -3,11 +3,11 @@
 
 enum class TileInfo
 {
-	UNKNOWN,
 	EMPTY,
 	MINE,
 	APPLE,
-	ROCK
+	ROCK,
+	UNKNOWN
 };
 
 struct Size

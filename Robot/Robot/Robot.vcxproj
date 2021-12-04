@@ -192,6 +192,7 @@
     <ClInclude Include="Environment.h" />
     <ClInclude Include="EnvironmentQueryWrapper.h" />
     <ClInclude Include="FindClosest.h" />
+    <ClInclude Include="GenerateMap.h" />
     <ClInclude Include="IGameView.h" />
     <ClInclude Include="HumanControl.h" />
     <ClInclude Include="Inspect.h" />
