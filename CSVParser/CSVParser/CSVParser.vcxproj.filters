@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{0f6793cf-6e1c-4be3-bae4-24ad15a6fa18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
+      <UniqueIdentifier>{6561f336-f129-4802-86ad-29da1e54a47e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="BadFormat.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="BadLineFormat.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="BadLineQuotes.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="BadQuotes.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWithUnknownSequence.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordWithUnknownSequence.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="UnknownRuleSequence.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BadFormat.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="BadLineFormat.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="BadLineQuotes.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="BadQuotes.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementWithUnknownSequence.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordWithUnknownSequence.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="UnknownRuleSequence.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="in.csv">
+      <Filter>Исходные файлы</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+﻿  main.cpp
+c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\parser.h(189): warning C4018: <: несоответствие типов со знаком и без знака
+  c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\parser.h(183): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\parser.h(279): note: выполняется компиляция ссылки на экземпляр шаблон функции "Parser<int,double,std::string>::ParserIterator::ParserIterator(const std::string &,size_t)"
+  c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\parser.h(260): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\main.cpp(7): note: выполняется компиляция ссылки на экземпляр шаблон функции "Parser<int,double,std::string>::Parser(std::string,size_t)"
+  c:\users\maxim\source\repos\ooplabs\csvparser\csvparser\main.cpp(7): note: выполняется компиляция ссылки на экземпляр шаблон класс "Parser<int,double,std::string>"
+  CSVParser.vcxproj -> C:\Users\Maxim\source\repos\OOPLabs\CSVParser\Debug\CSVParser.exe
