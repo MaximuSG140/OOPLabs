@@ -9,7 +9,5 @@ public:
 	[[nodiscard]] char const* what() const override;
 private:
 	std::string msg_;
-	size_t line_number_;
-	size_t element_number_;
 };
 

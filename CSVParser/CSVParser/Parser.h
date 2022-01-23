@@ -5,16 +5,13 @@
 #include <tuple>
 #include <unordered_map>
 #include "BadFormat.h"
-#include "BadLineFormat.h"
-#include "BadLineQuotes.h"
 #include "BadQuotes.h"
-#include "ElementWithUnknownSequence.h"
 #include "RecordWithUnknownSequence.h"
-#include "UnknownRuleSequence.h"
 
 constexpr char LINE_DELIMITER = '\n';
 constexpr char ELEMENT_DELIMITER = ',';
 constexpr char SCREEN_GUARD = '"';
+
 const std::unordered_map<std::string, char> RULE_SEQUENCE_MEANING = {
 		{"comma", ELEMENT_DELIMITER},
 		{"endl", LINE_DELIMITER},
@@ -22,31 +19,34 @@ const std::unordered_map<std::string, char> RULE_SEQUENCE_MEANING = {
 };
 
 
-inline void RemoveRuleSequences(std::string& line)
+inline void RemoveRuleSequences(std::string& string_record,
+								const size_t line_number, 
+								const size_t number_from_end, 
+								const size_t elem_amount)
 {
 	int last_changed_screen_guard_index = -1;
-	while (line.find(SCREEN_GUARD, last_changed_screen_guard_index + 1) != std::string::npos)
+	while (string_record.find(SCREEN_GUARD, last_changed_screen_guard_index + 1) != std::string::npos)
 	{
-		size_t first_quote_occurrence = line.find(SCREEN_GUARD,
+		size_t first_quote_occurrence = string_record.find(SCREEN_GUARD,
 			last_changed_screen_guard_index + 1);
-		size_t second_quote_occurrence = line.find(SCREEN_GUARD,
+		size_t second_quote_occurrence = string_record.find(SCREEN_GUARD,
 			first_quote_occurrence + 1);
-		std::string word_inside_guards = line.substr(first_quote_occurrence + 1,
+		std::string word_inside_guards = string_record.substr(first_quote_occurrence + 1,
 			second_quote_occurrence - first_quote_occurrence - 1);
 		if (second_quote_occurrence == std::string::npos)
 		{
-			throw std::runtime_error("Wrong rule sequence usage");
+			throw BadQuotes(line_number, elem_amount - number_from_end);
 		}
 		try
 		{
-			line.replace(first_quote_occurrence,
+			string_record.replace(first_quote_occurrence,
 				second_quote_occurrence - first_quote_occurrence + 1,
 				std::string{ RULE_SEQUENCE_MEANING.at(word_inside_guards) });
 			last_changed_screen_guard_index = first_quote_occurrence;
 		}
 		catch(std::out_of_range&)
 		{
-			throw ElementWithUnknownSequence(word_inside_guards);
+			throw RecordWithUnknownSequence(word_inside_guards, line_number, elem_amount - number_from_end);
 		}
 	}
 }
@@ -61,6 +61,50 @@ inline size_t GetLinesAmount(const std::string& file_name)
 		line_counter++;
 	}
 	return line_counter;
+}
+
+template<typename T, typename... Args, size_t Number>
+std::tuple<T, Args...> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
+{
+	T first_element;
+	std::string string_element;
+
+	std::getline(str, string_element, ELEMENT_DELIMITER);
+	RemoveRuleSequences(string_element, record_number, sizeof...(Args) + 1, Number);
+
+	std::stringstream char_stream(string_element);
+	first_element = ReadTuple<T>(char_stream);
+	if (str.fail() ||
+		char_stream.fail() ||
+		!char_stream.eof())
+	{
+		throw BadFormat(record_number, Number - sizeof...(Args));
+	}
+	std::tuple<Args...> tail = ReadTuple<Args...>(str, record_number + 1);
+	return std::tuple_cat(std::make_tuple(first_element), tail);
+}
+
+template<typename T, size_t Number>
+std::tuple<T> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
+{
+	T element;
+	std::string string_element;
+	std::getline(str, string_element, LINE_DELIMITER);
+	if (string_element.find(ELEMENT_DELIMITER) != std::string::npos)
+	{
+		throw BadFormat(record_number, Number);
+	}
+	RemoveRuleSequences(string_element, record_number, 0, Number);
+
+	std::stringstream char_stream(string_element);
+	char_stream >> element;
+	if (str.fail() ||
+		char_stream.fail() ||
+		!char_stream.eof())
+	{
+		throw BadFormat(record_number, Number);
+	}
+	return std::make_tuple(element);
 }
 
 template<typename T, typename ... Args>
@@ -79,72 +123,6 @@ auto& operator<<(std::basic_ostream<char>& output_stream, const std::tuple<T>& t
 	return output_stream << std::get<0>(tuple);
 }
 
-template<typename T, typename... Args>
-auto& operator>>(std::basic_istream<char>& input_stream, std::tuple<T, Args...>& tuple)
-{
-	T first_element;
-	std::string string_element;
-	std::getline(input_stream, string_element, ELEMENT_DELIMITER);
-	try
-	{
-		RemoveRuleSequences(string_element);
-	}
-	catch(ElementWithUnknownSequence& e)
-	{
-		throw RecordWithUnknownSequence(sizeof...(Args), e.GetWord());
-	}
-	catch(std::runtime_error&)
-	{
-		throw BadLineQuotes(sizeof...(Args));
-	}
-	std::stringstream char_stream(string_element);
-	char_stream >> first_element;
-	if(input_stream.fail() ||
-		char_stream.fail() ||
-		!char_stream.eof())
-	{
-		throw BadLineFormat(sizeof...(Args));
-	}
-	std::tuple<Args...> tail;
-	input_stream >> tail;
-	tuple = std::tuple_cat(std::make_tuple(first_element), tail);
-	return input_stream;
-}
-
-template<typename T>
-auto& operator>>(std::basic_istream<char>& input_stream, std::tuple<T>& tuple)
-{
-	T element;
-	std::string string_element;
-	std::getline(input_stream, string_element, LINE_DELIMITER);
-	if(string_element.find(ELEMENT_DELIMITER) != std::string::npos)
-	{
-		throw BadLineFormat(0);
-	}
-	try
-	{
-		RemoveRuleSequences(string_element);
-	}
-	catch (ElementWithUnknownSequence& e)
-	{
-		throw RecordWithUnknownSequence(0, e.GetWord());
-	}
-	catch (std::runtime_error&)
-	{
-		throw BadLineQuotes(0);
-	}
-	std::stringstream char_stream(string_element);
-	char_stream >> element;
-	if(input_stream.fail() ||
-		char_stream.fail() ||
-		!char_stream.eof())
-	{
-		throw BadLineFormat(0);
-	}
-	tuple = std::make_tuple(element);
-	return input_stream;
-}
-
 template <typename... Args>
 class Parser
 {
@@ -159,10 +137,11 @@ public:
 		bool operator==(const ParserIterator& other)const;
 		bool operator!=(const ParserIterator& other)const;
 		ParserIterator& operator++();
-		void ReadRecord();
+		
 		std::tuple<Args...>& operator*();
 		std::tuple<Args...>* operator->();
 	private:
+		void ReadRecord();
 		std::tuple<Args...> current_record_;
 		std::ifstream file_stream_;
 		std::string file_name_;
