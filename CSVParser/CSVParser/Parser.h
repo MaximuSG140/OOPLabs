@@ -4,6 +4,8 @@
 #include <string>
 #include <tuple>
 #include <unordered_map>
+
+#include "AttemptToDereferenceEndIterator.h"
 #include "BadFormat.h"
 #include "BadQuotes.h"
 #include "RecordWithUnknownSequence.h"
@@ -17,7 +19,6 @@ const std::unordered_map<std::string, char> RULE_SEQUENCE_MEANING = {
 		{"endl", LINE_DELIMITER},
 		{"quote", SCREEN_GUARD}
 };
-
 
 inline void RemoveRuleSequences(std::string& string_record,
 								const size_t line_number, 
@@ -35,7 +36,7 @@ inline void RemoveRuleSequences(std::string& string_record,
 			second_quote_occurrence - first_quote_occurrence - 1);
 		if (second_quote_occurrence == std::string::npos)
 		{
-			throw BadQuotes(line_number, elem_amount - number_from_end);
+			throw BadQuotes(line_number, elem_amount - number_from_end + 1);
 		}
 		try
 		{
@@ -46,66 +47,39 @@ inline void RemoveRuleSequences(std::string& string_record,
 		}
 		catch(std::out_of_range&)
 		{
-			throw RecordWithUnknownSequence(word_inside_guards, line_number, elem_amount - number_from_end);
+			throw RecordWithUnknownSequence(word_inside_guards, line_number, elem_amount - number_from_end + 1);
 		}
 	}
 }
 
-inline size_t GetLinesAmount(const std::string& file_name)
+template<size_t Number>
+std::tuple<> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
 {
-	std::ifstream file_stream(file_name);
-	std::string line;
-	size_t line_counter = 0;
-	while (std::getline(file_stream, line, LINE_DELIMITER))
-	{
-		line_counter++;
-	}
-	return line_counter;
+	return std::make_tuple();
 }
 
-template<typename T, typename... Args, size_t Number>
-std::tuple<T, Args...> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
+template<size_t Number, typename T, typename... Rest>
+std::tuple<T, Rest...> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
 {
 	T first_element;
 	std::string string_element;
 
 	std::getline(str, string_element, ELEMENT_DELIMITER);
-	RemoveRuleSequences(string_element, record_number, sizeof...(Args) + 1, Number);
+	RemoveRuleSequences(string_element, record_number, sizeof...(Rest) + 1, Number);
 
 	std::stringstream char_stream(string_element);
-	first_element = ReadTuple<T>(char_stream);
+	char_stream >> first_element;
 	if (str.fail() ||
 		char_stream.fail() ||
 		!char_stream.eof())
 	{
-		throw BadFormat(record_number, Number - sizeof...(Args));
+		throw BadFormat(record_number, Number - sizeof...(Rest));
 	}
-	std::tuple<Args...> tail = ReadTuple<Args...>(str, record_number + 1);
+	std::tuple<Rest...> tail = ReadTuple<Number, Rest...>(str, record_number);
 	return std::tuple_cat(std::make_tuple(first_element), tail);
 }
 
-template<typename T, size_t Number>
-std::tuple<T> ReadTuple(std::basic_istream<char>& str, const size_t record_number)
-{
-	T element;
-	std::string string_element;
-	std::getline(str, string_element, LINE_DELIMITER);
-	if (string_element.find(ELEMENT_DELIMITER) != std::string::npos)
-	{
-		throw BadFormat(record_number, Number);
-	}
-	RemoveRuleSequences(string_element, record_number, 0, Number);
 
-	std::stringstream char_stream(string_element);
-	char_stream >> element;
-	if (str.fail() ||
-		char_stream.fail() ||
-		!char_stream.eof())
-	{
-		throw BadFormat(record_number, Number);
-	}
-	return std::make_tuple(element);
-}
 
 template<typename T, typename ... Args>
 auto& operator<<(std::basic_ostream<char>& output_stream, const std::tuple<T, Args...>& tuple)
@@ -143,8 +117,8 @@ public:
 	private:
 		void ReadRecord();
 		std::tuple<Args...> current_record_;
-		std::ifstream file_stream_;
 		std::string file_name_;
+		std::ifstream file_stream_;
 		size_t current_line_number_;
 		bool read_record_;
 	};
@@ -160,15 +134,19 @@ private:
 
 template <typename ... Args>
 Parser<Args...>::ParserIterator::ParserIterator(const std::string& file_name, const size_t line_number) :
-	file_stream_(file_name),
 	file_name_(file_name),
+	file_stream_(file_name),
 	current_line_number_(line_number),
 	read_record_(false)
 {
-	for(int i = 0; i < current_line_number_ - 1; ++i)
+	for(size_t i = 0; i < current_line_number_ - 1; ++i)
 	{
 		std::string line;
 		std::getline(file_stream_, line, LINE_DELIMITER);
+		if(file_stream_.eof())
+		{
+			break;
+		}
 	}
 }
 
@@ -188,8 +166,15 @@ template <typename ... Args>
 typename Parser<Args...>::ParserIterator& Parser<Args...>::ParserIterator::operator++()
 {
 	ReadRecord();
-	current_line_number_++;
 	read_record_ = false;
+	if(file_stream_.eof())
+	{
+		current_line_number_ = std::string::npos;
+	}
+	else
+	{
+		current_line_number_++;
+	}
 	return *this;
 }
 
@@ -198,25 +183,14 @@ void Parser<Args...>::ParserIterator::ReadRecord()
 {
 	if(!read_record_)
 	{
+		if(current_line_number_ == std::string::npos)
+		{
+			throw AttemptToDereferenceEndIterator();
+		}
 		std::string string_record;
 		std::getline(file_stream_, string_record, LINE_DELIMITER);
 		std::stringstream string_stream(string_record);
-		try
-		{
-			string_stream >> current_record_;
-		}
-		catch (BadLineFormat& e)
-		{
-			throw BadFormat(current_line_number_, sizeof...(Args) - e.GetElemFromEnd());
-		}
-		catch(BadLineQuotes& e)
-		{
-			throw BadQuotes(current_line_number_, sizeof...(Args) - e.GetElemFromEnd());
-		}
-		catch(RecordWithUnknownSequence& e)
-		{
-			throw UnknownRuleSequence(current_line_number_, sizeof...(Args) - e.GetElemFromEnd(), e.GetWord());
-		}
+		current_record_ = ReadTuple<sizeof...(Args), Args...>(string_stream, current_line_number_);
 		read_record_ = true;
 	}
 }
@@ -261,6 +235,6 @@ typename Parser<Args...>::ParserIterator Parser<Args...>::begin()
 template <typename ... Args>
 typename Parser<Args...>::ParserIterator Parser<Args...>::end()
 {
-	return ParserIterator(csv_file_name_, GetLinesAmount(csv_file_name_) + 1);
+	return ParserIterator(csv_file_name_, std::string::npos);
 }
 

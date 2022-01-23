@@ -26,7 +26,7 @@
       <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="AttemptToDereferenceEndIterator.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +42,9 @@
     <ClInclude Include="Parser.h">
       <Filter>Parser</Filter>
     </ClInclude>
-    <ClInclude Include="AttemptToDereferenceEndIterator.h" />
+    <ClInclude Include="AttemptToDereferenceEndIterator.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="in.csv">

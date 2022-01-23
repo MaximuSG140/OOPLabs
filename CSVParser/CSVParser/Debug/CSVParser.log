@@ -1,16 +1,1 @@
-﻿  BadFormat.cpp
-  BadLineFormat.cpp
-  BadLineQuotes.cpp
-  BadQuotes.cpp
-  main.cpp
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\Parser.h(190,19): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\Parser.h(184): message : во время компиляции функции-члена класс шаблон "Parser<int,double,std::string>::ParserIterator::ParserIterator(const std::string &,size_t)"
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\Parser.h(280): message : выполняется компиляция ссылки на экземпляр шаблон функции "Parser<int,double,std::string>::ParserIterator::ParserIterator(const std::string &,size_t)"
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\Parser.h(261): message : во время компиляции функции-члена класс шаблон "Parser<int,double,std::string>::Parser(std::string,size_t)"
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\main.cpp(7): message : выполняется компиляция ссылки на экземпляр шаблон функции "Parser<int,double,std::string>::Parser(std::string,size_t)"
-C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\CSVParser\main.cpp(7): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Parser<int,double,std::string>"
-  ElementWithUnknownSequence.cpp
-  RecordWithUnknownSequence.cpp
-  UnknownRuleSequence.cpp
-  Создание кода...
-  CSVParser.vcxproj -> C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\Debug\CSVParser.exe
+﻿  CSVParser.vcxproj -> C:\Users\stepa\Documents\GitHub\OOPLabs\CSVParser\Debug\CSVParser.exe
