@@ -6,11 +6,10 @@ class RecordWithUnknownSequence final :
 	public std::exception
 {
 public:
-	explicit RecordWithUnknownSequence(size_t unread_elements, std::string unknown_word);
-	size_t GetElemFromEnd()const;
-	std::string GetWord()const;
+	explicit RecordWithUnknownSequence(const std::string& unknown_word, size_t line, size_t elem_number);
+
+	[[nodiscard]] char const* what() const override;
 private:
-	size_t unread_elements_;
-	std::string unknown_word_;
+	std::string msg_;
 };
 

@@ -19,22 +19,13 @@
     <ClCompile Include="BadFormat.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="BadLineFormat.cpp">
-      <Filter>Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="BadLineQuotes.cpp">
-      <Filter>Exceptions</Filter>
-    </ClCompile>
     <ClCompile Include="BadQuotes.cpp">
-      <Filter>Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWithUnknownSequence.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="RecordWithUnknownSequence.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="UnknownRuleSequence.cpp">
+    <ClCompile Include="AttemptToDereferenceEndIterator.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,26 +33,17 @@
     <ClInclude Include="BadFormat.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="BadLineFormat.h">
-      <Filter>Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="BadLineQuotes.h">
-      <Filter>Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="BadQuotes.h">
-      <Filter>Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWithUnknownSequence.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="RecordWithUnknownSequence.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="UnknownRuleSequence.h">
-      <Filter>Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="Parser.h">
       <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="AttemptToDereferenceEndIterator.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

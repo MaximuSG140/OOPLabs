@@ -1,17 +1,13 @@
 #include "RecordWithUnknownSequence.h"
 
-RecordWithUnknownSequence::RecordWithUnknownSequence(const size_t unread_elements,
-                                                     std::string unknown_word) :
-	unread_elements_(unread_elements),
-	unknown_word_(std::move(unknown_word))
+RecordWithUnknownSequence::RecordWithUnknownSequence(const std::string& unknown_word,
+                                                     const size_t line,
+													const size_t elem_number) :
+	msg_("Error, unknown rule sequence: " + unknown_word + "\n" + 
+		"Line: " + std::to_string(line) + " Element: " + std::to_string(elem_number) + "\n")
 {}
 
-size_t RecordWithUnknownSequence::GetElemFromEnd() const
+char const* RecordWithUnknownSequence::what() const
 {
-	return unread_elements_;
-}
-
-std::string RecordWithUnknownSequence::GetWord() const
-{
-	return unknown_word_;
+	return msg_.c_str();
 }
